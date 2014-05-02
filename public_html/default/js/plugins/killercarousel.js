@@ -1,5 +1,6 @@
 /*
     Killer Carousel 1 Site License (KC01-01) TRIAL VERSION.
+    Killer Carousel 1 Site License (KC01-01).
     Version 1.2 rev 1402121140
     Please purchase an appropriate license to use this software.
     License Agreement: www.starplugins.com/license
@@ -8,6 +9,9 @@
     Downloaded on Apr 20, 2014 by account #TRIAL USER
     License Key: N/A
     Licensed website(s): spring.bi
+    Downloaded on May 02, 2014 by account #3104
+    License Key: 623bed39e2619771b8944a61d565ab8a
+    Licensed website(s): absglobal.com
 */
 (new window['\x46\x75\x6E\x63\x74\x69\x6F\x6E'](['d=n.prototype;d.getData=d.getData;d.setSize=d.gb;window.KillerCarousel=h;window.KillerCarouselItem=n;f(window).bind(\"blur\",function(){h.hasFocus=!1});f(window).bind(\"focus\",function(){h.hasFocus=!0});f.fn.KillerCarousel=function(a){return this.each(function(){f(this).data(\"KillerCarousel\",new h(f(this),a))})}})(jQuery);',
 'd.destroy=d.Na;d.position=d.position;d.currentPosition=d.Ka;d.destinationPosition=d.Ma;d.lineUp=d.Wa;d.createItem=d.Ia;d.appendItem=d.na;d.setCss3d=d.i;d.adjust3dYPos=d.W;d.adjust2dYPos=d.P;d.getNaturalWidth=d.Sa;d.getScale=d.Ta;d.calcOpacity=d.Q;d.getScrollPos=d.Ua;d.createNavButtons=d.ra;',
