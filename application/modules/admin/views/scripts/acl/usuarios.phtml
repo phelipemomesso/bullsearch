@@ -1,0 +1,51 @@
+<?
+$controller = Zend_Controller_Front::getInstance()->getRequest()->getControllerName();
+$cod_module = Zend_Controller_Front::getInstance()->getRequest()->getParam('cod_module');
+$cod_grupo = Zend_Controller_Front::getInstance()->getRequest()->getParam('cod_grupo');
+?>
+<div id="header-listagem">
+	<a class="btn-link" href="<?= $this->BaseUrl()?>/<?= $controller ?>/novousuario/cod_grupo/<?= $cod_grupo ?>/cod_module/<?= $cod_module ?>"><span class="ui-icon ui-icon-circle-plus"></span>Novo usuário</a>	
+	<form action="#" id="form-listagem" class="ui-widget">
+		<fieldset class="">
+			<label for="search" class="ui-state-default">Filtrar:</label>
+			<input type="text" name="search" value="" id="search" class="ui-widget-content ui-corner-all" />
+		</fieldset>
+	</form>
+	<br style="clear: both;" />
+</div>
+
+<div class="listagem-cx">		
+	<table class="listagem">
+		<thead>
+			<tr>
+				<th scope="col" class="center">Código</th>
+				<th scope="col">Nome</th>
+				<th scope="col">Usuário</th>
+				<th scope="col">Email</th>
+				<th scope="col">Grupo</th>
+				<th scope="col" colspan="3" class="center">Ações</th>
+			</tr>
+		</thead>
+		<tfoot>
+			<tr>
+				<td colspan="8"><?= $this->paginationControl($this->res, 'Sliding', 'render/pagination2.phtml') ?></td>
+			</tr>
+		</tfoot>
+		<tbody>
+			<?
+			
+			foreach ($this->res as $rs) {
+			?>
+			<tr>			
+				<td class="codigo"><?= $rs['id'] ?></td>
+				<td class="titulo"><?= $rs['nome'] ?></td>
+				<td><?= $rs['usuario'] ?></td>
+				<td><?= $rs['email'] ?></td>
+				<td><?= $this->grupo['grupo'] ?></td>
+				<td class="acoes"><a class="btn-link" href="<?= $this->BaseUrl() ?>/acl/editarusuario/cod/<?= $rs['id'] ?>/cod_grupo/<?= $cod_grupo ?>/cod_module/<?= $cod_module ?>"><span class="ui-icon ui-icon-pencil"></span>Editar</a></td>
+				<td class="acoes"><a class="btn-link confirma" rel="Confirma a exclusão?" href="<?= $this->baseUrl() ?>/acl/excluirusuario/cod/<?= $rs['id'] ?>/cod_grupo/<?= $cod_grupo ?>"><span class="ui-icon ui-icon-trash"></span>Deletar</a></td>
+			</tr>
+			<? } ?>
+		</tbody>
+	</table>	
+</div>

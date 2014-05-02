@@ -1,0 +1,469 @@
+<div class="row">
+  
+  <div class="col-xs-6 col-md-3">
+    
+    <?php echo $this->render('render/sidebar-detail.phtml'); ?>
+
+    <div class="clearfix"></div>
+
+    <?php if (count($this->ImagesDaughter)>0) { ?>
+      
+      <h4>ADDITIONAL PHOTOS</h4>
+
+      <div class="row">
+        <?php foreach($this->ImagesDaughter as $v) { ?>
+        <div class="col-xs-6 col-md-6">
+          <a href="<?php echo $this->baseUrl() ?>/default/uploads/bulls/<?php echo $v->bull.'/'.$v->image; ?>" rel="prettyPhoto[thumbnails]" class="thumbnail" title="<?php echo $v->name; ?>">
+           <img src="<?php echo $this->baseUrl() ?>/default/uploads/bulls/<?php echo $v->bull.'/'.$v->image; ?>" class="img-responsive" title="<?php echo $v->name; ?>" />
+          </a>
+        </div>
+        <?php } ?>
+      </div>
+   
+    <?php }  
+
+    if (count($this->Videos)>0) { ?>
+      
+      <h4>VIDEOS</h4>
+
+      <div class="row">
+        <?php foreach($this->Videos as $v) { ?>
+        <div class="col-xs-6 col-md-6">
+          <a href="<?php echo $v->video; ?>" class="thumbnail" rel="prettyPhoto[videos]" title="<?php echo $v->name; ?>">
+            <?php echo $this->YoutubeUrl($v->video,true); ?>
+          </a>
+        </div>
+        <?php } ?>
+      </div>
+   
+    <?php } 
+
+    if (count($this->bullHistory)>0) {
+
+    ?>
+
+    <h4>Users who viewed this bull also viewed these bulls.</h4>
+
+    <div id="slider" class="flexslider">
+      <ul class="slides">
+        <?php for ($i=0; $i < 5 ; $i++) { ?>
+        <li style="text-align:center; margin:0 5px 0 5px;">
+
+          <?php
+            if (!empty($this->bullHistory[$i]['image']))
+              $image = $this->bullHistory[$i]['bullId'].'/'.$this->bullHistory[$i]['image'];
+            else
+              $image = 'cow.jpg';
+          ?>
+          
+          <a href="<?php echo $this->baseUrl() ?>/result/details/id/<?php echo $this->bullHistory[$i]['bullId'] ;?>" >
+           
+           <img src="<?php echo $this->baseUrl() ?>/default/uploads/bulls/<?php echo $image; ?>" class="img-responsive" title="<?php echo $this->bullHistory[$i]['name']; ?>" />
+           
+           <br />
+           
+           <?php echo $this->bullHistory[$i]['name'].'<br />'.$this->bullHistory[$i]['naab']; ?>
+
+         </a>
+          
+        </li>
+        <?php } ?>
+      </ul>
+
+    </div>
+
+    <?php } ?>
+
+  </div>
+  
+  <div class="col-xs-12 col-sm-6 col-md-9">
+    
+    <div class="col-xs-6 col-md-5">
+      
+      <h3 style="margin-top: 0"><small><?php echo $this->Data->f2 ; ?></small> <br /><?php echo $this->Data->f1 ; ?></h3>
+      <h4><?php echo $this->Data->f3 ; ?> <br /> <small><?php echo $this->Data->f4 ; ?></small></h4>
+      <p>
+        aAa: <?php echo $this->Data->f10 ; ?>
+        DMS: <?php echo $this->Data->f11 ; ?>
+      </p>
+      <?php $this->Selo($this->Data->cod_bull); ?>
+
+      <?php if ($this->ImageBull) { ?>
+        <a href="<?php echo $this->baseUrl() ?>/default/uploads/bulls/<?php echo $this->ImageBull->bull.'/'.$this->ImageBull->image; ?>" class="thumbnail" rel="prettyPhoto" title="<?php echo $this->ImageBull->name; ?>">
+          <img src="<?php echo $this->baseUrl() ?>/default/uploads/bulls/<?php echo $this->ImageBull->bull.'/'.$this->ImageBull->image; ?>" class="img-responsive" title="<?php echo $this->ImageBull->name; ?>" style="margin-top:10px;" />
+        </a>
+      <?php } ?>
+
+      <br /><br />
+
+      <!-- AddThis Button BEGIN -->
+      <div class="addthis_toolbox addthis_default_style addthis_32x32_style">
+      <a class="addthis_button_preferred_1"></a>
+      <a class="addthis_button_preferred_2"></a>
+      <a class="addthis_button_preferred_3"></a>
+      <a class="addthis_button_preferred_4"></a>
+      <a class="addthis_button_compact"></a>
+      <a class="addthis_counter addthis_bubble_style"></a>
+      </div>
+      <script type="text/javascript">var addthis_config = {"data_track_addressbar":true};</script>
+      <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-518eda2f5c2be55b"></script>
+      <!-- AddThis Button END -->
+
+    
+      <?php if (count($this->Comments)>0) { ?>
+        
+        <br />
+
+        <a href="javascript:void(0)" class="btn btn-success bt-print-comments">
+          <i class="fa fa-print"></i> Print Bull Card 
+        </a>
+
+        <br /><br />
+        
+        <a href="javascript:void(0)" id="<?php echo $this->Data->cod_bull ; ?>" class="btn btn-success bt-comments">
+          <i class="fa fa-comments"></i> ABS Comments ( <?php echo count($this->Comments); ?> )
+        </a>
+
+      <?php } else { ?>
+
+        <br />
+
+         <a href="<?php echo $this->baseUrl() ?>/result/print/id/<?php echo $this->Data->cod_bull ; ?>/comments/0" target="_blank" class="btn btn-success">
+          <i class="fa fa-print"></i> Print Bull Card 
+        </a>
+
+      <?php } ?>
+
+    </div>
+
+    <div class="col-xs-6 col-md-7">
+      
+      <p>
+        <b>Sire:</b> <?php echo $this->Data->f15.' '.$this->Data->f16.' '.$this->Data->f17; ?><br />
+        <b>Dam:</b>  <?php echo $this->Data->f18.' '.$this->Data->f19.' '.$this->Data->f20.' '.$this->Data->f21; ?><br />
+        <b>Prod:</b> <?php echo $this->Data->f22.' '.$this->Data->f23.'x '.$this->Data->f24.'d '.$this->Data->f25.'M '.$this->Data->f26.'% '.$this->Data->f27.' '.$this->Data->f28.'F '.$this->Data->f29; ?><br />
+        <b>MGS:</b> <?php echo $this->Data->f30.' '.$this->Data->f31.' '.$this->Data->f32; ?><br />
+        <b>Third Sire:</b> <?php echo $this->Data->f33.' '.$this->Data->f34.' '.$this->Data->f35; ?>
+      </p>
+
+      <hr style="border-width:1px 0 0; border-color:#89898A">
+
+      <div class="table-responsive">
+
+        <table class="table-condensed">
+          <tr>
+            <td><?php echo $this->Proof->f47.' '.$this->Proof->f48 ; ?></td>
+            <td><strong>Dtrs</strong> <?php echo $this->Proof->f49; ?></td>
+            <td><strong>Herds</strong> <?php echo $this->Proof->f50; ?></td>
+            <td><strong>TPI</strong> <?php echo $this->Proof->f51; ?></td>
+          </tr>
+        </table>
+      
+        <table class="table table-striped table-hover table-condensed">
+          <thead>
+            <tr style="background:#1A3959; color:white">
+              <th></th>
+              <th>Pounds</th>
+              <th>%</th>
+              <th>Rel</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Milk</strong></td>
+              <td><?php echo substr($this->Proof->f52, 0, 5); ?></td>
+              <td><?php echo substr($this->Proof->f53, 0, 5); ?></td>
+              <td><?php echo substr($this->Proof->f54, 0, 5);; ?></td>
+            </tr>
+            <tr>
+              <td><strong>Protein</strong></td>
+              <td><?php echo substr($this->Proof->f55, 0, 5); ?></td>
+              <td><?php echo substr($this->Proof->f56, 0, 5); ?></td>
+              <td><?php echo substr($this->Proof->f57, 0, 5); ?></td>
+            </tr>
+            <tr>
+              <td><strong>Fat</strong></td>
+              <td><?php echo substr($this->Proof->f58, 0, 5); ?></td>
+              <td><?php echo substr($this->Proof->f59, 0, 5); ?></td>
+              <td><?php echo substr($this->Proof->f60, 0, 5); ?></td>
+            </tr>
+            <tr>
+              <td><strong>Net Merit</strong></td>
+              <td><?php echo substr($this->Proof->f61, 0, 5); ?></td>
+              <td><?php echo substr($this->Proof->f62, 0, 5); ?></td>
+              <td><?php echo substr($this->Proof->f63, 0, 5); ?></td>
+            </tr>
+            <tr>
+              <td><strong>Cheese Merit</strong></td>
+              <td><?php echo substr($this->Proof->f64, 0, 5); ?></td>
+              <td><?php echo substr($this->Proof->f65, 0, 5); ?></td>
+              <td><?php echo substr($this->Proof->f66, 0, 5); ?></td>
+            </tr>
+
+            <tr>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+
+            <tr>
+              <td><strong>Service Sire CE</strong></td>
+              <td><?php echo substr($this->Proof->f67, 0, 5); ?></td>
+              <td><?php echo substr($this->Proof->f68, 0, 5); ?></td>
+              <td></td>
+            </tr>
+
+            <tr>
+              <td><strong>Daughter CE</strong></td>
+              <td><?php echo substr($this->Proof->f69, 0, 5); ?></td>
+              <td><?php echo substr($this->Proof->f70, 0, 5); ?></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td><strong>Service Sire Stillbirths</strong></td>
+              <td><?php echo substr($this->Proof->f71, 0, 5); ?></td>
+              <td><?php echo substr($this->Proof->f72, 0, 5); ?></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td><strong>Daughter Stillbirths</strong></td>
+              <td><?php echo substr($this->Proof->f73, 0, 5); ?></td>
+              <td><?php echo substr($this->Proof->f74, 0, 5); ?></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td><strong>Daughter Pregnance Rate</strong></td>
+              <td><?php echo substr($this->Proof->f75, 0, 5); ?></td>
+              <td><?php echo substr($this->Proof->f76, 0, 5); ?></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td><strong>Somatic Cell Score</strong></td>
+              <td><?php echo substr($this->Proof->f77, 0, 5); ?></td>
+              <td><?php echo substr($this->Proof->f78, 0, 5); ?></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td><strong>Productive Life</strong></td>
+              <td><?php echo substr($this->Proof->f79, 0, 5); ?></td>
+              <td><?php echo substr($this->Proof->f80, 0, 5); ?></td>
+              <td></td>
+            </tr>
+
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+
+    <div class="clearfix"></div>
+
+    <hr style="border-width:2px 0 0; border-color:#89898A">
+
+    <div class="table-responsive">
+      <table class="table table-condensed">
+        <thead>
+          <tr>
+            <td align="center"><strong><?php echo $this->Proof->f1.' '.$this->Proof->f2 ; ?></strong></td>
+            <td colspan="2" align="center"><strong><?php echo $this->Proof->f3; ?> Dtrs</strong></td>
+            <td align="center"><strong><?php echo $this->Proof->f4; ?> Herds</strong> </td>
+            <td align="center"><strong>Rel. <?php echo $this->Proof->f5; ?></strong></td>
+          </tr>
+        </thead>
+        <tbody>
+          <tr style="background:#1A3959; color:white">
+            <td></td>
+            <td colspan="2" align="center"></td>
+            <td colspan="2"><img src="<?php echo $this->baseUrl() ?>/default/imagens/provas/numeros_topo.png" /></td>
+          </tr>
+          <tr>
+            <td><strong>Type</strong></td>
+            <td align="center"><strong><?php echo substr($this->Proof->f6, 0, 5); ?></strong></td>
+            <td align="center">&nbsp;</td>
+            <td colspan="2"><?php $this->Graph($this->Proof->f6); ?></td>
+          </tr>
+          <tr>
+            <td><strong>Udder Composite</strong></td>
+            <td align="center"><strong><?php echo substr($this->Proof->f7, 0, 5); ?></strong></td>
+            <td align="center"><?php echo $this->Proof->f8; ?></td>
+            <td colspan="2"><?php $this->Graph($this->Proof->f7); ?></td>
+          </tr>
+          <tr>
+            <td><strong>Feet and Legs Composite</strong></td>
+            <td align="center"><strong><?php echo substr($this->Proof->f9, 0, 5); ?></strong></td>
+            <td align="center"><?php echo $this->Proof->f10; ?></td>
+            <td colspan="2"><?php $this->Graph($this->Proof->f9); ?></td>
+          </tr>
+          <tr>
+            <td>Stature</td>
+            <td align="center"><strong><?php echo substr($this->Proof->f11, 0, 5); ?></strong></td>
+            <td align="center"><?php echo $this->Proof->f12; ?></td>
+            <td colspan="2"><?php $this->Graph($this->Proof->f11); ?></td>
+          </tr>
+          <tr>
+            <td>Strength</td>
+            <td align="center"><strong><?php echo substr($this->Proof->f13, 0, 5); ?></strong></td>
+            <td align="center"><?php echo $this->Proof->f14; ?></td>
+            <td colspan="2"><?php $this->Graph($this->Proof->f13); ?></td>
+          </tr>
+          <tr>
+            <td>Body Depth</td>
+            <td align="center"><strong><?php echo substr($this->Proof->f15, 0, 5); ?></strong></td>
+            <td align="center"><?php echo $this->Proof->f16; ?></td>
+            <td colspan="2"><?php $this->Graph($this->Proof->f15); ?></td>
+          </tr>
+          <tr>
+            <td>Angularity</td>
+            <td align="center"><strong><?php echo substr($this->Proof->f17, 0, 5); ?></strong></td>
+            <td align="center"><?php echo $this->Proof->f18; ?></td>
+            <td colspan="2"><?php $this->Graph($this->Proof->f17); ?></td>
+          </tr>
+          <tr>
+            <td>Rump Angle</td>
+            <td align="center"><strong><?php echo substr($this->Proof->f19, 0, 5); ?></strong></td>
+            <td align="center"><?php echo $this->Proof->f20; ?></td>
+            <td colspan="2"><?php $this->Graph($this->Proof->f19); ?></td>
+          </tr>
+          <tr>
+            <td>Thurl Width</td>
+            <td align="center"><strong><?php echo substr($this->Proof->f21, 0, 5); ?></strong></td>
+            <td align="center"><?php echo $this->Proof->f22; ?></td>
+            <td colspan="2"><?php $this->Graph($this->Proof->f21); ?></td>
+          </tr>
+          <tr>
+            <td>Rear Legs-Side Set</td>
+            <td align="center"><strong><?php echo substr($this->Proof->f23, 0, 5); ?></strong></td>
+            <td align="center"><?php echo $this->Proof->f24; ?></td>
+            <td colspan="2"><?php $this->Graph($this->Proof->f23); ?></td>
+          </tr>
+          <tr>
+            <td>Rear Legs-Rear View</td>
+            <td align="center"><strong><?php echo substr($this->Proof->f25, 0, 5); ?></strong></td>
+            <td align="center"><?php echo $this->Proof->f26; ?></td>
+            <td colspan="2"><?php $this->Graph($this->Proof->f25); ?></td>
+          </tr>
+          <tr>
+            <td>Foot Angle</td>
+            <td align="center"><strong><?php echo substr($this->Proof->f27, 0, 5); ?></strong></td>
+            <td align="center"><?php echo $this->Proof->f28; ?></td>
+            <td colspan="2"><?php $this->Graph($this->Proof->f27); ?></td>
+          </tr>
+          <tr>
+            <td>Foot &amp; Legs Score</td>
+            <td align="center"><strong><?php echo substr($this->Proof->f29, 0, 5); ?></strong></td>
+            <td align="center"><?php echo $this->Proof->f30; ?></td>
+            <td colspan="2"><?php $this->Graph($this->Proof->f29); ?></td>
+          </tr>
+          <tr>
+            <td>Fore Udder Attachment</td>
+            <td align="center"><strong><?php echo substr($this->Proof->f31, 0, 5); ?></strong></td>
+            <td align="center"><?php echo $this->Proof->f32; ?></td>
+            <td colspan="2"><?php $this->Graph($this->Proof->f31); ?></td>
+          </tr>
+          <tr>
+            <td>Rear Udder Height</td>
+            <td align="center"><strong><?php echo substr($this->Proof->f33, 0, 5); ?></strong></td>
+            <td align="center"><?php echo $this->Proof->f34; ?></td>
+            <td colspan="2"><?php $this->Graph($this->Proof->f33); ?></td>
+          </tr>
+          <tr>
+            <td>Rear Udder Width</td>
+            <td align="center"><strong><?php echo substr($this->Proof->f35, 0, 5); ?></strong></td>
+            <td align="center"><?php echo $this->Proof->f36; ?></td>
+            <td colspan="2"><?php $this->Graph($this->Proof->f35); ?></td>
+          </tr>
+          <tr>
+            <td>Udder Cleft</td>
+            <td align="center"><strong><?php echo substr($this->Proof->f37, 0, 5); ?></strong></td>
+            <td align="center"><?php echo $this->Proof->f38; ?></td>
+            <td colspan="2"><?php $this->Graph($this->Proof->f37); ?></td>
+          </tr>
+          <tr>
+            <td>Udder Depth</td>
+            <td align="center"><strong><?php echo substr($this->Proof->f39, 0, 5); ?></strong></td>
+            <td align="center"><?php echo $this->Proof->f40; ?></td>
+            <td colspan="2"><?php $this->Graph($this->Proof->f39); ?></td>
+          </tr>
+          <tr>
+            <td>Front Teat Placement</td>
+            <td align="center"><strong><?php echo substr($this->Proof->f41, 0, 5); ?></strong></td>
+            <td align="center"><?php echo $this->Proof->f42; ?></td>
+            <td colspan="2"><?php $this->Graph($this->Proof->f41); ?></td>
+          </tr>
+          <tr>
+            <td>Rear Teat Placement</td>
+            <td align="center"><strong><?php echo substr($this->Proof->f43, 0, 5); ?></strong></td>
+            <td align="center"><?php echo $this->Proof->f44; ?></td>
+            <td colspan="2"><?php $this->Graph($this->Proof->f43); ?></td>
+          </tr>
+          <tr>
+            <td>Teat Length</td>
+            <td align="center"><strong><?php echo substr($this->Proof->f45, 0, 5); ?></strong></td>
+            <td align="center"><?php echo $this->Proof->f46; ?></td>
+            <td colspan="2"><?php $this->Graph($this->Proof->f45); ?></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+
+</div>
+
+<?php if (count($this->Comments)>0) { ?>
+<div class="modal fade" id="modalComments" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">ABS Comments - <?php echo $this->Data->f1 ; ?></h4>
+      </div>
+      <div id="body-comments" style="height:400px; overflow: scroll;">
+        <table class="table table-striped">
+            <?php foreach($this->Comments as $v) { ?>
+            <tr>
+              <td width="25%">
+                By <?php echo $v->name; ?>
+                <br />
+                <?php echo $v->job; ?>
+                <br />
+                From <?php echo $v->country; ?>
+              </td>
+              <td width="75%">
+                <b><?php echo $v->title; ?></b>
+                <br />
+                <?php echo $this->Data($v->create_time); ?>
+                <br /><br />
+                <?php echo nl2br($v->comment); ?>
+              </td>
+            </tr>
+            <?php } ?>
+        </table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="modalPrint" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">Print Bull Card - <?php echo $this->Data->f1 ; ?></h4>
+      </div>
+      <div class="modal-body">
+        This bull has ABS Comments recorded against it.<br />
+        Do you want to print these along with the bull page ?
+      </div>
+      <div class="modal-footer">
+        <a href="<?php echo $this->baseUrl() ?>/result/print/id/<?php echo $this->Data->cod_bull ; ?>/comments/1"  target="_blank" class="btn btn-primary">Yes<br />Print Comments</a>
+        <a href="<?php echo $this->baseUrl() ?>/result/print/id/<?php echo $this->Data->cod_bull ; ?>/comments/0" target="_blank" class="btn btn-primary">No Thanks<br />Just the bull page</a>
+      </div>
+    </div>
+  </div>
+</div>
+<?php } ?>

@@ -1,0 +1,27 @@
+<div class="panel">
+
+	<div class="panel-body">
+
+		<ol class="breadcrumb">
+			<li><a href="<?php echo $this->baseUrl() ?>/index">Home</a></li>
+			<li class="active">Dairy / Beef</li>
+		</ol>
+
+		<?php echo $this->render('render/sidebar.phtml'); ?>
+
+
+		<div class="col-xs-12 col-sm-6 col-md-9">
+
+            <span class="subtitle">Choose your Sire Type:</span>
+            <br /><br />
+            
+            <p>
+              <a rel="step3+step4+Daughter Proven" class="btn btn-default btn-lg step" value="daughter_proven" role="button">Daughter Proven</a>
+              <a rel="step3+step4+Genomic Young Sires" class="btn btn-default btn-lg step" value="genomic_young_sires" role="button">Genomic Young Sires</a>
+             <a rel="step3+step4+All" class="btn btn-default btn-lg step" value="all" role="button">All</a>
+            </p>
+
+        </div>
+
+	</div>
+</div>

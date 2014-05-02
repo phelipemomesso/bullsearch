@@ -1,0 +1,33 @@
+<?
+$cod_module = Zend_Controller_Front::getInstance()->getRequest()->getParam('cod_module');
+$cod_grupo = Zend_Controller_Front::getInstance()->getRequest()->getParam('cod_grupo');
+?>
+<div class="form-geral-cx">
+	<h1>Permissões</h1>
+	<form action="" class="form-geral form-permissoes" method="post">
+		
+			<?
+			$Model_Controllers = new Model_Controllers();
+			$Model_Roles_Grupos = new Model_Rolesgrupos();
+			$Model_Roles_Actions = new Model_Rolesactions();
+			$controllers = $Model_Controllers->fetchAll("module = '$cod_module' AND controller != 'modulos' AND controller != 'login'");		
+			
+			foreach ($controllers as $controller) {
+				echo '<fieldset class="ui-widget-content ui-corner-all"><legend>'.$controller['label'].'</legend>';
+				$actions = $controllers->current()->findDependentRowset('Model_Actions')->toArray();
+				$roleGrupo = $Model_Roles_Grupos->fetchRow("controller = '$controller[cod_controller]' and grupo = '$cod_grupo'");
+				$checked = (count($Model_Roles_Actions->fetchRow("action = 'index' and role_grupos = '$roleGrupo[cod_role_grupo]'"))) ? 'checked="checked"' : '';				
+	        	echo '<input id="'.$controller['controller'].'index" type="checkbox" '.$checked.' name="'.$controller['cod_controller'].'[]" value="index" /><label for="'.$controller['controller'].'index">Inicial</label>';	        	
+	        	foreach ($actions as $action) {	        		
+	        		$checked = (count($Model_Roles_Actions->fetchRow("action = '$action[action]' and role_grupos = '$roleGrupo[cod_role_grupo]'"))) ? 'checked="checked"' : '';
+	        		echo '<input id="'.$action['action'].$controller['controller'].'" type="checkbox" '.$checked.' name="'.$controller['cod_controller'].'[]" value="'.$action['action'].'" /><label for="'.$action['action'].$controller['controller'].'">'.$action['label'].'</label>';	        		
+	        	}
+	        	echo '</fieldset>';
+			}
+			?>
+			<p>
+			<input type="submit" name="Gravar" value="Gravar" />			
+			</p>
+	</form>
+
+</div>

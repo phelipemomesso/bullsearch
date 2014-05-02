@@ -1,0 +1,69 @@
+<div class="panel">
+
+	<div id="msg-login" class="alert alert-danger" style="display:none;"></div>
+
+	<div class="col-xs-6 col-sm-6">
+
+		<div class="login-box">
+
+			<div style="text-align:center; margin-top:20px;">
+				<a href="#" id="loginface" class="btn btn-primary"><i class="fa fa-facebook-square fa-lg"></i> Login with Facebook </a>
+
+				<br /><br />
+
+				OR
+			</div>
+
+			
+
+			<form class="form-horizontal" id="form-login" style="margin-top:20px;">
+
+				<div class="input-prepend" title="Username">
+					<span class="add-on">E-mail <i class="fa fa-user"></i></span>
+					<input class="form-control" name="usuario" id="usuario" type="text" placeholder="E-mail"/>
+				</div>
+
+				<div class="clearfix"></div>
+
+				<div class="input-prepend" title="Password">
+					<span class="add-on">Password <i class="fa fa-lock"></i></span>
+					<input class="form-control" name="senha" id="senha" type="password" placeholder="Password"/>
+				</div>
+				<div class="clearfix"></div>
+				
+				<label>
+            		<input type="checkbox" id="remember" name="remember" value="1" />
+            		Keep me logged in
+        		</label>
+				<br />
+
+				
+				<a href="<?php echo $this->baseUrl() ?>/register/forgot" class="btn btn-primary"><i class="fa fa-key"></i> Forgot Password</a>
+
+				<br />
+
+				<div class="btn-group button-login">
+					<button type="submit" class="btn btn-primary" id="btn-login"><i class="fa fa-power-off"></i> Login</button>
+				</div>
+			</form>
+
+		</div>
+
+	</div>
+
+	<div class="col-xs-6 col-sm-6">
+
+
+		<h2>Register your account</h2>
+		
+		<div class="panel-body">	
+
+			<span>* Required Field</span>
+
+			<?php echo $this->Form; ?>
+
+		</div>
+
+	</div>
+
+</div>

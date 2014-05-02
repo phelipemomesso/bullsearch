@@ -1,0 +1,46 @@
+<a class="btn btn-sm btn-success" href="<?= $this->BaseUrl() ?>/admin/touro/newcomment/id/<?php echo $this->Touro; ?>">
+    <i class="fa fa-plus-circle fa-lg"></i> New Comment
+</a>
+
+<br /><br />
+
+<div class="row">
+    <div class="col-xs-12"> 
+        <div class="table-header"><i class="fa fa-th-large"></i> ABS Comments</div>
+
+        <div class="table-responsive">
+             <table class="table table-striped table-bordered table-hover" id="registros">
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Title</th>
+                        <th>Name</th>
+                        <th>Job</th>
+                        <th>Country</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>   
+                <tbody>
+                    <?php foreach ($this->Data as $rs) { ?>
+                    <tr>
+                        <td><?php echo $this->Data($rs->create_time); ?></td>
+                        <td><?php echo $rs->title; ?></td>
+                        <td><?php echo $rs->name; ?></td>
+                        <td><?php echo $rs->job; ?></td>
+                        <td><?php echo $rs->country; ?></td>                   
+                        <td class="center">
+                            <a class="btn btn-xs btn-info btn-tooltip" data-toggle="tooltip" data-original-title="Edit" href="<?php echo $this->BaseUrl() ?>/admin/touro/editcomment/id/<?php echo $rs->cod_comment ?>">
+                                <i class="fa fa-pencil-square-o fa-lg"></i>  
+                            </a>
+                            <a class="btn btn-xs btn-danger btn-tooltip" data-toggle="tooltip" data-original-title="Delete" href="<?= $this->BaseUrl() ?>/admin/touro/deletecomment/id/<?php echo $rs->cod_comment; ?>" >
+                                <i class="fa fa-trash-o fa-lg"></i> 
+                            </a>
+                        </td>
+                        
+                    </tr>
+                    <?php } ?>
+                </tbody>
+            </table>            
+        </div>
+    </div><!--/col-->
+</div><!--/row-->

@@ -1,0 +1,223 @@
+<?php echo $this->doctype(); ?>
+<html lang="en">
+  <head>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="Content-Language" content="pt-BR" />
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description" content="" />
+		<meta name="keywords" content="" />
+    <meta name="robots" content="index,follow" />
+		<meta name="rating" content="general" />
+		<meta name="revisit-after" content="7" />
+		<meta name="url" content="www.bullsearch.com" />
+
+		<meta http-equiv="pragma" content="no-cache" />
+		<meta http-equiv="expires" content = "0" />
+
+    <? echo $this->headTitle(); ?>
+
+    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+		<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
+    <link rel="stylesheet" href="<?php echo $this->baseUrl() ?>/default/css/geral.css?<?php echo floor(rand())?>" type="text/css" media="screen" />
+    <link href="<?php echo $this->baseUrl() ?>/default/css/flexslider.css" rel="stylesheet" type="text/css" media="screen" />
+<link href="<?php echo $this->baseUrl() ?>/default/css/killercarousel.css" type="text/css" rel="stylesheet" />
+    <link href="<?php echo $this->baseUrl() ?>/default/css/prettyPhoto.css" rel="stylesheet" type="text/css" media="screen" />
+    <link href='http://fonts.googleapis.com/css?family=Abel' rel='stylesheet' type='text/css'>
+
+        <?php
+	        echo $this->headLink();
+	        echo $this->headScript();
+	        echo $this->inlineScript();
+
+	        echo $this->headScript()->setScript('
+				var baseUrl = "' . $this->BaseUrl() . '";
+				var module = "' . Zend_Controller_Front::getInstance()->getRequest()->getModuleName() . '";
+				var controller = "' . Zend_Controller_Front::getInstance()->getRequest()->getControllerName() . '";
+				var action = "' . Zend_Controller_Front::getInstance()->getRequest()->getActionName() . '";
+			');
+        ?>
+  </head>
+  <body>
+
+    <div class="container">
+
+      <a href="<?php echo $this->baseUrl() ?>/index">
+        <img src="<?php echo $this->baseUrl() ?>/default/imagens/topo.jpg" class="img-responsive" alt="" title="">
+    	</a>
+			<br />
+
+      <?php echo $this->render('nav.phtml'); ?>
+
+      <?php if($this->message){ ?>
+
+          <div class="clearfix"></div>
+          <div class="alert alert-<?php echo $this->messageType; ?>">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            <p><?php echo $this->message; ?></p>
+          </div>
+
+        <?php } ?>
+
+        <div class="clearfix"></div>
+
+    		<?php echo $this->layout()->content; ?>
+
+    	</div>
+
+    	<?php echo $this->render('render/cookie.phtml'); ?>
+      <div id="fb-root"></div>
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/r29/html5.min.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+      <script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
+    <![endif]-->
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
+
+    <script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+
+    <script src="<?php echo $this->baseUrl() ?>/admin/assets/js/jquery.dataTables.min.js"></script>
+    <script src="<?php echo $this->baseUrl() ?>/admin/assets/js/jquery.dataTables.bootstrap.js"></script>
+
+    <script type="text/javascript" src="<?php echo $this->baseUrl() ?>/default/js/base.js?<?php echo floor(rand())?>"></script>
+
+    <script type="text/javascript" src="<?php echo $this->baseUrl() ?>/default/js/jquery.flexslider-min.js"></script>
+
+
+    <script type="text/javascript" src="<?php echo $this->baseUrl() ?>/default/js/plugins/killercarousel.js"></script>
+    <script type="text/javascript" src="<?php echo $this->baseUrl() ?>/default/js/plugins/jquery.prettyPhoto.js"></script>
+
+    <script type="text/javascript">
+
+    jQuery(function($) {
+
+
+      $('#slider').flexslider({
+        animation: "slide",
+        controlNav: false,
+        animationLoop: false,
+        slideshow: false,
+        itemWidth: 125,
+        itemMargin: 10,
+        maxItems:2,
+        move: 2,
+        sync: "#carousel",
+        start: function(slider){
+          $('body').removeClass('loading');
+        }
+      });
+
+      $("a[rel^='prettyPhoto']").prettyPhoto({
+        theme: "facebook"
+      });
+
+
+      <?php
+
+      if (!isset($_COOKIE['bullsearch'])) { ?>
+
+
+        jQuery('#myModal').modal({
+          keyboard: false,
+          show: true,
+
+        })
+
+
+        <?php } ?>
+
+        $('.kc-wrap').KillerCarousel({
+
+          // Default natural width of carousel.
+          width: 800,
+          // Item spacing in 3d (has CSS3 3d) mode.
+          spacing3d: 120,
+          // Item spacing in 2d (no CSS3 3d) mode.
+          spacing2d: 120,
+          showShadow: false,
+          showReflection: false,
+          // Looping mode.
+          infiniteLoop: true,
+          // Scale at 75% of parent element.
+          autoScale: 100,
+          useMouseWheel: 0
+
+        });
+
+
+        $( ".bt-details-cover" ).on( "click", function( e ) {
+
+          jQuery.ajax({
+
+            url: baseUrl+'/result/detailscover',
+            data: {
+
+              bull: $(this).attr('id')
+            },
+            type: 'post',
+
+            success: function(data) {
+
+              $('#teste').html(data);
+
+              window.addthis.toolbox('.addthis_toolbox');
+
+
+            },
+
+            error: function(xhr, er) {
+              alert('Error ' + xhr.status + ' - ' + xhr.statusText);
+            }
+          })
+
+        });
+
+        $( ".bt-comments" ).on( "click", function( e ) {
+
+         $('#modalComments').modal('show');
+
+        });
+
+        $( ".bt-print-comments" ).on( "click", function( e ) {
+
+         $('#modalPrint').modal('show');
+
+        });
+
+        var kc = $('#kc').data('KillerCarousel');
+    // Bind events to buttons.
+    $('#forwards-button').click(function(){
+        // Call api function to move forwards.
+        kc.animateToRelativeItem(1);
+        $('#teste').html('');
+    });
+    $('#backwards-button').click(function(){
+        // Call api function to move backwards.
+        kc.animateToRelativeItem(-1);
+        $('#teste').html('');
+    });
+
+    $( "#select-language" ).on( "change", function( e ) {
+
+      location.href=baseUrl+'/language/index/lang/'+$(this).val();
+
+    });
+
+
+
+
+      });
+
+ </script>
+
+    </body>
+
+</html>

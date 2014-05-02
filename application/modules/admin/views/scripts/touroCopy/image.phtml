@@ -1,0 +1,43 @@
+<a class="btn btn-sm btn-success" href="<?= $this->BaseUrl() ?>/admin/touro/newimage/id/<?php echo $this->Touro; ?>">
+    <i class="fa fa-plus-circle fa-lg"></i> New Imagem
+</a>
+
+<br /><br />
+
+<div class="row">
+    <div class="col-xs-12"> 
+        <div class="table-header"><i class="fa fa-th-large"></i> Bulls Images</div>
+
+        <div class="table-responsive">
+             <table class="table table-striped table-bordered table-hover" id="registros">
+                <thead>
+                    <tr>
+                        <th>Image</th>
+                        <th>Name</th>
+                        <th>Type</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>   
+                <tbody>
+                    <?php foreach ($this->Data as $rs) { ?>
+                    <tr>
+                        <td><img src="<?php echo $this->BaseUrl().'/default/uploads/bulls/'.$this->Touro.'/'.$rs->image; ?>" alt="" width="100" height="100" class="img-responsive" /></td>
+                        <td><?php echo $rs->name; ?></td>
+                        <td><?php if($rs->type == 1) echo 'Bull'; else echo 'Daughter'; ?></td>
+                                        
+                        <td class="center">
+                            <a class="btn btn-xs btn-info btn-tooltip" data-toggle="tooltip" data-original-title="Edit" href="<?php echo $this->BaseUrl() ?>/admin/touro/editimage/id/<?php echo $rs->cod_image ?>">
+                                <i class="fa fa-pencil-square-o fa-lg"></i>  
+                            </a>
+                            <a class="btn btn-xs btn-danger btn-tooltip" data-toggle="tooltip" data-original-title="Delete" href="<?= $this->BaseUrl() ?>/admin/touro/deleteimage/id/<?php echo $rs->cod_image; ?>" >
+                                <i class="fa fa-trash-o fa-lg"></i> 
+                            </a>
+                        </td>
+                        
+                    </tr>
+                    <?php } ?>
+                </tbody>
+            </table>            
+        </div>
+    </div><!--/col-->
+</div><!--/row-->

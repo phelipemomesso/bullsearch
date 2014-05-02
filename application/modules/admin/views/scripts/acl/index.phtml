@@ -1,0 +1,54 @@
+<?
+$controller = Zend_Controller_Front::getInstance()->getRequest()->getControllerName();
+?>
+<div id="header-listagem">
+	<a class="btn-link" href="<?= $this->BaseUrl()?>/<?= $controller ?>/novogrupo"><span class="ui-icon ui-icon-circle-plus"></span>Novo grupo</a>	
+	<form action="#" id="form-listagem" class="ui-widget">
+		<fieldset class="">
+			<label for="search" class="ui-state-default">Filtrar:</label>
+			<input type="text" name="search" value="" id="search" class="ui-widget-content ui-corner-all" />
+		</fieldset>
+	</form>
+	<br style="clear: both;" />
+</div>
+
+<div class="listagem-cx">		
+	<table class="listagem">
+		<thead>
+			<tr>
+				<th scope="col" class="center">Código</th>
+				<th scope="col">Grupos</th>
+				<th scope="col">Module</th>
+				<th scope="col" colspan="4" class="center">Ações</th>
+			</tr>
+		</thead>
+		<tfoot>
+			<tr>
+				<td colspan="7"><?= $this->paginationControl($this->res, 'Sliding', 'render/pagination2.phtml') ?></td>
+			</tr>
+		</tfoot>
+		<tbody>
+			<?
+			$Model_Grupos = new Model_Modules();
+			foreach ($this->res as $rs) {
+				$module = $Model_Grupos->find($rs['module'])->current();
+			?>
+			<tr>			
+				<td class="codigo"><?= $rs['cod_grupo'] ?></td>
+				<td class="titulo"><?= $rs['grupo'] ?></td>
+				<td><?= $module['module'] ?></td>				
+				<? if ($rs['grupo'] == 'admin') { ?>
+				<td class="acoes"><a class="btn-link ui-state-disabled" onclick="return false" href="#"><span class="ui-icon ui-icon-pencil"></span>Editar</a></td>
+				<td class="acoes"><a class="btn-link ui-state-disabled" onclick="return false" href="#"><span class="ui-icon ui-icon-pencil"></span>Permissões</a></td>
+				<td class="acoes"><a class="btn-link ui-state-disabled" onclick="return false" href="#"><span class="ui-icon ui-icon-trash"></span>Deletar</a></td>				
+				<? } else { ?>
+				<td class="acoes"><a class="btn-link" href="<?= $this->BaseUrl() ?>/acl/editargrupo/cod/<?= $rs['cod_grupo'] ?>"><span class="ui-icon ui-icon-pencil"></span>Editar</a></td>
+				<td class="acoes"><a class="btn-link" href="<?= $this->BaseUrl() ?>/acl/permissoes/cod_grupo/<?= $rs['cod_grupo'] ?>/cod_module/<?= $module['cod_module'] ?>"><span class="ui-icon ui-icon-pencil"></span>Permissões</a></td>
+				<td class="acoes"><a class="btn-link confirma" rel="Confirma a exclusão?" href="<?= $this->baseUrl() ?>/acl/excluirgrupo/cod/<?= $rs['cod_grupo'] ?>"><span class="ui-icon ui-icon-trash"></span>Deletar</a></td>
+				<? } ?>				
+				<td class="acoes"><a class="btn-link" href="<?= $this->baseUrl() ?>/acl/usuarios/cod_grupo/<?= $rs['cod_grupo'] ?>/cod_module/<?= $module['cod_module'] ?>"><span class="ui-icon ui-icon-person"></span>Usuários</a></td>						
+			</tr>
+			<? } ?>
+		</tbody>
+	</table>	
+</div>

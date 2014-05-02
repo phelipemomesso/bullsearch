@@ -1,0 +1,46 @@
+<a class="btn btn-sm btn-success" href="<?= $this->BaseUrl() ?>/admin/user/new">
+    <i class="fa fa-plus-circle fa-lg"></i> New User
+</a>
+
+<br /><br />
+
+<div class="row">
+    <div class="col-xs-12"> 
+        <div class="table-header"><i class="fa fa-th-large"></i> Users</div>
+
+        <div class="table-responsive">
+             <table class="table table-striped table-bordered table-hover" id="registros">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>User</th>
+                        <th>Group</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>   
+                <tbody>
+                    <?php 
+                        $Model_Group = new Model_Group();
+                        foreach ($this->Data as $rs) { 
+                            $group = $Model_Group->getGroupById($rs->group);
+                    ?>
+                    <tr>
+                        <td><?php echo $rs->name; ?></td>
+                        <td><?php echo $rs->user; ?></td>
+                        <td><?php echo $group->name; ?></td>
+                        <td class="center">
+                            <a class="btn btn-xs btn-info btn-tooltip" data-toggle="tooltip" data-original-title="Edit" href="<?php echo $this->BaseUrl() ?>/admin/user/edit/id/<?php echo $rs->cod_user; ?>">
+                                <i class="fa fa-pencil-square-o fa-lg"></i>  
+                            </a>
+                            <a class="btn btn-xs btn-danger btn-tooltip" data-toggle="tooltip" data-original-title="Delete" href="<?= $this->BaseUrl() ?>/admin/user/delete/id/<?php echo $rs->cod_user; ?>" >
+                                <i class="fa fa-trash-o fa-lg"></i> 
+                            </a>
+                        </td>
+                        
+                    </tr>
+                    <?php } ?>
+                </tbody>
+            </table>            
+        </div>
+    </div><!--/span-->
+</div><!--/row-->

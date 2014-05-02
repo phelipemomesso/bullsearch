@@ -1,0 +1,31 @@
+<div class="row">
+
+  <div class="col-xs-6 col-md-3">
+
+    <?php echo $this->render('render/sidebar-detail.phtml'); ?>
+
+  </div>
+  
+  <div class="col-xs-12 col-sm-6 col-md-9">
+
+    <span class="subtitle">Bull Comparison</span>
+    
+    <?php
+      $sessionStep = new Zend_Session_Namespace('sessionStep');
+
+
+      if ($sessionStep->step2 == 'Other Breeds' or $sessionStep->step2 == 'Holstein') {
+        
+        echo $this->render('result/templates/compare_holstein.phtml');
+
+      } elseif ($sessionStep->step2 == 'Jersey') {
+
+        echo $this->render('result/templates/compare_jersey.phtml');
+
+      } 
+    ?>
+    
+  </div>
+
+
+</div>

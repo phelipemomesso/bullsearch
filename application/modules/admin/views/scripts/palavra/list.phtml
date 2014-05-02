@@ -1,0 +1,46 @@
+<a class="btn btn-sm btn-success" href="<?= $this->BaseUrl() ?>/admin/palavra/wordnew/id/<?php echo $this->Id; ?>">
+    <i class="fa fa-plus-circle fa-lg"></i> New Translate
+</a>
+
+<br /><br />
+
+<div class="row">
+    <div class="col-xs-12"> 
+        <div class="table-header"><i class="fa fa-th-large"></i> Word - <?php echo $this->Palavra->nome;?></div>
+            
+        <div class="table-responsive">
+             <table class="table table-striped table-hover table-bordered" id="registros">
+                <thead>
+                    <tr>
+                        <th>Words</th>
+                        <th>Language</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>   
+                <tbody>
+                    <?php 
+                    $Model = new Model_Idioma();
+                    foreach ($this->Data as $rs) { 
+						$idioma = $Model->getLanguageById($rs->language);
+					?>
+                    <tr>
+                        <td><?php echo $rs->translate; ?></td>
+                        <td><?php echo $idioma->nome; ?></td>
+                        <td class="center">
+                            <a class="btn btn-xs btn-info btn-tooltip" data-toggle="tooltip" data-original-title="Edit" href="<?php echo $this->BaseUrl() ?>/admin/palavra/wordedit/id/<?php echo $rs->cod; ?>">
+                                <i class="fa fa-pencil-square-o fa-lg"></i>  
+                            </a>
+
+                         	<a class="btn btn-xs btn-danger btn-tooltip" data-toggle="tooltip" data-original-title="Delete" href="<?= $this->BaseUrl() ?>/admin/palavra/worddelete/id/<?php echo $rs->cod; ?>" >
+	                        	<i class="fa fa-trash-o fa-lg"></i> 
+	                        </a>
+
+                        </td>
+                        
+                    </tr>
+                    <?php } ?>
+                </tbody>
+            </table>            
+        </div>
+    </div><!--/span-->
+</div><!--/row-->

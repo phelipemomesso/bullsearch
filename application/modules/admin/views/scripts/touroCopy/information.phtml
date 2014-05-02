@@ -1,0 +1,142 @@
+<?php
+
+if($this->Info) {
+
+	$type = $this->Info->type;
+
+	$grazing = $this->Info->grazing;
+	$free_stall = $this->Info->free_stall;
+	$dry_lot = $this->Info->dry_lot;
+
+	$volume = $this->Info->volume;
+	$feed = $this->Info->feed;
+	$milk = $this->Info->milk;
+	$fertility = $this->Info->fertility;
+	$conformation = $this->Info->conformation;
+	$durability = $this->Info->durability;
+	$robot = $this->Info->robot;
+
+	$visible = $this->Info->visible;
+	
+} else {
+	
+	$type = '';
+	
+	$grazing = 0;
+	$free_stall = 0;
+	$dry_lot = 0;
+
+	$volume = 0;
+	$feed = 0;
+	$milk = 0;
+	$fertility = 0;
+	$conformation = 0;
+	$durability = 0;
+	$robot = 0;
+
+	$visible = '';
+}
+?>
+
+<div class="row">
+    <div class="col-xs-12"> 
+        <div class="table-header"><i class="fa fa-th-large"></i> Additional Information</div>     
+        
+		<h4><?php echo $this->Bull->f1; ?> <small><?php echo $this->Bull->f2; ?></small></h4>
+
+		<form role="form" id="form" enctype="multipart/form-data" action="" method="post">
+			
+			<div class="form-group">
+
+				<label for="type">Type</label><br />
+				<select name="type" id="type">
+					<option value="Dairy" <?php if($type == 'Dairy') echo 'selected="selected"'; ?> >Dairy</option>
+				  	<option value="Beef" <?php if($type == 'Beef') echo 'selected="selected"'; ?> >Beef</option>
+				</select>
+
+			</div>
+
+			<div class="form-group">
+
+				<h5>Management Style</h5>
+
+				<label>
+					<input name="grazing" id="grazing" value="1" <?php if($grazing == 1) echo 'checked="checked"' ?> type="checkbox"> Grazing
+				</label>
+
+				<br />
+
+				<label>
+					<input name="free_stall" id="free_stall" value="1" <?php if($free_stall == 1) echo 'checked="checked"' ?> type="checkbox"> Free Stall Born
+				</label>
+
+				<br />
+
+				<label>
+					<input name="dry_lot" id="dry_lot" value="1" <?php if($dry_lot == 1) echo 'checked="checked"' ?> type="checkbox"> Dry a Lot
+				</label>
+
+			</div>
+			
+			<div class="form-group">
+
+				<h5>Goals</h5>
+
+				<label>
+					<input name="volume" id="volume" value="1" <?php if($volume == 1) echo 'checked="checked"' ?> type="checkbox"> Volume <br />
+				</label>
+				
+				<br />
+
+				<label>
+					<input name="feed" id="feed" value="1" <?php if($feed == 1) echo 'checked="checked"' ?> type="checkbox"> Feed Efficiency<br />
+				</label>
+				
+				<br />
+				
+				<label>
+					<input name="milk" id="milk" value="1" <?php if($milk == 1) echo 'checked="checked"' ?> type="checkbox"> Milk Components<br />
+				</label>
+
+				<br />
+				
+				<label>
+					<input name="fertility" id="fertility" value="1" <?php if($fertility == 1) echo 'checked="checked"' ?> type="checkbox"> Fertility <br />
+				</label>
+
+				<br />
+				
+				<label>
+					<input name="conformation" id="conformation" value="1" <?php if($conformation == 1) echo 'checked="checked"' ?> type="checkbox"> Conformation<br />
+				</label>
+
+				<br />
+				
+				<label>
+					<input name="durability" id="durability" value="1" <?php if($durability == 1) echo 'checked="checked"' ?> type="checkbox"> Durability<br />
+				</label>
+
+				<br />
+				
+				<label>
+					<input name="robot" id="robot" value="1" <?php if($robot == 1) echo 'checked="checked"' ?> type="checkbox"> Robot<br />
+				</label>
+
+			</div>
+
+			<div class="form-group">
+
+				<label for="visible">Visible</label><br />
+				<select name="visible" id="visible">
+					<option value="1" <?php if($visible == '1') echo 'selected="selected"'; ?> >Yes</option>
+				  	<option value="0" <?php if($visible == '0') echo 'selected="selected"'; ?> >No</option>
+				</select>
+
+			</div>
+
+
+			<button type="submit" class="btn btn-sm btn-primary">Send</button>
+		</form>
+
+    </div>
+</div>

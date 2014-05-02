@@ -1,0 +1,106 @@
+
+<!-- Styles for the Carousel -->
+        <style type = "text/css">
+
+            /* CSS for images inside item wrapper */
+            .kc-item img {
+                pointer-events: none;   /* Make images non-selectable. */
+                width:100%;             /* Make images expand to wrapper size (used in 2d modes). */
+            }
+            
+            
+            /* CSS for text at top and bottom of items */
+            .item-text-bot, .item-text-top {
+                position:absolute;
+                
+                font-family: georgia, serif;
+                color:#fff;
+                width:90%;
+                padding:5%;
+                height:auto;
+                text-align: center;
+            }
+            .item-text-bot {
+                bottom:0px;
+            }
+
+            span {
+              font-size: 18px;
+              color: #80a8d7;
+            }
+         
+
+
+        </style>
+
+
+<div class="row">
+  
+  <div class="col-xs-6 col-md-3">
+    
+    <?php echo $this->render('render/sidebar-detail.phtml'); ?>
+
+  </div>
+
+  <div class="col-xs-12 col-sm-6 col-md-9">
+
+    <span class="subtitle pull-left">Your search returned <?php echo $this->Total;?> results:</span>
+
+    <br clear="all" /><br clear="all" />
+    
+    <p align="center">
+      <a href="<?php echo $this->baseUrl() ?>/result/cover" class="btn btn-default btn-xs active" type="button">Cover View</a>
+      <a href="<?php echo $this->baseUrl() ?>/result" class="btn btn-default btn-xs" type="button">Title View</a>
+      <a href="<?php echo $this->baseUrl() ?>/result/list" class="btn btn-default btn-xs" type="button">List View</a>
+    </p>
+
+    <div id="kc" class="kc-wrap">
+
+      <?php 
+      
+      $Model_BullImage    = new Model_BullImage();
+      foreach ($this->Data as $v) { 
+        $imageBull = $Model_BullImage->getImageBull($v[cod_bull]);
+       
+        if ($imageBull) { 
+          
+          $image = $imageBull->bull.'/'.$imageBull->image;
+        
+        } else {
+          $image = 'cow.gif';
+        }  
+       ?>
+        <div class="kc-item">
+          
+          <div class="item-text-bot">
+            <span><?php echo $v[f1]; ?></span>
+            <br />
+            <button type="button" id="<?php echo $v[cod_bull]; ?>" class="btn btn-primary bt-details-cover">Bulls Details</button>
+          </div>
+          <img src="<?php echo $this->baseUrl() ?>/default/uploads/bulls/<?php echo $image; ?>" alt="<?php echo $v[f1]; ?>">
+
+        </div>
+          
+      <?php } ?>
+
+    </div>
+    
+    <div align="center" style="margin:10px 0 20px 0; padding-bottom:10px; border-bottom:1px solid #CCC;">
+      <input type='button' id ='backwards-button' value='<<'>
+      <input type='button' id ='forwards-button' value='>>'>
+    </div>
+
+</div>
+
+
+  </div>  
+
+</div>  
+
+
+<div class="row" id="teste"></div>
+
+    
+
+    
+     

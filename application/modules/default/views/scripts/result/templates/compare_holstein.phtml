@@ -1,0 +1,282 @@
+
+
+    <?php if($this->Total == 3) { ?>
+
+    <table class="table">
+      <thead> 
+        <tr>
+          <td>&nbsp;</td>
+          <td>
+            <?php if ($this->ImageBull1) { ?>
+              <img src="<?php echo $this->baseUrl() ?>/default/uploads/bulls/<?php echo $this->ImageBull1->bull.'/'.$this->ImageBull1->image; ?>" class="img-responsive" style="margin-bottom:5px;" width="200" height="200" />
+            <?php } ?>
+            <?php echo $this->Bull1->f2 ; ?> <b><?php echo $this->Bull1->f1 ; ?></b>
+            <br />
+            <?php $this->Selo($this->Bull1->cod_bull); ?>
+          </td>
+          <td>
+            <?php if ($this->ImageBull2) { ?>
+              <img src="<?php echo $this->baseUrl() ?>/default/uploads/bulls/<?php echo $this->ImageBull2->bull.'/'.$this->ImageBull2->image; ?>" class="img-responsive" style="margin-bottom:5px;" width="200" height="200" />
+            <?php } ?>
+            <?php echo $this->Bull2->f2 ; ?> <b><?php echo $this->Bull2->f1 ; ?></b>
+            <br />
+            <?php $this->Selo($this->Bull2->cod_bull); ?>
+          </td>
+          <td>
+            <?php if ($this->ImageBull3) { ?>
+              <img src="<?php echo $this->baseUrl() ?>/default/uploads/bulls/<?php echo $this->ImageBull3->bull.'/'.$this->ImageBull3->image; ?>" class="img-responsive" style="margin-bottom:5px;" width="200" height="200" />
+            <?php } ?>
+            <?php echo $this->Bull3->f2 ; ?> <b><?php echo $this->Bull3->f1 ; ?></b>
+            <br />
+            <?php if ($this->Bull3->cod_bull) $this->Selo($this->Bull3->cod_bull); ?> 
+          </td>
+        </tr>
+      </thead>
+
+      <tbody>
+        
+        <tr>
+          <td>Net Merit $</td>
+          <td><?php echo substr($this->Proof1->f61, 0, 4); ?></td>
+          <td><?php echo substr($this->Proof2->f61, 0, 4); ?></td>
+          <td><?php echo substr($this->Proof3->f61, 0, 4); ?></td>
+        </tr>
+
+        <tr>
+          <td>Cheese Merit $</td>
+          <td><?php echo substr($this->Proof1->f64, 0, 4); ?></td>
+          <td><?php echo substr($this->Proof2->f64, 0, 4); ?></td>
+          <td><?php echo substr($this->Proof3->f64, 0, 4); ?></td>
+        </tr>
+
+        <tr>
+          <td>TPI</td>
+          <td><?php echo substr($this->Proof1->f51, 0, 4); ?></td>
+          <td><?php echo substr($this->Proof2->f51, 0, 4); ?></td>
+          <td><?php echo substr($this->Proof3->f51, 0, 4); ?></td>
+        </tr>
+
+        <tr>
+          <td>Fat lbs</td>
+          <td><?php echo substr($this->Proof1->f58, 0, 4); ?></td>
+          <td><?php echo substr($this->Proof2->f58, 0, 4); ?></td>
+          <td><?php echo substr($this->Proof3->f58, 0, 4); ?></td>
+        </tr>
+
+        <tr>
+          <td>Fat %</td>
+          <td><?php echo substr($this->Proof1->f59, 0, 5); ?></td>
+          <td><?php echo substr($this->Proof2->f59, 0, 5); ?></td>
+          <td><?php echo substr($this->Proof3->f59, 0, 5); ?></td>
+        </tr>
+
+        <tr>
+          <td>Protein lbs</td>
+          <td><?php echo substr($this->Proof1->f55, 0, 4); ?></td>
+          <td><?php echo substr($this->Proof2->f55, 0, 4); ?></td>
+          <td><?php echo substr($this->Proof3->f55, 0, 4); ?></td>
+        </tr>
+
+        <tr>
+          <td>Protein %</td>
+          <td><?php echo substr($this->Proof1->f56, 0, 5); ?></td>
+          <td><?php echo substr($this->Proof2->f56, 0, 5); ?></td>
+          <td><?php echo substr($this->Proof3->f56, 0, 5); ?></td>
+        </tr>
+
+        <tr>
+          <td>Service Sire Calving Ease</td>
+          <td><?php echo substr($this->Proof1->f67, 0, 4); ?></td>
+          <td><?php echo substr($this->Proof2->f67, 0, 4); ?></td>
+          <td><?php echo substr($this->Proof3->f67, 0, 4); ?></td>
+        </tr>
+
+        <tr>
+          <td>Daughter Pregnancy Rate</td>
+          <td><?php echo substr($this->Proof1->f75, 0, 4); ?></td>
+          <td><?php echo substr($this->Proof2->f75, 0, 4); ?></td>
+          <td><?php echo substr($this->Proof3->f75, 0, 4); ?></td>
+        </tr>
+
+        <tr>
+          <td>Somatic Cell Score</td>
+          <td><?php echo substr($this->Proof1->f77, 0, 4); ?></td>
+          <td><?php echo substr($this->Proof2->f77, 0, 4); ?></td>
+          <td><?php echo substr($this->Proof3->f77, 0, 4); ?></td>
+        </tr>
+
+        <tr>
+          <td>Productive Life</td>
+          <td><?php echo substr($this->Proof1->f79, 0, 4); ?></td>
+          <td><?php echo substr($this->Proof2->f79, 0, 4); ?></td>
+          <td><?php echo substr($this->Proof3->f79, 0, 4); ?></td>
+        </tr>
+
+        <tr>
+          <td>Milk</td>
+          <td><?php echo substr($this->Proof1->f52, 0, 4); ?></td>
+          <td><?php echo substr($this->Proof2->f52, 0, 4); ?></td>
+          <td><?php echo substr($this->Proof3->f52, 0, 4); ?></td>
+        </tr>
+
+        <!--<tr>
+          <td>Real World Data® Bull Fertility</td>
+          <td><?php echo $this->Proof1->f2 ; ?></td>
+          <td><?php echo $this->Proof2->f2 ; ?></td>
+          <td><?php echo $this->Proof3->f2 ; ?></td>
+        </tr>-->
+
+        <tr>
+          <td>Type</td>
+          <td><?php echo substr($this->Proof1->f6, 0, 4); ?></td>
+          <td><?php echo substr($this->Proof2->f6, 0, 4); ?></td>
+          <td><?php echo substr($this->Proof3->f6, 0, 4); ?></td>
+        </tr>
+
+        <tr>
+          <td>Udder Composite</td>
+          <td><?php echo substr($this->Proof1->f7, 0, 4); ?></td>
+          <td><?php echo substr($this->Proof2->f7, 0, 4); ?></td>
+          <td><?php echo substr($this->Proof3->f7, 0, 4); ?></td>
+        </tr>
+
+        <tr>
+          <td>Feet & Legs Composite</td>
+          <td><?php echo substr($this->Proof1->f9, 0, 4); ?></td>
+          <td><?php echo substr($this->Proof2->f9, 0, 4); ?></td>
+          <td><?php echo substr($this->Proof3->f9, 0, 4); ?></td>
+        </tr>
+
+      </tbody>
+
+  </table>
+
+  <?php } elseif ($this->Total == 2) { ?>
+  
+    <table class="table">
+      <thead> 
+        <tr>
+          <td>&nbsp;</td>
+          <td>
+            <?php if ($this->ImageBull1) { ?>
+              <img src="<?php echo $this->baseUrl() ?>/default/uploads/bulls/<?php echo $this->ImageBull1->bull.'/'.$this->ImageBull1->image; ?>" class="img-responsive" style="margin-bottom:5px;" width="200" height="200" />
+            <?php } ?>
+            <?php echo $this->Bull1->f2 ; ?> <b><?php echo $this->Bull1->f1 ; ?></b>
+            <br />
+            <?php $this->Selo($this->Bull1->cod_bull); ?>
+          </td>
+          <td>
+            <?php if ($this->ImageBull2) { ?>
+              <img src="<?php echo $this->baseUrl() ?>/default/uploads/bulls/<?php echo $this->ImageBull2->bull.'/'.$this->ImageBull2->image; ?>" class="img-responsive" style="margin-bottom:5px;" width="200" height="200" />
+            <?php } ?>
+            <?php echo $this->Bull2->f2 ; ?> <b><?php echo $this->Bull2->f1 ; ?></b>
+            <br />
+            <?php $this->Selo($this->Bull2->cod_bull); ?>
+          </td>
+        </tr>
+      </thead>
+
+      <tbody>
+        
+        <tr>
+          <td>Net Merit $</td>
+          <td><?php echo substr($this->Proof1->f61, 0, 4); ?></td>
+          <td><?php echo substr($this->Proof2->f61, 0, 4); ?></td>
+        </tr>
+
+        <tr>
+          <td>Cheese Merit $</td>
+          <td><?php echo substr($this->Proof1->f64, 0, 4); ?></td>
+          <td><?php echo substr($this->Proof2->f64, 0, 4); ?></td>
+        </tr>
+
+        <tr>
+          <td>TPI</td>
+          <td><?php echo substr($this->Proof1->f51, 0, 4); ?></td>
+          <td><?php echo substr($this->Proof2->f51, 0, 4); ?></td>
+        </tr>
+
+        <tr>
+          <td>Fat lbs</td>
+          <td><?php echo substr($this->Proof1->f58, 0, 4); ?></td>
+          <td><?php echo substr($this->Proof2->f58, 0, 4); ?></td>
+        </tr>
+
+        <tr>
+          <td>Fat %</td>
+          <td><?php echo substr($this->Proof1->f59, 0, 5); ?></td>
+          <td><?php echo substr($this->Proof2->f59, 0, 5); ?></td>
+        </tr>
+
+        <tr>
+          <td>Protein lbs</td>
+          <td><?php echo substr($this->Proof1->f55, 0, 4); ?></td>
+          <td><?php echo substr($this->Proof2->f55, 0, 4); ?></td>
+        </tr>
+
+        <tr>
+          <td>Protein %</td>
+          <td><?php echo substr($this->Proof1->f56, 0, 5); ?></td>
+          <td><?php echo substr($this->Proof2->f56, 0, 5); ?></td>
+        </tr>
+
+        <tr>
+          <td>Service Sire Calving Ease</td>
+          <td><?php echo substr($this->Proof1->f67, 0, 4); ?></td>
+          <td><?php echo substr($this->Proof2->f67, 0, 4); ?></td>
+        </tr>
+
+        <tr>
+          <td>Daughter Pregnancy Rate</td>
+          <td><?php echo substr($this->Proof1->f75, 0, 4); ?></td>
+          <td><?php echo substr($this->Proof2->f75, 0, 4); ?></td>
+        </tr>
+
+        <tr>
+          <td>Somatic Cell Score</td>
+          <td><?php echo substr($this->Proof1->f77, 0, 4); ?></td>
+          <td><?php echo substr($this->Proof2->f77, 0, 4); ?></td>
+        </tr>
+
+        <tr>
+          <td>Productive Life</td>
+          <td><?php echo substr($this->Proof1->f79, 0, 4); ?></td>
+          <td><?php echo substr($this->Proof2->f79, 0, 4); ?></td>
+        </tr>
+
+        <tr>
+          <td>Milk</td>
+          <td><?php echo substr($this->Proof1->f52, 0, 4); ?></td>
+          <td><?php echo substr($this->Proof2->f52, 0, 4); ?></td>
+        </tr>
+
+        <!--<tr>
+          <td>Real World Data® Bull Fertility</td>
+          <td><?php echo $this->Proof1->f2 ; ?></td>
+          <td><?php echo $this->Proof2->f2 ; ?></td>
+          <td><?php echo $this->Proof3->f2 ; ?></td>
+        </tr>-->
+
+        <tr>
+          <td>Type</td>
+          <td><?php echo substr($this->Proof1->f6, 0, 4); ?></td>
+          <td><?php echo substr($this->Proof2->f6, 0, 4); ?></td>
+        </tr>
+
+        <tr>
+          <td>Udder Composite</td>
+          <td><?php echo substr($this->Proof1->f7, 0, 4); ?></td>
+          <td><?php echo substr($this->Proof2->f7, 0, 4); ?></td>
+        </tr>
+
+        <tr>
+          <td>Feet & Legs Composite</td>
+          <td><?php echo substr($this->Proof1->f9, 0, 4); ?></td>
+          <td><?php echo substr($this->Proof2->f9, 0, 4); ?></td>
+        </tr>
+
+      </tbody>
+
+  </table>
+
+  <?php } ?>

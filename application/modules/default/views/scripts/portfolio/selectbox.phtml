@@ -1,0 +1,119 @@
+<script>
+jQuery(function(){	
+
+	$( ".btn-add" ).on( "click", function( e ) {
+
+    	e.preventDefault();
+    	
+    	jQuery.ajax({
+
+            url: baseUrl+'/portfolio/save',
+            dataType: 'html',
+            type: 'POST',
+            data: {
+
+                portfolio : $('#portfolio').val(),
+                bull : $('#bull').val(),
+            },
+
+            success: function(data) {               
+
+                //$('.modal-body').html();
+                $( '<div id="msgT"class="alert alert-info">'+data+'</div>').prependTo( ".modal-body" );
+                //$('.modal-body').html(');
+            },
+            
+            error: function(xhr, er) {
+                alert('Error ' + xhr.status + ' - ' + xhr.statusText);
+            }
+        }); 
+
+    }); 
+
+
+    $( ".btn-create" ).on( "click", function( e ) {
+
+        e.preventDefault();
+        
+        if ($('#name').val() == '') {
+
+            alert('This field is required');
+            $('#name').focus();
+
+        } else {
+
+            jQuery.ajax({
+
+                url: baseUrl+'/portfolio/create',
+                dataType: 'html',
+                type: 'POST',
+                data: {
+
+                    name : $('#name').val(),
+                    bull : $('#bull').val(),
+                },
+
+                success: function(data) {               
+
+                   // $('.modal-body').html();
+                   $( '<div id="msgT"class="alert alert-info">'+data+'</div>').prependTo( ".modal-body" );
+                },
+                
+                error: function(xhr, er) {
+                    alert('Error ' + xhr.status + ' - ' + xhr.statusText);
+                }
+            }); 
+        }
+
+    });   
+
+});	
+</script>
+
+
+<div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header">
+    		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        	<h4 class="modal-title" id="myModalLabel">Add to Portfolio</h4>
+        </div>
+        <div class="modal-body">
+               
+        	<?php if (count($this->Data)>0) { ?>
+
+                <select id="portfolio" name="portfolio" class="form-control">
+    				
+    				<option value="">--Select Portfolio--</option>
+    				
+    				<?php foreach ($this->Data as $v) { ?>
+    					
+    					<option value="<?php echo $v->cod_portfolio; ?>"><?php echo $v->name; ?></option>
+    				
+    				<?php } ?>
+
+                </select>
+
+                <input type="hidden" name="bull" id="bull" value="<?php echo $this->Bull; ?>" />
+
+    			<br />
+
+    			<a class="btn btn-success btn-sm btn-add" role="button"> Add</a>
+
+            <?php } else { ?>
+                
+                <div class="alert alert-warning">You don't have portfolio.</div>
+
+                <h3>Create portfolio now</h3>
+
+                <input type="text" class="form-control" id="name" name="name" placeholder="Enter name portfolio">
+                <input type="hidden" name="bull" id="bull" value="<?php echo $this->Bull; ?>" />
+
+                <br />
+
+                <a class="btn btn-success btn-sm btn-create" role="button"> Create</a>
+                
+            <?php } ?>
+
+        </div>
+    </div><!-- /.modal-content -->
+</div><!-- /.modal-dialog -->

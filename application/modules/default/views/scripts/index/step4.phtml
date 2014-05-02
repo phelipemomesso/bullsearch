@@ -1,0 +1,74 @@
+<?php 
+
+$sessionStep = new Zend_Session_Namespace('sessionStep');
+
+$goalVolume        = isset($sessionStep->goalVolume) ? $sessionStep->goalVolume : 0;
+$goalLongevity     = isset($sessionStep->goalLongevity) ? $sessionStep->goalLongevity : 0;
+$goalMilkFat       = isset($sessionStep->goalMilkFat) ? $sessionStep->goalMilkFat : 0;
+$goalMilkProtein   = isset($sessionStep->goalMilkProtein) ? $sessionStep->goalMilkProtein : 0;
+$goalDaughter      = isset($sessionStep->goalDaughter) ? $sessionStep->goalDaughter : 0;
+
+?>
+<div class="panel">
+
+	<div class="panel-body">
+
+		<ol class="breadcrumb">
+			<li><a href="<?php echo $this->baseUrl() ?>/index">Home</a></li>
+			<li class="active">Dairy / Beef</li>
+		</ol>
+
+		<?php echo $this->render('render/sidebar.phtml'); ?>
+
+
+		<div class="col-xs-12 col-sm-6 col-md-9">
+            
+            
+            <span class="subtitle">Choose Up to Three Goals:</span>
+            <br /><br />
+
+            <div class="col-xs-6 col-sm-6 col-md-4">
+              <label>
+                <input name="volume" id="volume" value="1" <?php if($goalVolume == 1) echo 'checked="checked"' ?> type="checkbox" class="checkbox-goals ace">
+                <span class="lbl" for="volume"> Volume</span>
+              </label>
+            </div>
+
+            <div class="col-xs-6 col-sm-6 col-md-4">
+              <label>
+                <input name="longevity" id="longevity" value="1" <?php if($goalLongevity == 1) echo 'checked="checked"' ?> type="checkbox" class="checkbox-goals ace">
+                <span class="lbl" for="longevity"> Longevity</span>
+              </label>
+            </div>
+
+            <div class="col-xs-6 col-sm-6 col-md-4">
+              <label>
+                <input name="milkFat" id="milkFat" value="1" <?php if($goalMilkFat == 1) echo 'checked="checked"' ?> type="checkbox" class="checkbox-goals ace">
+                <span class="lbl" for="milkFat"> Milk components – Fat%</span>
+              </label>
+            </div>
+
+            <div class="col-xs-6 col-sm-6 col-md-4">
+              <label>
+                <input name="milkProtein" id="milkProtein" value="1" <?php if($goalMilkProtein == 1) echo 'checked="checked"' ?> type="checkbox" class="checkbox-goals ace">
+                <span class="lbl" for="milkProtein"> Milk components – Protein %</span>
+              </label>
+            </div>
+
+            <div class="col-xs-6 col-sm-6 col-md-4">
+              <label>
+                <input name="daughter" id="daughter" value="1" <?php if($goalDaughter == 1) echo 'checked="checked"' ?> type="checkbox" class="checkbox-goals ace">
+                <span class="lbl" for="daughter"> Daughter Fertility</span>
+              </label>
+            </div>
+
+            <div class="clearfix"></div>
+
+            <br />
+
+            <a href="#" id="step5" class="btn btn-primary pull-right">Next <i class="fa fa-arrow-circle-right"></i> </a>
+
+          </div>
+
+	</div>
+</div>

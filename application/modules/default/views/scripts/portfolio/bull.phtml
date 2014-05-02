@@ -1,0 +1,45 @@
+<div class="row">
+    <div class="col-xs-12"> 
+        <div class="table-header"><i class="fa fa-th-large"></i> Portfolios / Bulls</div>
+
+        <div class="table-responsive">
+             <table class="table table-striped table-bordered table-hover" id="registros">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Code</th>
+                        <th>Breed</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>   
+                <tbody>
+                    <?php 
+                    
+                    $Model_Touro = new Model_Touro();
+                    $Model_Breed = new Model_Breed();
+
+                    foreach ($this->Data as $rs) { 
+
+                        $bull = $Model_Touro->getBullById($rs->bull);
+                        $breed = $Model_Breed->getBreedById($bull->breed);
+                    ?>
+                    <tr>
+                        <td><?php echo $bull->f1; ?></td>
+                        <td><?php echo $bull->f2; ?></td>
+                        <td><?php echo $breed->name; ?></td>
+
+                        <td class="center">
+
+                            <a class="btn btn-sm btn-danger btn-tooltip" data-toggle="tooltip" data-original-title="Delete" href="<?= $this->BaseUrl() ?>/portfolio/deletebull/id/<?php echo $rs->cod; ?>" >
+                                <i class="fa fa-trash-o fa-lg"></i> 
+	                        </a>
+
+                        </td>
+                        
+                    </tr>
+                    <?php } ?>
+                </tbody>
+            </table>            
+        </div>
+    </div><!--/span-->
+</div><!--/row-->

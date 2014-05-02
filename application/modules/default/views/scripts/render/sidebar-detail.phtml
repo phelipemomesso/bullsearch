@@ -1,0 +1,63 @@
+<?php 
+
+$action = Zend_Controller_Front::getInstance()->getRequest()->getActionName(); 
+$sessionStep = new Zend_Session_Namespace('sessionStep');
+$image = '<img src="'.$this->baseUrl().'/default/imagens/check-white.jpg" class="" alt="" title=""> ';
+
+$step1 =  false;
+$step2 =  false;
+$step3 =  false;
+$step4 =  false;
+$step5 =  true;
+
+if($action != 'step1' and !empty($sessionStep->step1)) {
+
+	$step1 = true;
+	$step1Label = '<button class="btn btn-primary btn-xs" type="button">'.$sessionStep->step1Label.'</button>';
+}
+
+if($action != 'step2' and !empty($sessionStep->step2)) {
+
+	$step2 = true;
+	$step2Label = '<button class="btn btn-primary btn-xs" type="button">'.$sessionStep->step2Label.'</button>';
+}
+
+if($action != 'step3' and !empty($sessionStep->step3)) {
+
+	$step3 = true;
+	$step3Label = '<button class="btn btn-primary btn-xs" type="button">'.$sessionStep->step3Label.'</button>';
+}
+
+if($action != 'step4' and !empty($sessionStep->step4)) {
+
+	$step4 = true;
+}
+	 
+?>
+
+
+<ul id="side-bar" class="list-unstyled">
+	<li>
+		<?php if($step1) echo $image; ?>
+		<a href="<?php echo $this->baseUrl() ?>/index/step1" class="">DAIRY / BEEF</a>
+		<?php if($step1) echo $step1Label; ?>
+	</li>
+	<li>
+		<?php if($step2) echo $image; ?>
+		<a href="<?php echo $this->baseUrl() ?>/index/step2">BREED</a>
+		<?php if($step2) echo $step2Label; ?>
+	</li>
+	<li>
+		<?php if($step3) echo $image; ?>
+		<a href="<?php echo $this->baseUrl() ?>/index/step3">SIRE TYPE</a>
+		<?php if($step3) echo $step3Label; ?>
+	</li>
+	<li>
+		<?php if($step4) echo $image; ?>
+		<a href="<?php echo $this->baseUrl() ?>/index/step4">GOALS</a>
+	</li>
+	<li class="last">
+		<?php if($step5) echo $image; ?>
+		<a href="<?php echo $this->baseUrl() ?>/result">RESULTS</a>
+	</li>
+</ul>  

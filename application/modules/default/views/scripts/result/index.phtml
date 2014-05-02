@@ -1,0 +1,105 @@
+<div class="panel">
+
+  <div class="panel-body">  
+
+    <?php 
+
+    if ($this->Total == 0) {
+
+      echo $this->render('render/sidebar.phtml'); 
+
+      echo '<div class="subtitle-0results">Your search returned 0 results</div>';
+
+    } else {
+
+    ?>
+
+    <span class="subtitle pull-left">Your search returned <?php echo $this->Total;?> results:</span>
+
+    <br clear="all" />
+
+    <?php echo $this->render('render/sidebar.phtml'); ?>
+
+      <p align="center">
+        <a href="<?php echo $this->baseUrl() ?>/result/cover" class="btn btn-default btn-xs" type="button">Cover View</a>
+        <a href="<?php echo $this->baseUrl() ?>/result" class="btn btn-default btn-xs active" type="button">Title View</a>
+        <a href="<?php echo $this->baseUrl() ?>/result/list" class="btn btn-default btn-xs" type="button">List View</a>
+      </p>
+
+      <div class="pull-left">
+        <button type="button" id="btn-compare" class="btn btn-primary">Compare Bulls</button>
+      </div>
+
+      <div class="pull-right">
+        <select id="records-result" class="form-control  pull-left">
+          <option value="10" <?php if ($this->Records == 10) echo 'selected="selected"'; ?> >Top 10 matches</option>
+          <option value="20" <?php if ($this->Records == 20) echo 'selected="selected"'; ?> >Top 20 matches</option>
+          <option value="30" <?php if ($this->Records == 30) echo 'selected="selected"'; ?> >Top 30 matches</option>
+          <option value="all" <?php if ($this->Records == 'all') echo 'selected="selected"'; ?> >All</option>
+        </select> 
+      </div>
+
+      <br clear="all" /><br clear="all" />
+
+      <?php 
+
+      $Model_BullImage    = new Model_BullImage();
+      foreach ($this->Data as $v) { 
+      $imageBull = $Model_BullImage->getImageBull($v[cod_bull]);
+      ?>
+
+      <div class="col-sm-6 col-md-3">
+        <div class="thumbnail bulls-list">
+
+          <?php 
+          if ($imageBull) { 
+            $image = $imageBull->bull.'/'.$imageBull->image;
+          } else {
+            $image = 'cow.gif';
+          }  
+          ?>
+          
+          <img src="<?php echo $this->baseUrl() ?>/default/uploads/bulls/<?php echo $image; ?>">
+          
+          <div class="caption">
+            <p>
+              <?php echo $v[f2] ; ?> <b><?php echo $v[f1] ; ?></b>
+              <br />
+              <?php $this->Selo($v[cod_bull]); ?>
+          
+              <label>
+                <input name="compare_<?php echo $v[cod_bull] ; ?>" id="<?php echo $v[cod_bull] ; ?>" value="<?php echo $v[cod_bull] ; ?>" type="checkbox" class="checkbox-compare ace" />
+                <span class="lbl"> Add to compare</span>
+              </label>
+              
+              <?php 
+              $sessionCustomer = new Zend_Session_Namespace('sessionCustomer');
+              if($sessionCustomer->id) { ?>
+                <br />
+                <label>
+                  <a class="btn btn-success btn-sm" data-toggle="modal" href="<?php echo $this->baseUrl()?>/portfolio/selectbox/id/<?php echo $v[cod_bull] ; ?>" data-target="#modalPortfolio"><i class="fa fa-plus-circle"></i> Add to Portfolio</a>
+                </label>
+              <?php } else { ?>
+                <br />
+                <label>
+                  <button class="btn btn-success btn-sm loginportfolio"><i class="fa fa-plus-circle"></i> Add to Portfolio</button>
+                </label>
+
+              <?php } ?>
+
+            </p>
+            <p align="center">
+              <a href="<?php echo $this->baseUrl() ?>/result/details/id/<?php echo $v[cod_bull] ; ?>" class="btn btn-primary" role="button"><i class="fa fa-plus-circle"></i> Details</a>
+            </p>
+          </div>
+        </div>
+      </div>
+      
+      <?php } ?>
+     
+    <div class="clearfix"></div>
+
+  <?php } ?>
+
+  </div>
+</div>

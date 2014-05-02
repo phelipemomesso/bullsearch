@@ -1,0 +1,52 @@
+ <script>
+jQuery(function(){	
+
+	$( ".btn-add2" ).on( "click", function( e ) {
+
+    	e.preventDefault();
+
+    	console.log($('#portfolio2').val());
+    	
+    	jQuery.ajax({
+
+            url: baseUrl+'/portfolio/savee',
+            dataType: 'html',
+            type: 'POST',
+            data: {
+
+                portfolio : $('#portfolio2').val(),
+                bull : $('#bull').val(),
+            },
+
+            success: function(data) {               
+
+                $('.modal-body').html();
+                //$('.modal-body').html('<div class="alert alert-info">'+data+'</div>');
+            },
+            
+            error: function(xhr, er) {
+                alert('Error ' + xhr.status + ' - ' + xhr.statusText);
+            }
+        }); 
+
+    });
+});	
+</script>
+
+ <select id="portfolio2" name="portfolio2" class="form-control">
+
+ 	<option value="">--Select Portfolio--</option>
+
+ 	<?php foreach ($this->Data as $v) { ?>
+
+ 	<option value="<?php echo $v->cod_portfolio; ?>"><?php echo $v->name; ?></option>
+
+ 	<?php } ?>
+
+ </select>
+
+ <input type="hidden" name="bull" id="bull" value="<?php echo $this->Bull; ?>" />
+
+ <br />
+
+ <a class="btn btn-success btn-sm btn-add2" role="button"> Add</a>

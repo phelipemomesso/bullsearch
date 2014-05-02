@@ -1,0 +1,144 @@
+<script type="text/javascript">
+		
+    var chart,chart2;
+    $(document).ready(function() {
+
+            chart = new Highcharts.Chart({
+            chart: {
+                renderTo: 'vitrinesMes',
+                defaultSeriesType: 'column'
+            },
+            title: {
+                text: 'Quantidade de Vitrines por Mês'
+            },
+            xAxis: {
+                categories: [
+                    'Janeiro', 
+                    'Fevereiro', 
+                    'Março', 
+                    'Abril', 
+                    'Maio', 
+                    'Junho', 
+                    'Julho', 
+                    'Agosto', 
+                    'Setembro', 
+                    'Outubro', 
+                    'Novembro', 
+                    'Dezembro'
+                ]
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: 'Adesões/Mês'
+                }
+            },
+            legend: {
+                layout: 'vertical',
+                backgroundColor: '#FFFFFF',
+                align: 'left',
+                verticalAlign: 'top',
+                x: 100,
+                y: 70,
+                floating: true,
+                shadow: true
+            },
+            tooltip: {
+                formatter: function() {
+                    return ''+
+                        this.x +': '+ this.y;
+                }
+            },
+            plotOptions: {
+                column: {
+                    pointPadding: 0.2,
+                    borderWidth: 0
+                }
+            },
+            series: [{
+                    name: 'Vitrines',
+                    data: [<?php echo $this->JaneiroS; ?>, <?php echo $this->FevereiroS; ?>, <?php echo $this->MarcoS; ?>, <?php echo $this->AbrilS; ?>, <?php echo $this->MaioS; ?>, <?php echo $this->JunhoS; ?>, <?php echo $this->JulhoS; ?>, <?php echo $this->AgostoS; ?>, <?php echo $this->SetembroS; ?>, <?php echo $this->OutubroS; ?>, <?php echo $this->NovembroS; ?>, <?php echo $this->DezembroS; ?>]
+				
+                }, {
+                    name: 'Vitrines c/ PagWap',
+                    data: [<?php echo $this->JaneiroC; ?>, <?php echo $this->FevereiroC; ?>, <?php echo $this->MarcoC; ?>, <?php echo $this->AbrilC; ?>, <?php echo $this->MaioC; ?>, <?php echo $this->JunhoC; ?>, <?php echo $this->JulhoC; ?>, <?php echo $this->AgostoC; ?>, <?php echo $this->SetembroC; ?>, <?php echo $this->OutubroC; ?>, <?php echo $this->NovembroC; ?>, <?php echo $this->DezembroC; ?>]
+				
+                }]
+        });
+	
+        chart5 = new Highcharts.Chart({
+       chart: {
+                renderTo: 'vitrines',
+                defaultSeriesType: 'column'
+            },
+            title: {
+                text: 'Quantidade Total de Vitrines por Tipo de Cobrança'
+            },
+            xAxis: {
+                categories: [
+                    'Normal', 
+                    'Gratuidade', 
+                    'Cortesia', 
+                    'Desconto'
+                ]
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: 'Vitrines'
+                }
+            },
+            legend: {
+                layout: 'vertical',
+                backgroundColor: '#FFFFFF',
+                align: 'left',
+                verticalAlign: 'top',
+                x: 100,
+                y: 70,
+                floating: true,
+                shadow: true
+            },
+            tooltip: {
+                formatter: function() {
+                    return ''+
+                        this.x +': '+ this.y;
+                }
+            },
+            plotOptions: {
+                column: {
+                    pointPadding: 0.2,
+                    borderWidth: 0
+                }
+            },
+            series: [{
+                    name: 'Normal',
+                    data: [<?php echo $this->Normal; ?>,0,0,0]
+				
+                }, {
+                    name: 'Gratuitas',
+                    data: [0,<?php echo $this->Gratuidade; ?>,0,0]
+				
+                }
+                ,{
+                    name: 'Cortesias',
+                    data: [0,0,<?php echo $this->Cortesia; ?>,0]
+				
+                }
+                ,{
+                    name: 'Desconto',
+                    data: [0,0,0,<?php echo $this->Desconto; ?>]
+				
+                }]
+        });
+				
+    });
+				
+</script>
+<div class="form-geral-cx">
+    <h1>Dashboard - Estatísticas da Franquia</h1>
+    <br />
+
+    <div id="vitrinesMes" style="width: 900px; height: 400px; margin: 0 auto"></div>
+    <br /><br />
+    <div id="vitrines" style="width: 900px; height: 400px; margin: 0 auto"></div>
+ </div>

@@ -1,0 +1,48 @@
+<div class="row-fluid">
+                
+	<div class="login-box">
+        
+        <?php if($this->Error == 1 or $this->Error == 2) { ?>            
+    	
+	    	<div class="alert alert-danger alert-dismissable">
+	  			<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+	  			<strong>
+	  				<?php if($this->Error == 1) echo 'Usuário não encontrado.'; else echo 'Senha incorreta'; ?>
+	  			</strong>
+			</div>
+		
+		<?php } ?>
+	
+                    
+        <div align="center" style="margin: 10px 0">
+        	<a href="http://www.momessoweb.com.br" target="_blank">
+            	<img src="<?= $this->baseUrl() ?>/admin/assets/images/logotipo_login.jpg" alt="" title="">
+            </a>
+        </div>
+                    
+        <form class="form-horizontal" action="<?= $this->baseUrl() ?>/admin/login/index" method="post">
+                            
+        	<div class="input-prepend" title="Username">
+            	<span class="add-on"><i class="icon-user"></i></span>
+                <input class="input-large span10" name="usuario" id="usuario" type="text" placeholder="user"/>
+           	</div>
+                            
+            <div class="clearfix"></div>
+
+           	<div class="input-prepend" title="Password">
+				<span class="add-on"><i class="icon-lock"></i></span>
+            	<input class="input-large span10" name="senha" id="senha" type="password" placeholder="password"/>
+           	</div>
+                            
+            <div class="clearfix"></div>
+
+            <div class="btn-group button-login">
+            	<button type="submit" class="btn btn-primary"><i class="icon-off icon-white"></i> Login</button>
+            </div>
+
+            <br /><br />
+
+        </form>
+                    
+	</div><!--/span-->
+</div><!--/row-->

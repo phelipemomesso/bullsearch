@@ -1,0 +1,36 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>Suporte para <?php $sessionUsuario = new Zend_Session_Namespace('sessionUsuario'); echo $sessionUsuario->nome; ?></title>
+	</head>
+	
+	<body style="margin: 20px; padding: 0; font-family: arial;">
+	
+		<h1 style="text-align: center; background: #74BC4C; color: #FFFFFF; height: 37px; width: 100%; margin: 0; padding: 0; font-size: 28px; font-weight: bold;">
+			Suporte para <?php echo $sessionUsuario->nome; ?>
+		</h1>
+		
+		<div style="border: 1px solid #74BC4C; padding: 20px;">			
+									
+			<?php if (!empty($this->dados['assunto'])) { ?>
+			<div style="font-size: 16px; font-weight: bold; margin-bottom: 10px;">Assunto:</div>
+			<div style="font-size: 14px; margin-bottom: 20px; color: #3D403E;"><?php echo $this->dados['assunto'] ?></div>
+			<?php } ?>
+                                
+                        <?php if (!empty($this->dados['nome'])) { ?>
+			<div style="font-size: 16px; font-weight: bold; margin-bottom: 10px;">Nome:</div>
+			<div style="font-size: 14px; margin-bottom: 20px; color: #3D403E;"><?php echo $this->dados['nome'] ?></div>
+			<?php } ?>
+					
+			<?php if (!empty($this->dados['mensagem'])) { ?>
+			<div style="font-size: 16px; font-weight: bold; margin-bottom: 10px;">Mensagem:</div>
+			<div style="font-size: 14px; margin-bottom: 20px; color: #3D403E;"><?php echo $this->dados['mensagem'] ?></div>
+			<?php } ?>
+			
+		</div>
+		
+		<div style="text-align: center; background: #74BC4C; color: #E5E7E6; height: 37px; width: 100%;"></div>	
+	</body>
+
+</html>

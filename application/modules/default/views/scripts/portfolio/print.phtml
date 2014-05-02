@@ -1,0 +1,423 @@
+<?php
+
+$mpdf=new mPDF('utf-8', array(216,279));
+
+$mpdf->keep_table_proportions = TRUE;
+$mpdf->ignore_table_width = TRUE;
+
+if(!$this->Erro) {
+    
+  
+$mpdf->WriteHTML('
+
+<img src="'.$this->baseUrl() .'/default/uploads/portfolio/'.$this->Portfolio->cod_portfolio.'/'.$this->Portfolio->image_cover.'" width="100%" />
+
+<br /><br />
+
+<table width="100%" border="0" cellspacing="5" cellpadding="5">
+  <tr>
+    <td valign="middle">'.$this->Portfolio->title.'</td>
+    <td valign="middle"><img src="'.$this->baseUrl() .'/default/uploads/portfolio/'.$this->Portfolio->cod_portfolio.'/'.$this->Portfolio->logo_cover.'" /></td>
+  </tr>
+  <tr>
+    <td height="1" colspan="2" bgcolor="#CCCCCC">&nbsp;</td>
+  </tr>
+  <tr>
+    <td colspan="2">'.$this->Portfolio->comments_cover.'</td>
+  </tr>
+</table>
+
+');
+
+  $Model_PortfolioBull  = new Model_PortfolioBull();
+  $Model_ProofHolstein  = new Model_ProofHolstein();
+  $Model_BullImage      = new Model_BullImage();
+  $Model_Touro          = new Model_Touro();
+
+  $Bulls              = $Model_PortfolioBull->getBullsByPortfolioId($this->Portfolio->cod_portfolio);
+
+  foreach ($Bulls as $v) {
+
+    $bull               = $Model_Touro->getBullById($v->bull);
+    $ImageBull          = $Model_BullImage->getImageBull($v->bull);
+    $ImagesDaughter     = $Model_BullImage->getImagesDaughter($v->bull);
+    $Proof              = $Model_ProofHolstein->getProofByBullId($v->bull);
+
+    $mpdf->SetHeader('Bull Information | '.$bull->f2.' - '.$bull->f3.' | {PAGENO}');
+
+    $mpdf->WriteHTML('
+
+      <style>
+table { 
+        background: transparent !important; 
+        color: #000 !important; 
+        text-shadow: none !important; 
+        filter:none !important; 
+        -ms-filter: none !important; 
+        margin:0; 
+        padding:0;
+        line-height: 1.4em;
+        font-size: 12px;
+    } 
+
+</style>
+
+      <table width="100%" border="0" cellspacing="0" cellpadding="0">
+
+  <tr>
+    <td width="400px" valign="top">
+
+      <p>
+        <b>Sire:</b> '.$bull->f15.' '.$bull->f16.' '.$bull->f17.'<br />
+        <b>Dam:</b>  '.$bull->f18.' '.$bull->f19.' '.$bull->f20.' '.$bull->f21.'<br />
+        <b>Prod:</b> '.$bull->f22.' '.$bull->f23.'x '.$bull->f24.'d '.$bull->f25.'M '.$bull->f26.'% '.$bull->f27.' '.$bull->f28.'F '.$bull->f29.'<br />
+        <b>MGS:</b> '.$bull->f30.' '.$bull->f31.' '.$bull->f32.'<br />
+        <b>Third Sire:</b> '.$bull->f33.' '.$bull->f34.' '.$bull->f35.'
+      </p>
+
+      <br />
+
+      <img src="'.$this->baseUrl() .'/default/uploads/bulls/'.$this->ImageBull->bull.'/'.$this->ImageBull->image.'" width="350" />
+
+    </td>
+    
+    <td width="450px" valign="top">
+
+    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+         
+          <tr>
+            <td>'.$Proof->f47.' '.$Proof->f48  .'</td>
+            <td><strong>Dtrs</strong> '.$Proof->f49 .'</td>
+            <td><strong>Herds</strong> '.$Proof->f50 .'</td>
+            <td><strong>TPI</strong> '.$Proof->f51 .'</td>
+          </tr>
+        </table>
+      
+        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+          <thead>
+            <tr style="background:#1A3959;">
+              <th></th>
+              <th style="color:#FFFFFF;">Pounds</th>
+              <th style="color:#FFFFFF;">%</th>
+              <th style="color:#FFFFFF;">Rel</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Milk</strong></td>
+              <td align="center">'.substr($Proof->f52, 0, 5) .'</td>
+              <td align="center">'.substr($Proof->f53, 0, 5) .'</td>
+              <td align="center">'.substr($Proof->f54, 0, 5) .'</td>
+            </tr>
+            <tr>
+              <td><strong>Protein</strong></td>
+              <td align="center">'.substr($Proof->f55, 0, 5) .'</td>
+              <td align="center">'.substr($Proof->f56, 0, 5) .'</td>
+              <td align="center">'.substr($Proof->f57, 0, 5) .'</td>
+            </tr>
+            <tr>
+              <td><strong>Fat</strong></td>
+              <td align="center">'.substr($Proof->f58, 0, 5) .'</td>
+              <td align="center">'.substr($Proof->f59, 0, 5) .'</td>
+              <td align="center">'.substr($Proof->f60, 0, 5) .'</td>
+            </tr>
+            <tr>
+              <td><strong>Net Merit</strong></td>
+              <td align="center">'.substr($Proof->f61, 0, 5) .'</td>
+              <td align="center">'.substr($Proof->f62, 0, 5) .'</td>
+              <td align="center">'.substr($Proof->f63, 0, 5) .'</td>
+            </tr>
+            <tr>
+              <td><strong>Cheese Merit</strong></td>
+              <td align="center">'.substr($Proof->f64, 0, 5) .'</td>
+              <td align="center">'.substr($Proof->f65, 0, 5) .'</td>
+              <td align="center">'.substr($Proof->f66, 0, 5) .'</td>
+            </tr>
+
+            <tr>
+              <td></td>
+              <td align="center"></td>
+              <td align="center"></td>
+              <td align="center"></td>
+            </tr>
+
+            <tr>
+              <td><strong>Service Sire CE</strong></td>
+              <td align="center">'.substr($Proof->f67, 0, 5) .'</td>
+              <td align="center">'.substr($Proof->f68, 0, 5) .'</td>
+              <td align="center"></td>
+            </tr>
+
+            <tr>
+              <td><strong>Daughter CE</strong></td>
+              <td align="center">'.substr($Proof->f69, 0, 5) .'</td>
+              <td align="center">'.substr($Proof->f70, 0, 5) .'</td>
+              <td align="center"></td>
+            </tr>
+            <tr>
+              <td><strong>Service Sire Stillbirths</strong></td>
+              <td align="center">'.substr($Proof->f71, 0, 5) .'</td>
+              <td align="center">'.substr($Proof->f72, 0, 5) .'</td>
+              <td align="center"></td>
+            </tr>
+            <tr>
+              <td><strong>Daughter Stillbirths</strong></td>
+              <td align="center">'.substr($Proof->f73, 0, 5) .'</td>
+              <td align="center">'.substr($Proof->f74, 0, 5) .'</td>
+              <td align="center"></td>
+            </tr>
+            <tr>
+              <td><strong>Daughter Pregnance Rate</strong></td>
+              <td align="center">'.substr($Proof->f75, 0, 5) .'</td>
+              <td align="center">'.substr($Proof->f76, 0, 5) .'</td>
+              <td align="center"></td>
+            </tr>
+            <tr>
+              <td><strong>Somatic Cell Score</strong></td>
+              <td align="center">'.substr($Proof->f77, 0, 5) .'</td>
+              <td align="center">'.substr($Proof->f78, 0, 5) .'</td>
+              <td align="center"></td>
+            </tr>
+            <tr>
+              <td><strong>Productive Life</strong></td>
+              <td align="center">'.substr($Proof->f79, 0, 5) .'</td>
+              <td align="center">'.substr($Proof->f80, 0, 5) .'</td>
+              <td align="center"></td>
+            </tr>
+
+          </tbody>
+    </table></td>
+  </tr>
+
+  <tr>
+    
+    <td>
+      
+      <table class="table table-condensed">
+        <thead>
+          <tr>
+            <td align="center"><strong>'.$Proof->f1.' '.$Proof->f2  .'</strong></td>
+            <td colspan="2" align="center"><strong>'.$Proof->f3 .' Dtrs</strong></td>
+            <td align="center"><strong>'.$Proof->f4 .' Herds</strong> </td>
+            <td align="center"><strong>Rel. '.$Proof->f5 .'</strong></td>
+          </tr>
+        </thead>
+        <tbody>
+          <tr style="background:#1A3959 color:white">
+            <td></td>
+            <td colspan="2" align="center"></td>
+            <td colspan="2"><img src="'.$this->baseUrl().'/default/imagens/provas/numeros_topo.png" /></td>
+          </tr>
+          <tr>
+            <td><strong>Type</strong></td>
+            <td align="center"><strong>'.substr($Proof->f6, 0, 5) .'</strong></td>
+            <td align="center"></td>
+            <td colspan="2">'.Graphs($Proof->f6).'</td>
+          </tr>
+          <tr>
+            <td><strong>Udder Composite</strong></td>
+            <td align="center"><strong>'.substr($Proof->f7, 0, 5) .'</strong></td>
+            <td align="center">'.$Proof->f8 .'</td>
+            <td colspan="2">'.Graphs($Proof->f7) .'</td>
+          </tr>
+          <tr>
+            <td><strong>Foot &amp Leg Composite</strong></td>
+            <td align="center"><strong>'.substr($Proof->f9, 0, 5) .'</strong></td>
+            <td align="center">'.$Proof->f10 .'</td>
+            <td colspan="2">'.Graphs($Proof->f9) .'</td>
+          </tr>
+          <tr>
+            <td>Stature</td>
+            <td align="center"><strong>'.substr($Proof->f11, 0, 5) .'</strong></td>
+            <td align="center">'.$Proof->f12 .'</td>
+            <td colspan="2">'.Graphs($Proof->f11) .'</td>
+          </tr>
+          <tr>
+            <td>Strength</td>
+            <td align="center"><strong>'.substr($Proof->f13, 0, 5) .'</strong></td>
+            <td align="center">'.$Proof->f14 .'</td>
+            <td colspan="2">'.Graphs($Proof->f13) .'</td>
+          </tr>
+          <tr>
+            <td>Body Depth</td>
+            <td align="center"><strong>'.substr($Proof->f15, 0, 5) .'</strong></td>
+            <td align="center">'.$Proof->f16 .'</td>
+            <td colspan="2">'.Graphs($Proof->f15) .'</td>
+          </tr>
+          <tr>
+            <td>Angularity</td>
+            <td align="center"><strong>'.substr($Proof->f17, 0, 5) .'</strong></td>
+            <td align="center">'.$Proof->f18 .'</td>
+            <td colspan="2">'.Graphs($Proof->f17) .'</td>
+          </tr>
+          <tr>
+            <td>Rump Angle</td>
+            <td align="center"><strong>'.substr($Proof->f19, 0, 5) .'</strong></td>
+            <td align="center">'.$Proof->f20 .'</td>
+            <td colspan="2">'.Graphs($Proof->f19) .'</td>
+          </tr>
+          <tr>
+            <td>Thurl Width</td>
+            <td align="center"><strong>'.substr($Proof->f21, 0, 5) .'</strong></td>
+            <td align="center">'.$Proof->f22 .'</td>
+            <td colspan="2">'.Graphs($Proof->f21) .'</td>
+          </tr>
+          <tr>
+            <td>Rear Legs-Side Set</td>
+            <td align="center"><strong>'.substr($Proof->f23, 0, 5) .'</strong></td>
+            <td align="center">'.$Proof->f24 .'</td>
+            <td colspan="2">'.Graphs($Proof->f23) .'</td>
+          </tr>
+          <tr>
+            <td>Rear Legs-Rear View</td>
+            <td align="center"><strong>'.substr($Proof->f25, 0, 5) .'</strong></td>
+            <td align="center">'.$Proof->f26 .'</td>
+            <td colspan="2">'.Graphs($Proof->f25) .'</td>
+          </tr>
+          <tr>
+            <td>Foot Angle</td>
+            <td align="center"><strong>'.substr($Proof->f27, 0, 5) .'</strong></td>
+            <td align="center">'.$Proof->f28 .'</td>
+            <td colspan="2">'.Graphs($Proof->f27) .'</td>
+          </tr>
+          <tr>
+            <td>Foot &amp Legs Score</td>
+            <td align="center"><strong>'.substr($Proof->f29, 0, 5) .'</strong></td>
+            <td align="center">'.$Proof->f30 .'</td>
+            <td colspan="2">'.Graphs($Proof->f29) .'</td>
+          </tr>
+          <tr>
+            <td>Fore Udder Attachment</td>
+            <td align="center"><strong>'.substr($Proof->f31, 0, 5) .'</strong></td>
+            <td align="center">'.$Proof->f32 .'</td>
+            <td colspan="2">'.Graphs($Proof->f31) .'</td>
+          </tr>
+          <tr>
+            <td>Rear Udder Height</td>
+            <td align="center"><strong>'.substr($Proof->f33, 0, 5) .'</strong></td>
+            <td align="center">'.$Proof->f34 .'</td>
+            <td colspan="2">'.Graphs($Proof->f33) .'</td>
+          </tr>
+          <tr>
+            <td>Rear Udder Width</td>
+            <td align="center"><strong>'.substr($Proof->f35, 0, 5) .'</strong></td>
+            <td align="center">'.$Proof->f36 .'</td>
+            <td colspan="2">'.Graphs($Proof->f35) .'</td>
+          </tr>
+          <tr>
+            <td>Udder Cleft</td>
+            <td align="center"><strong>'.substr($Proof->f37, 0, 5) .'</strong></td>
+            <td align="center">'.$Proof->f38 .'</td>
+            <td colspan="2">'.Graphs($Proof->f37) .'</td>
+          </tr>
+          <tr>
+            <td>Udder Depth</td>
+            <td align="center"><strong>'.substr($Proof->f39, 0, 5) .'</strong></td>
+            <td align="center">'.$Proof->f40 .'</td>
+            <td colspan="2">'.Graphs($Proof->f39) .'</td>
+          </tr>
+          <tr>
+            <td>Front Teat Placement</td>
+            <td align="center"><strong>'.substr($Proof->f41, 0, 5) .'</strong></td>
+            <td align="center">'.$Proof->f42 .'</td>
+            <td colspan="2">'.Graphs($Proof->f41) .'</td>
+          </tr>
+          <tr>
+            <td>Rear Teat Placement</td>
+            <td align="center"><strong>'.substr($Proof->f43, 0, 5) .'</strong></td>
+            <td align="center">'.$Proof->f44 .'</td>
+            <td colspan="2">'.Graphs($Proof->f43) .'</td>
+          </tr>
+          <tr>
+            <td>Teat Length</td>
+            <td align="center"><strong>'.substr($Proof->f45, 0, 5) .'</strong></td>
+            <td align="center">'.$Proof->f46 .'</td>
+            <td colspan="2">'.Graphs($Proof->f45) .'</td>
+          </tr>
+        </tbody>
+      </table>
+
+    </td>
+
+    <td valign="top">
+      
+      '.$img.'
+
+    </td>
+
+  </tr>
+  
+
+</table>');
+  }
+
+}else{
+   $mpdf->WriteHTML('Os campos de Início / Fim e Situação são obrigatórios o preenchimento.'); 
+}
+
+$mpdf->Output();
+
+exit; 
+
+
+function Graphs ($Valor) {
+    $width = 35;
+
+    echo $Valor.'<br />';
+    
+    $Valor = str_replace(',', '.', $Valor);
+
+    $view = Zend_Layout::getMvcInstance()->getView();
+
+    
+    if ($Valor < 0) {
+      
+      if ($Valor > -1) {
+        $Pix = ceil($width * $Valor * -1);
+        $Resto = floor($width - $Pix);
+        $graph .= '<img src="'.$view->baseUrl().'/default/imagens/provas/transp.gif" width="13" height="20" /><img src="'.$view->baseUrl().'/default/imagens/provas/divisor_azul.gif" width="1" height="20" /><img src="'.$view->baseUrl().'/default/imagens/provas/transp.gif" width="'.$width.'" height="20" /><img src="'.$view->baseUrl().'/default/imagens/provas/divisor_azul.gif" width="1" height="20" /><img src="'.$view->baseUrl().'/default/imagens/provas/transp.gif" width="'.$Resto.'" height="20" /><img src="'.$view->baseUrl().'/default/imagens/provas/linha.gif" width="'.$Pix.'" height="20" />';
+      }
+      else if ($Valor > -2) {
+        $Pix = $Valor + 1;
+        $Pix = ceil($Pix * $width * -1);
+        $Resto = floor($width - $Pix);
+        $graph .= '<img src="'.$view->baseUrl().'/default/imagens/provas/transp.gif" width="13" height="20" /><img src="'.$view->baseUrl().'/default/imagens/provas/divisor_azul.gif" width="1" height="20" /><img src="'.$view->baseUrl().'/default/imagens/provas/transp.gif" width="'.$Resto.'" height="20" /><img src="'.$view->baseUrl().'/default/imagens/provas/linha.gif" width="'.$Pix.'" height="20" /><img src="'.$view->baseUrl().'/default/imagens/provas/divisor_azul.gif" width="1" height="20" /><img src="'.$view->baseUrl().'/default/imagens/provas/linha.gif" width="'.$width.'" height="20" />';
+      }
+      else if ($Valor < -2) {
+        $graph .= '<img src="'.$view->baseUrl().'/default/imagens/provas/ponta_esquerda.gif" /><img src="'.$view->baseUrl().'/default/imagens/provas/divisor_azul.gif" width="1" height="20" /><img src="'.$view->baseUrl().'/default/imagens/provas/linha.gif" width="'.$width.'" height="20" /><img src="'.$view->baseUrl().'/default/imagens/provas/divisor_azul.gif" width="1" height="20" /><img src="'.$view->baseUrl().'/default/imagens/provas/linha.gif" width="'.$width.'" height="20" />';
+      }
+    }
+    else if ($Valor >= 0) {
+      $graph .= '<img src="'.$view->baseUrl().'/default/imagens/provas/transp.gif" width="13" height="20" /><img src="'.$view->baseUrl().'/default/imagens/provas/divisor_azul.gif" width="1" height="20" /><img src="'.$view->baseUrl().'/default/imagens/provas/transp.gif" width="'.$width.'" height="20" /><img src="'.$view->baseUrl().'/default/imagens/provas/divisor_azul.gif" width="1" height="20" /><img src="'.$view->baseUrl().'/default/imagens/provas/transp.gif" width="'.$width.'" height="20" />';
+    }
+    
+    $graph .= '<img src="'.$view->baseUrl().'/default/imagens/provas/divisor_azul.gif" width="2" height="20" />';
+    
+    if ($Valor > 0) {
+      if ($Valor < 1) {
+        $Pix = ceil($width * $Valor);
+        $Resto = floor($width - $Pix);
+        $graph .= '<img src="'.$view->baseUrl().'/default/imagens/provas/linha.gif" width="'.$Pix.'" height="20" /><img src="'.$view->baseUrl().'/default/imagens/provas/transp.gif" width="'.$Resto.'" height="20" /><img src="'.$view->baseUrl().'/default/imagens/provas/divisor_azul.gif" width="1" height="20" /><img src="'.$view->baseUrl().'/default/imagens/provas/transp.gif" width="'.$width.'" height="20" /><img src="'.$view->baseUrl().'/default/imagens/provas/divisor_azul.gif" width="1" height="20" /><img src="'.$view->baseUrl().'/default/imagens/provas/transp.gif" width="13" height="20" />';
+      }
+      else if ($Valor < 2) {
+        $Pix = $Valor - 1;
+        $Pix = ceil($Pix * $width);
+        $Resto = floor($width - $Pix);
+        $graph .= '<img src="'.$view->baseUrl().'/default/imagens/provas/linha.gif" width="'.$width.'" height="20" /><img src="'.$view->baseUrl().'/default/imagens/provas/divisor_azul.gif" width="1" height="20" /><img src="'.$view->baseUrl().'/default/imagens/provas/linha.gif" width="'.$Pix.'" height="20" /><img src="'.$view->baseUrl().'/default/imagens/provas/transp.gif" width="'.$Resto.'" height="20" /><img src="'.$view->baseUrl().'/default/imagens/provas/divisor_azul.gif" width="1" height="20" /><img src="'.$view->baseUrl().'/default/imagens/provas/transp.gif" width="13" height="20" />';
+      }
+      else if ($Valor == 2) {
+        $graph .= '<img src="'.$view->baseUrl().'/default/imagens/provas/linha.gif" width="'.$width.'" height="20" /><img src="'.$view->baseUrl().'/default/imagens/provas/divisor_azul.gif" width="1" height="20" /><img src="'.$view->baseUrl().'/default/imagens/provas/linha.gif" width="'.$width.'" height="20" /><img src="'.$view->baseUrl().'/default/imagens/provas/divisor_azul.gif" width="1" height="20" /><img src="'.$view->baseUrl().'/default/imagens/provas/transp.gif" width="13" height="20" />';
+      }
+      else if ($Valor > 2) {
+        $graph .= '<img src="'.$view->baseUrl().'/default/imagens/provas/linha.gif" width="'.$width.'" height="20" /><img src="'.$view->baseUrl().'/default/imagens/provas/divisor_azul.gif" width="1" height="20" /><img src="'.$view->baseUrl().'/default/imagens/provas/linha.gif" width="'.$width.'" height="20" /><img src="'.$view->baseUrl().'/default/imagens/provas/divisor_azul.gif" width="1" height="20" /><img src="'.$view->baseUrl().'/default/imagens/provas/ponta_direita.gif" />';
+      }
+    }
+    else if ($Valor <= 0) {
+      $graph .= '<img src="'.$view->baseUrl().'/default/imagens/provas/transp.gif" width="'.$width.'" height="20" /><img src="'.$view->baseUrl().'/default/imagens/provas/divisor_azul.gif" width="1" height="20" /><img src="'.$view->baseUrl().'/default/imagens/provas/transp.gif" width="'.$width.'" height="20" /><img src="'.$view->baseUrl().'/default/imagens/provas/divisor_azul.gif" width="1" height="20" /><img src="'.$view->baseUrl().'/default/imagens/provas/transp.gif" width="13" height="20" />';
+    }
+
+    return $graph;
+  } 
+
+
+?>

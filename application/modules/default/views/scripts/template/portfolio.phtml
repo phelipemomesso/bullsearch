@@ -1,0 +1,26 @@
+<table width="100%" border="0" cellspacing="3" cellpadding="5">
+  <tr>
+    <td colspan="4" align="center" bgcolor="#CCCCCC"><strong>Portfolio Information</strong></td>
+  </tr>
+    <tr>
+    <td width="16%">Name:</td>
+    <td width="38%"><?php echo $this->dados["name"];?></td>
+    <td width="18%">E-mail:</td>
+      <td width="28%"><?php echo $this->dados["your_email"];?></td>
+  </tr>
+    <tr>
+    <td colspan="4">Message</td>
+    </tr>
+    <tr>
+    <td colspan="4"><?php echo $this->dados["message"];?></td>
+    </tr>
+    <tr>
+    <td colspan="4">Link to access Portfolio</td>
+    </tr>
+    <tr>
+      <td colspan="4">
+        <a href="http://spring.bi/bullsearch/public_html/portfolio/view/id/<?php echo $this->dados["hash"];?>">
+          Click to access
+        </a></td>
+    </tr>
+</table>

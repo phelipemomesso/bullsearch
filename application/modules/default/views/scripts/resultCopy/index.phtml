@@ -1,0 +1,62 @@
+<div class="panel">
+
+  <div class="panel-body">
+
+    <span class="subtitle pull-left">Your search returned <?php echo $this->Total;?> results:</span>
+
+    <br clear="all" />
+
+    <p align="center">
+      <a href="<?php echo $this->baseUrl() ?>/result" class="btn btn-default btn-xs active" type="button">Title View</a>
+      <a href="<?php echo $this->baseUrl() ?>/result/list" class="btn btn-default btn-xs" type="button">List View</a>
+    </p>
+
+    <br clear="all" />
+
+    <?php foreach ($this->Data as $v) { ?>
+
+    <div class="col-sm-6 col-md-3">
+      <div class="thumbnail">
+        <img src="<?php echo $this->baseUrl() ?>/default/imagens/cow.jpg" data-rel="popover" title="Info Cow" data-content="Heads up! This alert needs your attention, but it's not super important.<br />Heads up! This alert needs your attention, but it's not super important.<br />Heads up! This alert needs your attention, but it's not super important.">
+        <div class="caption">
+          <p>
+            <?php echo $v->f2 ; ?> <b><?php echo $v->f1 ; ?></b>
+            <br />
+            <img src="<?php echo $this->baseUrl() ?>/default/imagens/selos.jpg" />
+            <br />
+            <label>
+              <input name="form-field-checkbox" type="checkbox" class="ace" />
+              <span class="lbl"> Add to compare</span>
+            </label>
+            
+            <?php 
+            $sessionCustomer = new Zend_Session_Namespace('sessionCustomer');
+            if($sessionCustomer->id) { ?>
+              <br />
+              <label>
+                <a class="btn btn-success btn-sm" data-toggle="modal" href="<?php echo $this->baseUrl()?>/portfolio/selectbox/id/<?php echo $v->cod_bull ; ?>" data-target="#modalPortfolio">Add to Portfolio</a>
+              </label>
+            <?php } ?>
+
+          </p>
+          <p align="center">
+            <a href="<?php echo $this->baseUrl() ?>/result/details/id/<?php echo $v->cod_bull ; ?>" class="btn btn-primary" role="button"><i class="fa fa-plus-circle"></i> Details</a>
+          </p>
+        </div>
+      </div>
+    </div>
+    
+    <?php } ?>
+   
+    <div class="clearfix"></div>
+
+    <br />
+
+
+    <div align="center">
+     <?php echo $this->paginationControl($this->Data, 'Sliding', 'render/pagination.phtml') ?>
+    </div>
+
+
+  </div>
+</div>

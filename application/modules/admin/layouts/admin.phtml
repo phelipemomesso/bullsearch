@@ -1,0 +1,209 @@
+<?php echo $this->doctype(); 
+ini_set("memory_limit","12M");?>
+<html lang="pt-br">
+    <head>
+
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta http-equiv="Content-Language" content="pt-BR" />
+        <meta name="author" content="Momesso Web Studio - www.momessoweb.com.br - (34) 3316-8682" />
+        <meta name="company" content="Momesso Web Studio - www.momessoweb.com.br - (34) 3316-8682" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        <? echo $this->headTitle(); ?>
+         
+        <!-- The HTML5 shim, for IE6-8 support of HTML5 elements -->
+        <!--[if lt IE 9]>
+            <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+
+        <!-- basic styles -->
+
+        <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+        <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
+        <link rel="stylesheet" href="<?php echo $this->baseUrl() ?>/admin/assets/css/jquery-ui-1.10.3.full.min.css" />
+
+        <!-- page specific plugin styles -->
+
+        <link rel="stylesheet" href="<?php echo $this->baseUrl() ?>/admin/assets/css/chosen.css" />
+        <link rel="stylesheet" href="<?php echo $this->baseUrl() ?>/admin/assets/css/datepicker.css" />
+
+        <!-- fonts -->
+
+        <link rel="stylesheet" href="<?php echo $this->baseUrl() ?>/admin/assets/css/ace-fonts.css" />
+
+        <!-- ace styles -->
+
+        <link rel="stylesheet" href="<?php echo $this->baseUrl() ?>/admin/assets/css/ace.min.css" />
+        <link rel="stylesheet" href="<?php echo $this->baseUrl() ?>/admin/assets/css/ace-rtl.min.css" />
+        <link rel="stylesheet" href="<?php echo $this->baseUrl() ?>/admin/assets/css/ace-skins.min.css" />
+        
+
+        <!--[if lte IE 8]>
+          <link rel="stylesheet" href="<?php echo $this->baseUrl() ?>/admin/assets/css/ace-ie.min.css" />
+        <![endif]-->
+
+        <style>input[type="file"] { margin:10px 0; }</style>
+
+        <!-- inline styles related to this page -->
+
+        <!-- ace settings handler -->
+
+        <script src="<?php echo $this->baseUrl() ?>/admin/assets/js/ace-extra.min.js"></script>
+
+        <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+        <![endif]-->
+        
+        <?php
+        echo $this->headLink();
+        echo $this->headScript();
+        echo $this->inlineScript();
+        
+        echo $this->headScript()->setScript('
+			var baseUrl = "' . $this->BaseUrl() . '";
+			var module = "' . Zend_Controller_Front::getInstance()->getRequest()->getModuleName() . '";
+			var controller = "' . Zend_Controller_Front::getInstance()->getRequest()->getControllerName() . '";
+			var action = "' . Zend_Controller_Front::getInstance()->getRequest()->getActionName() . '";
+		');
+       
+        ?>       
+        
+    </head>
+
+    <body>
+        
+        <?php echo $this->partial('header.phtml'); ?>
+
+        <?php echo $this->partial('nav.phtml'); ?>
+        
+        <div class="page-content">
+            <div class="row">
+                <div class="col-xs-12">
+                    
+                    <?php if($this->message){ ?>
+                    
+                        <div class="alert alert-<?php echo $this->messageType; ?>">
+                            <button type="button" class="close" data-dismiss="alert">&times;</button>
+                            <p><?php echo $this->message; ?></p>
+                        </div>
+                    
+                    <?php } ?>  
+
+                    <?php echo $this->layout()->content; ?>
+
+                 </div><!-- /.col -->
+            </div><!-- /.row -->
+        </div><!-- /.page-content -->
+     
+        
+        <div id="modal-base" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="modal-base" aria-hidden="true">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h3 id="modal-base-Label"></h3>
+            </div>
+            <div class="modal-body">
+                <p></p>
+            </div>
+            <div class="modal-footer">
+                <button class="btn" data-dismiss="modal" aria-hidden="true">Fechar</button>
+            </div>
+        </div>	
+
+
+    </body>
+    
+    <!-- basic scripts -->
+
+    <!--[if !IE]> -->
+
+        <script type="text/javascript">
+            window.jQuery || document.write("<script src='<?php echo $this->baseUrl() ?>/admin/assets/js/jquery-2.0.3.min.js'>"+"<"+"/script>");
+        </script>
+
+    <!-- <![endif]-->
+
+    <!--[if IE]>
+        <script type="text/javascript">
+         window.jQuery || document.write("<script src='<?php echo $this->baseUrl() ?>/admin/assets/js/jquery-1.10.2.min.js'>"+"<"+"/script>");
+        </script>
+    <![endif]-->
+
+    <script type="text/javascript">
+        if("ontouchend" in document) document.write("<script src='<?php echo $this->baseUrl() ?>/admin/assets/js/jquery.mobile.custom.min.js'>"+"<"+"/script>");
+    </script>
+
+    <script src="<?php echo $this->baseUrl() ?>/admin/assets/js/jquery-ui-1.10.3.full.min.js"></script>
+    <script src="<?php echo $this->baseUrl() ?>/admin/assets/js/jquery.ui.touch-punch.min.js"></script>
+
+    <script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+    <script src="<?php echo $this->baseUrl() ?>/admin/assets/js/typeahead-bs2.min.js"></script>
+
+    <script src="<?php echo $this->baseUrl() ?>/admin/assets/js/jquery.dataTables.min.js"></script>
+    <script src="<?php echo $this->baseUrl() ?>/admin/assets/js/jquery.dataTables.bootstrap.js"></script>
+
+    <script src="<?php echo $this->baseUrl() ?>/admin/assets/js/date-time/bootstrap-datepicker.min.js"></script>
+
+    <!-- page specific plugin scripts -->
+
+    <!-- ace scripts -->
+
+    <script src="<?php echo $this->baseUrl() ?>/admin/assets/js/ace-elements.min.js"></script>
+    <script src="<?php echo $this->baseUrl() ?>/admin/assets/js/ace.min.js"></script>
+
+    <!-- inline scripts related to this page -->
+
+        <script type="text/javascript">
+            jQuery(function($) {
+                
+                var oTable1 = $('#registros').dataTable();
+
+                $( ".btn-tooltip" ).tooltip();
+
+                $('.data').datepicker({
+                    autoclose:true,
+                    format:'dd/mm/yyyy',
+                }).next().on(ace.click_event, function(){
+                    $(this).prev().focus();
+                });
+            
+
+                jQuery(document).on('click','.info', function(e) {
+        
+                    e.preventDefault();
+
+                    $.ajax({
+                        url: baseUrl+$(this).attr('rel'),
+                        dataType: 'html',
+                        type: 'get',
+
+                        beforeSend: function() {
+                            //addMascara();                   
+                        },
+                        complete: function() {
+                            //removeMascara();        
+                        },
+                        success: function(data) {               
+
+                            $('.modal-header h3').html('Informações');
+                            $('.modal-body p').html(data);
+                            $('#modal-base').modal({
+                                keyboard: false
+                            }).css({
+                                width: '750px',
+                                'margin-left': function () {
+                                return -($(this).width() / 2);
+                                }           
+                            })
+                        },
+                        error: function(xhr, er) {
+                            alert('Error ' + xhr.status + ' - ' + xhr.statusText);
+                        }
+                    });      
+                }); 
+            })
+        </script>
+	
+</html>

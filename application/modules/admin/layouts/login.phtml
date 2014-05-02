@@ -1,0 +1,46 @@
+<?php echo $this->doctype() ?>
+<html lang="pt-br">
+    <head>
+    
+    	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta http-equiv="Content-Language" content="pt-BR" />
+        <meta name="author" content="Momesso Web Studio - www.momessoweb.com.br - (34) 3316-8682" />
+        <meta name="company" content="Momesso Web Studio - www.momessoweb.com.br - (34) 3316-8682" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <? echo $this->headTitle(); ?>
+       
+        <link rel="stylesheet" href="<?php echo $this->baseUrl() ?>/admin/assets/css/tipTip.css" type="text/css" media="screen" />
+       	<link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
+        <link rel="stylesheet" href="<?php echo $this->baseUrl() ?>/admin/assets/css/login.css" type="text/css" media="screen" />
+          
+        <!-- The HTML5 shim, for IE6-8 support of HTML5 elements -->
+        <!--[if lt IE 9]>
+            <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+        
+        <?php
+        echo $this->headLink();
+        echo $this->headScript();
+        echo $this->inlineScript();
+        ?>
+        
+    </head>
+
+	<body>       
+	    <div class="container-fluid">
+	        <div class="row-fluid">        
+	            <div id="content"><?php echo $this->layout()->content; ?></div>           
+	        </div>
+	    </div>
+    </body>
+    
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+
+    <script type="text/javascript" src="<?php echo $this->baseUrl() ?>/admin/assets/js/login.js"></script>
+
+    <script async type="text/javascript" src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+    
+</html>

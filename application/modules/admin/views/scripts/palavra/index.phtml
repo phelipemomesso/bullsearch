@@ -1,0 +1,44 @@
+<a class="btn btn-sm btn-success" href="<?= $this->BaseUrl() ?>/admin/palavra/new">
+    <i class="fa fa-plus-circle fa-lg"></i> New Word
+</a>
+
+<br /><br />
+
+<div class="row">
+    <div class="col-xs-12"> 
+        <div class="table-header"><i class="fa fa-th-large"></i> Words</div>
+
+        <div class="table-responsive">
+             <table class="table table-striped table-bordered table-hover" id="registros">
+                <thead>
+                    <tr>
+                        <th>Word</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>   
+                <tbody>
+                    <?php foreach ($this->Data as $rs) { ?>
+                    <tr>
+                        <td><?php echo $rs->nome; ?></td>
+                        <td class="center">
+                            <a class="btn btn-xs btn-info btn-tooltip" data-toggle="tooltip" data-original-title="Edit" href="<?php echo $this->BaseUrl() ?>/admin/palavra/edit/id/<?php echo $rs->cod_palavra; ?>">
+                                <i class="fa fa-pencil-square-o fa-lg"></i>  
+                            </a>
+
+                         	<a class="btn btn-xs btn-danger btn-tooltip" data-toggle="tooltip" data-original-title="Delete" href="<?= $this->BaseUrl() ?>/admin/palavra/delete/id/<?php echo $rs->cod_palavra; ?>" >
+	                        	<i class="fa fa-trash-o fa-lg"></i> 
+	                        </a>
+	                        
+	                        <a class="btn btn-xs btn-info btn-tooltip" data-toggle="tooltip" data-original-title="Register Translation" href="<?= $this->BaseUrl() ?>/admin/palavra/list/id/<?php echo $rs->cod_palavra; ?>" >
+	                        	<i class="fa fa-comments-o fa-lg"></i> 
+	                        </a>
+
+                        </td>
+                        
+                    </tr>
+                    <?php } ?>
+                </tbody>
+            </table>            
+        </div>
+    </div><!--/col-->
+</div><!--/row-->               

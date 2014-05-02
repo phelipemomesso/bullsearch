@@ -1,0 +1,342 @@
+<br /><br />
+
+<div class="col-xs-12 col-sm-6 col-md-6">
+
+  <ul class="nav nav-tabs">
+    <li class="active"><a href="#photo" data-toggle="tab"><i class="fa fa-camera"></i> Photos</a></li>
+    <li><a href="#video" data-toggle="tab"><i class="fa fa-video-camera"></i> Videos</a></li>
+  </ul>
+
+  <br />
+
+  <!-- Tab panes -->
+  <div class="tab-content">
+
+    <!-- Photos -->
+    <div class="tab-pane active" align="center" id="photo">
+
+     <section class="slider">
+      <div id="slider" class="flexslider">
+        <ul class="slides">
+          <li>
+            <img src="<?php echo $this->baseUrl() ?>/default/imagens/example/kitchen_adventurer_cheesecake_brownie.jpg" />
+          </li>
+          <li>
+            <img src="<?php echo $this->baseUrl() ?>/default/imagens/example/kitchen_adventurer_lemon.jpg" />
+          </li>
+          <li>
+            <img src="<?php echo $this->baseUrl() ?>/default/imagens/example/kitchen_adventurer_donut.jpg" />
+          </li>
+          <li>
+            <img src="<?php echo $this->baseUrl() ?>/default/imagens/example/kitchen_adventurer_caramel.jpg" />
+          </li>
+          <li>
+            <img src="<?php echo $this->baseUrl() ?>/default/imagens/example/kitchen_adventurer_cheesecake_brownie.jpg" />
+          </li>
+          <li>
+            <img src="<?php echo $this->baseUrl() ?>/default/imagens/example/kitchen_adventurer_lemon.jpg" />
+          </li>
+          <li>
+            <img src="<?php echo $this->baseUrl() ?>/default/imagens/example/kitchen_adventurer_donut.jpg" />
+          </li>
+          <li>
+            <img src="<?php echo $this->baseUrl() ?>/default/imagens/example/kitchen_adventurer_caramel.jpg" />
+          </li>
+          <li>
+            <img src="<?php echo $this->baseUrl() ?>/default/imagens/example/kitchen_adventurer_cheesecake_brownie.jpg" />
+          </li>
+          <li>
+            <img src="<?php echo $this->baseUrl() ?>/default/imagens/example/kitchen_adventurer_lemon.jpg" />
+          </li>
+          <li>
+            <img src="<?php echo $this->baseUrl() ?>/default/imagens/example/kitchen_adventurer_donut.jpg" />
+          </li>
+          <li>
+            <img src="<?php echo $this->baseUrl() ?>/default/imagens/example/kitchen_adventurer_caramel.jpg" />
+          </li>
+        </ul>
+      </div>
+
+    </section>
+
+  </div>
+
+  <!-- Videos -->
+  <div class="tab-pane" id="video">
+    <iframe width="420" height="315" src="//www.youtube.com/embed/t0SQrJvJRqk" frameborder="0" allowfullscreen></iframe>
+
+  </div>
+
+  <div class="table-responsive">
+    <table class="table table-striped table-hover">
+      <thead>
+        <tr>
+          <td align="center"><?php echo $this->Proof->f1.' '.$this->Proof->f2 ; ?></td>
+          <td colspan="2" align="center"><?php echo $this->Proof->f3; ?> Dtrs</td>
+          <td align="center"><?php echo $this->Proof->f4; ?> Herds </td>
+          <td align="center">Rel. <?php echo $this->Proof->f5; ?></td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Trait</td>
+          <td colspan="2" align="center">Values</td>
+          <td colspan="2"><img src="<?php echo $this->baseUrl() ?>/default/imagens/provas/numeros_topo.gif" /></td>
+        </tr>
+        <tr>
+          <td>Type</td>
+          <td align="center"><?php echo substr($this->Proof->f6, 0, 4); ?></td>
+          <td align="center">&nbsp;</td>
+          <td colspan="2"><?php $this->Graph($this->Proof->f6); ?></td>
+        </tr>
+        <tr>
+          <td>Udder Composite</td>
+          <td align="center"><?php echo substr($this->Proof->f7, 0, 4); ?></td>
+          <td align="center"><?php echo $this->Proof->f8; ?></td>
+          <td colspan="2"><?php $this->Graph($this->Proof->f7); ?></td>
+        </tr>
+        <tr>
+          <td>Foot &amp; Leg Composite</td>
+          <td align="center"><?php echo substr($this->Proof->f9, 0, 4); ?></td>
+          <td align="center"><?php echo $this->Proof->f10; ?></td>
+          <td colspan="2"><?php $this->Graph($this->Proof->f9); ?></td>
+        </tr>
+        <tr>
+          <td>Stature</td>
+          <td align="center"><?php echo substr($this->Proof->f11, 0, 4); ?></td>
+          <td align="center"><?php echo $this->Proof->f12; ?></td>
+           <td colspan="2"><?php $this->Graph($this->Proof->f11); ?></td>
+        </tr>
+        <tr>
+          <td>Strength</td>
+          <td align="center"><?php echo substr($this->Proof->f13, 0, 4); ?></td>
+          <td align="center"><?php echo $this->Proof->f14; ?></td>
+           <td colspan="2"><?php $this->Graph($this->Proof->f13); ?></td>
+        </tr>
+        <tr>
+          <td>Body Depth</td>
+          <td align="center"><?php echo substr($this->Proof->f15, 0, 4); ?></td>
+          <td align="center"><?php echo $this->Proof->f16; ?></td>
+           <td colspan="2"><?php $this->Graph($this->Proof->f15); ?></td>
+        </tr>
+        <tr>
+          <td>Angularity</td>
+          <td align="center"><?php echo substr($this->Proof->f17, 0, 4); ?></td>
+          <td align="center"><?php echo $this->Proof->f18; ?></td>
+           <td colspan="2"><?php $this->Graph($this->Proof->f17); ?></td>
+        </tr>
+        <tr>
+          <td>Rump Angle</td>
+          <td align="center"><?php echo substr($this->Proof->f19, 0, 4); ?></td>
+          <td align="center"><?php echo $this->Proof->f20; ?></td>
+           <td colspan="2"><?php $this->Graph($this->Proof->f19); ?></td>
+        </tr>
+        <tr>
+          <td>Thurl Width</td>
+          <td align="center"><?php echo substr($this->Proof->f21, 0, 4); ?></td>
+          <td align="center"><?php echo $this->Proof->f22; ?></td>
+           <td colspan="2"><?php $this->Graph($this->Proof->f21); ?></td>
+        </tr>
+        <tr>
+          <td>Rear Legs-Side Set</td>
+          <td align="center"><?php echo substr($this->Proof->f23, 0, 4); ?></td>
+          <td align="center"><?php echo $this->Proof->f24; ?></td>
+           <td colspan="2"><?php $this->Graph($this->Proof->f23); ?></td>
+        </tr>
+        <tr>
+          <td>Rear Legs-Rear View</td>
+          <td align="center"><?php echo substr($this->Proof->f25, 0, 4); ?></td>
+          <td align="center"><?php echo $this->Proof->f26; ?></td>
+           <td colspan="2"><?php $this->Graph($this->Proof->f25); ?></td>
+        </tr>
+        <tr>
+          <td>Foot Angle</td>
+          <td align="center"><?php echo substr($this->Proof->f27, 0, 4); ?></td>
+          <td align="center"><?php echo $this->Proof->f28; ?></td>
+           <td colspan="2"><?php $this->Graph($this->Proof->f27); ?></td>
+        </tr>
+        <tr>
+          <td>Foot &amp; Legs Score</td>
+          <td align="center"><?php echo substr($this->Proof->f29, 0, 4); ?></td>
+          <td align="center"><?php echo $this->Proof->f30; ?></td>
+           <td colspan="2"><?php $this->Graph($this->Proof->f29); ?></td>
+        </tr>
+        <tr>
+          <td>Fore Udder Attachment</td>
+          <td align="center"><?php echo substr($this->Proof->f31, 0, 4); ?></td>
+          <td align="center"><?php echo $this->Proof->f32; ?></td>
+           <td colspan="2"><?php $this->Graph($this->Proof->f31); ?></td>
+        </tr>
+        <tr>
+          <td>Rear Udder Height</td>
+          <td align="center"><?php echo substr($this->Proof->f33, 0, 4); ?></td>
+          <td align="center"><?php echo $this->Proof->f34; ?></td>
+           <td colspan="2"><?php $this->Graph($this->Proof->f33); ?></td>
+        </tr>
+        <tr>
+          <td>Rear Udder Width</td>
+          <td align="center"><?php echo substr($this->Proof->f35, 0, 4); ?></td>
+          <td align="center"><?php echo $this->Proof->f36; ?></td>
+           <td colspan="2"><?php $this->Graph($this->Proof->f35); ?></td>
+        </tr>
+        <tr>
+          <td>Udder Cleft</td>
+          <td align="center"><?php echo substr($this->Proof->f37, 0, 4); ?></td>
+          <td align="center"><?php echo $this->Proof->f38; ?></td>
+           <td colspan="2"><?php $this->Graph($this->Proof->f37); ?></td>
+        </tr>
+        <tr>
+          <td>Udder Depth</td>
+          <td align="center"><?php echo substr($this->Proof->f39, 0, 4); ?></td>
+          <td align="center"><?php echo $this->Proof->f40; ?></td>
+           <td colspan="2"><?php $this->Graph($this->Proof->f39); ?></td>
+        </tr>
+        <tr>
+          <td>Front Teat Placement</td>
+          <td align="center"><?php echo substr($this->Proof->f41, 0, 4); ?></td>
+          <td align="center"><?php echo $this->Proof->f42; ?></td>
+           <td colspan="2"><?php $this->Graph($this->Proof->f41); ?></td>
+        </tr>
+        <tr>
+          <td>Rear Teat Placement</td>
+          <td align="center"><?php echo substr($this->Proof->f43, 0, 4); ?></td>
+          <td align="center"><?php echo $this->Proof->f44; ?></td>
+           <td colspan="2"><?php $this->Graph($this->Proof->f43); ?></td>
+        </tr>
+        <tr>
+          <td>Teat Length</td>
+          <td align="center"><?php echo substr($this->Proof->f45, 0, 4); ?></td>
+          <td align="center"><?php echo $this->Proof->f46; ?></td>
+           <td colspan="2"><?php $this->Graph($this->Proof->f45); ?></td>
+        </tr>
+    </tbody>
+  </table>
+</div>
+
+</div>
+
+
+
+</div>
+
+<div class="col-xs-12 col-sm-6 col-md-6">
+
+  <h2><?php echo $this->Data->f1 ; ?> <small> ( <?php echo $this->Data->f2 ; ?> )</small></h2>
+  <h4><?php echo $this->Data->f3 ; ?> <small> ( <?php echo $this->Data->f4 ; ?> )</small></h4>
+
+  <p>
+    <b>Sire:</b> <?php echo $this->Data->f15.' '.$this->Data->f16.' '.$this->Data->f17; ?><br />
+    <b>Dam:</b>  <?php echo $this->Data->f18.' '.$this->Data->f19.' '.$this->Data->f20.' '.$this->Data->f21; ?><br />
+    <b>Prod:</b> <?php echo $this->Data->f22.' '.$this->Data->f23.' '.$this->Data->f24.' '.$this->Data->f25.' '.$this->Data->f26.' '.$this->Data->f27.' '.$this->Data->f28.' '.$this->Data->f29; ?><br />
+    <b>MGS:</b> <?php echo $this->Data->f30.' '.$this->Data->f31.' '.$this->Data->f32; ?><br />
+    <b>Third Sire:</b> <?php echo $this->Data->f33.' '.$this->Data->f34.' '.$this->Data->f35; ?>
+  </p>
+
+  <table class="table">
+    <tr>
+      <td><?php echo $this->Proof->f47.' '.$this->Proof->f48 ; ?></td>
+      <td>Dtrs <?php echo $this->Proof->f49; ?></td>
+      <td>Herds <?php echo $this->Proof->f50; ?></td>
+      <td>TPI <?php echo $this->Proof->f51; ?></td>
+    </tr>
+  </table>
+
+
+  <div class="table-responsive">
+    <table class="table table-striped table-hover">
+      <thead>
+        <tr>
+          <th></th>
+          <th>Pounds</th>
+          <th>%</th>
+          <th>Rel</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Milk</td>
+          <td><?php echo substr($this->Proof->f52, 0, 4); ?></td>
+          <td><?php echo substr($this->Proof->f53, 0, 4); ?></td>
+          <td><?php echo substr($this->Proof->f54, 0, 4);; ?></td>
+        </tr>
+        <tr>
+          <td>Protein</td>
+          <td><?php echo substr($this->Proof->f55, 0, 4); ?></td>
+          <td><?php echo substr($this->Proof->f56, 0, 4); ?></td>
+          <td><?php echo substr($this->Proof->f57, 0, 4); ?></td>
+        </tr>
+        <tr>
+          <td>Fat</td>
+          <td><?php echo substr($this->Proof->f58, 0, 4); ?></td>
+          <td><?php echo substr($this->Proof->f59, 0, 4); ?></td>
+          <td><?php echo substr($this->Proof->f60, 0, 4); ?></td>
+        </tr>
+        <tr>
+          <td>Net Merit</td>
+          <td><?php echo substr($this->Proof->f61, 0, 4); ?></td>
+          <td><?php echo substr($this->Proof->f62, 0, 4); ?></td>
+          <td><?php echo substr($this->Proof->f63, 0, 4); ?></td>
+        </tr>
+        <tr>
+          <td>Cheese Merit</td>
+          <td><?php echo substr($this->Proof->f64, 0, 4); ?></td>
+          <td><?php echo substr($this->Proof->f65, 0, 4); ?></td>
+          <td><?php echo substr($this->Proof->f66, 0, 4); ?></td>
+        </tr>
+
+        <tr>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+
+        <tr>
+          <td>Service Sire CE</td>
+          <td><?php echo substr($this->Proof->f67, 0, 4); ?></td>
+          <td><?php echo substr($this->Proof->f68, 0, 4); ?></td>
+          <td></td>
+        </tr>
+
+        <tr>
+          <td>Daughter CE</td>
+          <td><?php echo substr($this->Proof->f69, 0, 4); ?></td>
+          <td><?php echo substr($this->Proof->f70, 0, 4); ?></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>Service Sire Stillbirths</td>
+          <td><?php echo substr($this->Proof->f71, 0, 4); ?></td>
+          <td><?php echo substr($this->Proof->f72, 0, 4); ?></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>Daughter Stillbirths</td>
+          <td><?php echo substr($this->Proof->f73, 0, 4); ?></td>
+          <td><?php echo substr($this->Proof->f74, 0, 4); ?></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>Daughter Pregnance Rate</td>
+          <td><?php echo substr($this->Proof->f75, 0, 4); ?></td>
+          <td><?php echo substr($this->Proof->f76, 0, 4); ?></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>Somatic Cell Score</td>
+          <td><?php echo substr($this->Proof->f77, 0, 4); ?></td>
+          <td><?php echo substr($this->Proof->f78, 0, 4); ?></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>Productive Life</td>
+          <td><?php echo substr($this->Proof->f79, 0, 4); ?></td>
+          <td><?php echo substr($this->Proof->f80, 0, 4); ?></td>
+          <td></td>
+        </tr>
+
+      </tbody>
+    </table>
+  </div>
+
+</div>

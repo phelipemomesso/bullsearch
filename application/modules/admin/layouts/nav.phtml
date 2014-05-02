@@ -1,0 +1,33 @@
+<div class="main-container" id="main-container">
+
+			<div class="main-container-inner">
+				<a class="menu-toggler" id="menu-toggler" href="#">
+					<span class="menu-text"></span>
+				</a>
+
+				<div class="sidebar" id="sidebar">
+
+					<?php						
+					$container = new Zend_Navigation(new Zend_Config_Xml(APPLICATION_PATH . '/configs/admin.xml', 'nav'));						
+					$this->navigation()->findAllByController(Zend_Controller_Front::getInstance()->getRequest()->getControllerName());
+					$identify = Zend_Auth::getInstance()->getIdentity();
+					echo $this->navigation($container)->/*setAcl(Zend_Registry::get('acl'))->setRole("$identify->grupo")->*/menu()->renderMenu(null, array('maxDepth' => null, 'ulClass' => 'nav nav-list'));
+					?>	<!-- /.nav-list -->
+
+				</div>
+
+				<div class="main-content">
+					<div class="breadcrumbs" id="breadcrumbs">
+
+						<ul class="breadcrumb">
+							<li>
+								<i class="fa fa-home home-icon"></i>
+								<a href="#">Home</a>
+							</li>
+
+							<li>
+								<a href="#">Other Pages</a>
+							</li>
+							<li class="active">Blank Page</li>
+						</ul><!-- .breadcrumb -->
+					</div>

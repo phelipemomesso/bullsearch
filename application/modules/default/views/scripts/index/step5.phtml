@@ -1,0 +1,34 @@
+<div class="panel">
+
+	<div class="panel-body">
+
+		<ol class="breadcrumb">
+			<li><a href="<?php echo $this->baseUrl() ?>/index">Home</a></li>
+			<li class="active">Dairy / Beef</li>
+		</ol>
+
+		<?php echo $this->render('render/sidebar.phtml'); ?>
+
+
+		<div class="col-xs-12 col-sm-6 col-md-9" style="margin-top:20px;">
+            
+            <div class="col-xs-6 col-sm-6 col-md-3">
+              <label for="form-field-select-1">Index</label>
+              <select id="records" class="form-control">
+                <option value="10">Top 10 matches</option>
+                <option value="20">Top 20 matches</option>
+                <option value="30">Top 30 matches</option>
+                <option value="all">All</option>
+              </select> 
+            </div>
+
+            <div class="clearfix"></div>
+
+            <br />
+
+            <a href="#" id="go" class="btn btn-primary pull-right">To Go <i class="fa fa-arrow-circle-right"></i> </a>
+             
+          </div>
+
+	</div>
+</div>

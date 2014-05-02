@@ -1,0 +1,99 @@
+<?php
+
+$sessionCustomer = new Zend_Session_Namespace('sessionCustomer');
+
+if($sessionCustomer->id) {
+
+?>
+
+	<div class="col-xs-12 col-sm-6 col-md-6">
+
+		<h5><?php echo $this->Word(3);?></h5>
+
+		<form role="form" method="post" action="<?php echo $this->baseUrl() ?>/quick">
+			<div class="form-group">
+				<input type="text" size="30" id="search" name="search" placeholder="<?php echo $this->Word(4);?>">
+				<button type="submit" class="btn btn-sm btn-default"><?php echo $this->Word(2);?></button>
+			</div>
+		</form>
+
+		<p><?php echo $this->Word(12);?></p>
+
+		<ul class="list-inline">
+			<li><a href="<?php echo $this->baseUrl()?>/register/edit"><?php echo $this->Word(13);?></a></li>
+			<li><a href="<?php echo $this->baseUrl()?>/portfolio"><?php echo $this->Word(14);?></a></li>
+			<li><a href="<?php echo $this->baseUrl()?>/register/reset/id/<?php echo base64_encode($sessionCustomer->id); ?>"><?php echo $this->Word(15);?></a></li>
+		</ul>
+
+	</div>
+
+	<div class="col-xs-12 col-sm-6 col-md-6" style="margin-bottom:15px; text-align:righ">
+		
+		<div class="pull-right">
+        	<select id="select-language" class="form-control  pull-left">
+          		
+        		<option value="">Change Language</option>
+        		<?php 
+				$Model = new Model_DbTable_Language();
+        		$r = $Model->fetchAll('situacao = 1','padrao desc');
+        		foreach ($r as $v) {?>
+        		<option value="<?php echo $v->cod_language; ?>"><?php echo $v->nome; ?></option>
+        		<?php } ?>
+
+        	</select> 
+     	</div>
+
+		<br clear="all" /><br clear="all" />
+
+		<p align="right">Welcome, <?php echo $sessionCustomer->name; ?> </p>
+		
+		<?php if(!empty($sessionCustomer->facebook_id)) { ?>
+			<a href="#" id="logout-face" class="btn btn-xs btn-default pull-right" role="button"><?php echo $this->Word(11);?></a>
+		<?php }else {?>
+			<a href="<?php echo $this->baseUrl()?>/register/logout" id="logout" class="btn btn-xs btn-default pull-right" role="button"><?php echo $this->Word(11);?></a>
+		<?php } ?>
+	</div>
+
+
+<?php 
+
+} else {
+
+?>
+	<div class="col-xs-12 col-sm-6 col-md-6">
+
+		<h5><?php echo $this->Word(3);?></h5>
+
+		<form role="form" method="post" action="<?php echo $this->baseUrl() ?>/quick">
+			<div class="form-group">
+				<input type="text" size="30" id="search" name="search" placeholder="<?php echo $this->Word(4);?>">
+				<button type="submit" class="btn btn-sm btn-default"><?php echo $this->Word(2);?></button>
+			</div>
+		</form>
+
+	</div>
+	
+	<div class="col-xs-12 col-sm-6 col-md-6" style="margin-bottom:15px; text-align:right">
+		
+		<div class="pull-right">
+        	<select id="select-language" class="form-control  pull-left">
+          		
+        		<option value="">Change Language</option>
+        		<?php 
+				$Model = new Model_DbTable_Language();
+        		$r = $Model->fetchAll('situacao = 1','padrao desc');
+        		foreach ($r as $v) {?>
+        		<option value="<?php echo $v->cod_language; ?>"><?php echo $v->nome; ?></option>
+        		<?php } ?>
+
+        	</select> 
+     	</div>
+
+		<br clear="all" /><br clear="all" />
+
+		<a href="<?php echo $this->baseUrl()?>/register" class="btn btn-sm btn-default" role="button"><?php echo $this->Word(5);?></a>
+	</div>
+
+
+<?php } ?>
+
