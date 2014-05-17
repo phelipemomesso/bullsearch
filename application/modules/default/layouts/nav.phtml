@@ -6,7 +6,7 @@ if($sessionCustomer->id) {
 
 ?>
 
-	<div class="col-xs-12 col-sm-6 col-md-6">
+	<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
 
 		<h5><?php echo $this->Word(3);?></h5>
 
@@ -17,17 +17,44 @@ if($sessionCustomer->id) {
 			</div>
 		</form>
 
+		<a href="#" onclick="window.history.back();return false;" class="btn btn-sm btn-default" role="button">
+			<i class="fa fa-arrow-circle-left"></i> Previous Page
+		</a>
+		
+		<br /><br />
+
 		<p><?php echo $this->Word(12);?></p>
 
 		<ul class="list-inline">
-			<li><a href="<?php echo $this->baseUrl()?>/register/edit"><?php echo $this->Word(13);?></a></li>
-			<li><a href="<?php echo $this->baseUrl()?>/portfolio"><?php echo $this->Word(14);?></a></li>
-			<li><a href="<?php echo $this->baseUrl()?>/register/reset/id/<?php echo base64_encode($sessionCustomer->id); ?>"><?php echo $this->Word(15);?></a></li>
+			<li>
+				<a href="<?php echo $this->baseUrl()?>/register/edit" class="btn btn-sm btn-primary">
+					<i class="fa fa-user"></i> <?php echo $this->Word(13);?>
+				</a>
+			</li>
+			
+			<li>
+				<a href="<?php echo $this->baseUrl()?>/portfolio" class="btn btn-sm btn-primary">
+					<i class="fa fa-list-ul"></i> <?php echo $this->Word(14);?>
+				</a>
+			</li>
+			
+			<li>
+				<a href="<?php echo $this->baseUrl()?>/register/reset/id/<?php echo base64_encode($sessionCustomer->id); ?>" class="btn btn-sm btn-primary">
+					<i class="fa fa-key"></i> <?php echo $this->Word(15);?>
+				</a>
+			</li>
 		</ul>
 
 	</div>
 
-	<div class="col-xs-12 col-sm-6 col-md-6" style="margin-bottom:15px; text-align:righ">
+	<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4" align="center">
+		<br />
+		<a href="<?php echo $this->baseUrl()?>/index" class="btn btn-default" role="button">
+			<i class="fa fa-home fa-lg"></i> Back to Home
+		</a>
+	</div>
+
+	<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4" style="margin-bottom:15px; text-align:righ">
 		
 		<div class="pull-right">
         	<select id="select-language" class="form-control  pull-left">
@@ -48,9 +75,13 @@ if($sessionCustomer->id) {
 		<p align="right">Welcome, <?php echo $sessionCustomer->name; ?> </p>
 		
 		<?php if(!empty($sessionCustomer->facebook_id)) { ?>
-			<a href="#" id="logout-face" class="btn btn-xs btn-default pull-right" role="button"><?php echo $this->Word(11);?></a>
+			<a href="#" id="logout-face" class="btn btn-xs btn-default pull-right" role="button">
+				<?php echo $this->Word(11);?> <i class="fa fa-sign-out"></i> 
+			</a>
 		<?php }else {?>
-			<a href="<?php echo $this->baseUrl()?>/register/logout" id="logout" class="btn btn-xs btn-default pull-right" role="button"><?php echo $this->Word(11);?></a>
+			<a href="<?php echo $this->baseUrl()?>/register/logout" id="logout" class="btn btn-xs btn-default pull-right" role="button">
+				<?php echo $this->Word(11);?> <i class="fa fa-sign-out fa-lg"></i>
+			</a>
 		<?php } ?>
 	</div>
 
@@ -60,7 +91,7 @@ if($sessionCustomer->id) {
 } else {
 
 ?>
-	<div class="col-xs-12 col-sm-6 col-md-6">
+	<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
 
 		<h5><?php echo $this->Word(3);?></h5>
 
@@ -71,9 +102,22 @@ if($sessionCustomer->id) {
 			</div>
 		</form>
 
+		<a href="#" onclick="window.history.back();return false;" class="btn btn-sm btn-default" role="button">
+			<i class="fa fa-arrow-circle-left"></i> Previous Page
+		</a>
+
+	</div>
+
+	<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4" align="center">
+		<br />
+		
+		<a href="<?php echo $this->baseUrl()?>/index" class="btn btn-default" role="button">
+			<i class="fa fa-home fa-lg"></i> Back to Home
+		</a>
+		
 	</div>
 	
-	<div class="col-xs-12 col-sm-6 col-md-6" style="margin-bottom:15px; text-align:right">
+	<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4" style="margin-bottom:15px; text-align:right">
 		
 		<div class="pull-right">
         	<select id="select-language" class="form-control  pull-left">
@@ -91,7 +135,9 @@ if($sessionCustomer->id) {
 
 		<br clear="all" /><br clear="all" />
 
-		<a href="<?php echo $this->baseUrl()?>/register" class="btn btn-sm btn-default" role="button"><?php echo $this->Word(5);?></a>
+		<a href="<?php echo $this->baseUrl()?>/register" class="btn btn-sm btn-default" role="button">
+			<?php echo $this->Word(5);?> <i class="fa fa-sign-in fa-lg"></i> 
+		</a>
 	</div>
 
 
