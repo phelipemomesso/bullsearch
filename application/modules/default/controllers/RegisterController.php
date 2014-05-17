@@ -35,9 +35,26 @@ class RegisterController extends Zend_Controller_Action {
 
                 try {
 
+                    /* Send Email Welcome */
+                    
+                    $this->view->dados = $dados;
+
+                    $message = $this->view->render('template/welcome.phtml');
+
+                    $headers = "MIME-Version: 1.1\n";
+                    $headers .= "Content-type: text/html; charset=utf-8\n";
+                    $headers .= "From:no-responder <bruno@spring.bi>\n"; // remetente
+                    $headers .= "Reply-To: ".$dados['email']."\n"; // return-path
+                    $emailsender = 'bruno@spring.bi';
+
+                    $ok = mail($dados['email'], "Welcome - Genus Bull Search", $message, $headers,"-r".$emailsender);
+
+                    /* Save the data */
                     $dados['password'] = md5($dados['password']);
 
                     $r = $this->Model->save($dados);
+
+                    /* Automatic Login */
 
                     $sessionCustomer            = new Zend_Session_Namespace('sessionCustomer');
                     $sessionCustomer->id        = $r;
