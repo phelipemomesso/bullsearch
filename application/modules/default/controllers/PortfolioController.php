@@ -267,7 +267,7 @@ class PortfolioController extends Zend_Controller_Action {
 
     public function viewAction(){
         
-        (int) $Id = $this->ValidateInputUrl->validateInput($this->_getParam('id'));
+        $Id = $this->ValidateInputUrl->validateInput($this->_getParam('id'));
         $r = $this->Model->getPortfolioByHash($Id);
         
         $this->view->Data = $r;

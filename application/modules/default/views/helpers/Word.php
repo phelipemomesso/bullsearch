@@ -12,6 +12,10 @@ class Zend_View_Helper_Word {
 
 		$session = new Zend_Session_Namespace('Language');
 
+		if (empty($session->language)) {
+			$session->language = 11;
+		}
+
 		$res = $Model->getTranslatesByWordandLanguage($word,$session->language);
 
 		return $res->translate;

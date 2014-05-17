@@ -156,7 +156,7 @@ jQuery(function(){
 
             success: function(data) {               
 
-                location.href=baseUrl+'/index';
+                location.href=data;
             },
             error: function(xhr, er) {
                 alert('Error ' + xhr.status + ' - ' + xhr.statusText);

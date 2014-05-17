@@ -246,6 +246,8 @@ class ResultController extends Zend_Controller_Action {
 
     	 if (isset($_COOKIE['bullsearch']))
     	 	$sql .= ' and bc.country = '.$_COOKIE['bullsearch'];
+         else
+            $sql .= ' and bc.country = 223';
 
 
          $r =  $this->Model_Touro->fullSearch($sql);
@@ -527,7 +529,7 @@ class ResultController extends Zend_Controller_Action {
             $dados['f25']    = $this->Search->find('DamMilk',$i,$sheetData);
             $dados['f26']    = $this->Search->find('DamFat%',$i,$sheetData);
             $dados['f27']    = $this->Search->find('DamFat.',$i,$sheetData);
-            $dados['f28']    = $this->Search->find('PAProt',$i,$sheetData);
+            $dados['f28']    = $this->Search->find('DamPro%',$i,$sheetData);
             $dados['f29']    = $this->Search->find('DamPro.',$i,$sheetData);
             $dados['f30']    = $this->Search->find('MGSRegName',$i,$sheetData);
             $dados['f31']    = $this->Search->find('MGSReg.',$i,$sheetData);
@@ -637,10 +639,10 @@ class ResultController extends Zend_Controller_Action {
 
                 $dados['bull']   = $bull->cod_bull;
 
-                $dados['f1']     = $this->Search->find('Expr1',$i,$sheetData);
-                $dados['f2']     = $this->Search->find('Expr2',$i,$sheetData);
-                $dados['f3']     = $this->Search->find('NumDtrsDPR',$i,$sheetData);
-                $dados['f4']     = $this->Search->find('NumHerdDPR',$i,$sheetData);
+                $dados['f1']     = $this->Search->find('TypeSource',$i,$sheetData);
+                $dados['f2']     = $this->Search->find('TypeDate',$i,$sheetData);
+                $dados['f3']     = $this->Search->find('TypeDtrs',$i,$sheetData);
+                $dados['f4']     = $this->Search->find('TypeHerds',$i,$sheetData);
                 $dados['f5']     = $this->Search->find('Expr1006',$i,$sheetData);
                 $dados['f6']     = $this->Search->find('Type',$i,$sheetData);
                 $dados['f7']     = $this->Search->find('UDC',$i,$sheetData);
@@ -716,11 +718,13 @@ class ResultController extends Zend_Controller_Action {
                 $dados['f73']    = $this->Search->find('PctDSB',$i,$sheetData);
                 $dados['f74']    = $this->Search->find('RelDSB',$i,$sheetData);
                 $dados['f75']    = $this->Search->find('DPRPTA',$i,$sheetData);
-                $dados['f76']    = $this->Search->find('DPRRel',$i,$sheetData);
+                $dados['f76']    = $this->Search->find('TypeRel',$i,$sheetData);
                 $dados['f77']    = $this->Search->find('SCS',$i,$sheetData);
                 $dados['f78']    = $this->Search->find('SCSRel',$i,$sheetData);
                 $dados['f79']    = $this->Search->find('PL',$i,$sheetData);
                 $dados['f80']    = $this->Search->find('PLRel',$i,$sheetData);
+                $dados['f81']    = $this->Search->find('Recessives',$i,$sheetData);
+                $dados['f82']    = $this->Search->find('RWDRank',$i,$sheetData);
 
 
 

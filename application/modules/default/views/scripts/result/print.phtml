@@ -1,7 +1,7 @@
 <?php
 
 $mpdf=new mPDF('utf-8', array(216,279));
-$mpdf->SetHeader('Bull Information | '.$this->Data->f2.' - '.$this->Data->f3.' | {PAGENO}');
+$mpdf->SetHeader('Bull Information | '.$this->Data->f2.' - '.$this->Data->f1.' | {PAGENO}');
 $mpdf->SetFooter(date('d/m/Y H:i:s').' | '.$this->Data->f2.' - '.$this->Data->f3.' | {PAGENO}');
 
 $mpdf->keep_table_proportions = TRUE;
@@ -209,7 +209,7 @@ table {
             <td colspan="2">'.Graphs($this->Proof->f7) .'</td>
           </tr>
           <tr>
-            <td><strong>Foot &amp Leg Composite</strong></td>
+            <td><strong>Foot and Leg Composite</strong></td>
             <td align="center"><strong>'.substr($this->Proof->f9, 0, 5) .'</strong></td>
             <td align="center">'.$this->Proof->f10 .'</td>
             <td colspan="2">'.Graphs($this->Proof->f9) .'</td>
@@ -251,7 +251,7 @@ table {
             <td colspan="2">'.Graphs($this->Proof->f21) .'</td>
           </tr>
           <tr>
-            <td>Rear Legs-Side Set</td>
+            <td>Rear Legs-Side View</td>
             <td align="center"><strong>'.substr($this->Proof->f23, 0, 5) .'</strong></td>
             <td align="center">'.$this->Proof->f24 .'</td>
             <td colspan="2">'.Graphs($this->Proof->f23) .'</td>

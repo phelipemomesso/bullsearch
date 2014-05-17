@@ -131,8 +131,7 @@
 
         })
 
-
-        <?php } ?>
+      <?php } ?>
 
         $('.kc-wrap').KillerCarousel({
 
@@ -193,26 +192,23 @@
         });
 
         var kc = $('#kc').data('KillerCarousel');
-    // Bind events to buttons.
-    $('#forwards-button').click(function(){
-        // Call api function to move forwards.
-        kc.animateToRelativeItem(1);
-        $('#teste').html('');
-    });
-    $('#backwards-button').click(function(){
-        // Call api function to move backwards.
-        kc.animateToRelativeItem(-1);
-        $('#teste').html('');
-    });
+        // Bind events to buttons.
+        $('#forwards-button').click(function(){
+            // Call api function to move forwards.
+            kc.animateToRelativeItem(1);
+            $('#teste').html('');
+        });
+        $('#backwards-button').click(function(){
+            // Call api function to move backwards.
+            kc.animateToRelativeItem(-1);
+            $('#teste').html('');
+        });
 
-    $( "#select-language" ).on( "change", function( e ) {
+        $( "#select-language" ).on( "change", function( e ) {
 
-      location.href=baseUrl+'/language/index/lang/'+$(this).val();
+          location.href=baseUrl+'/language/index/lang/'+$(this).val();
 
-    });
-
-
-
+        });
 
       });
 

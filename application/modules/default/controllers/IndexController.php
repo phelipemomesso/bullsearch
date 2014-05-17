@@ -133,6 +133,8 @@ class IndexController extends Zend_Controller_Action {
             $dados = $this->_request->getPost ();
 
             setcookie("bullsearch", $dados['country'], time()+60*60*24*7, "/","", 0);
+
+            echo $this->getRequest()->getServer('HTTP_REFERER');
         
         }    
 

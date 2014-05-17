@@ -1,0 +1,145 @@
+<div class="table-responsive">
+      <table class="table table-condensed">
+        <thead>
+          <tr>
+            <td align="center"><strong><?php echo $this->Proof->f1.' '.substr($this->Proof->f2, 0,4).'/'.substr($this->Proof->f2, 4,2) ; ?></strong></td>
+            <td colspan="2" align="center"><strong><?php echo $this->Proof->f3; ?> Dtrs</strong></td>
+            <td align="center"><strong><?php echo $this->Proof->f4; ?> Herds</strong> </td>
+            <td align="center"><strong>Rel. <?php echo $this->Proof->f5; ?></strong></td>
+          </tr>
+        </thead>
+        <tbody>
+          <tr style="background:#1A3959; color:white">
+            <td></td>
+            <td colspan="2" align="center"></td>
+            <td colspan="2"><img src="<?php echo $this->baseUrl() ?>/default/imagens/provas/numeros_topo.png" /></td>
+          </tr>
+          <tr>
+            <td><strong>Type</strong></td>
+            <td align="center"><strong><?php echo $this->MaskValue($this->Proof->f6,false); ?></strong></td>
+            <td align="center">&nbsp;</td>
+            <td colspan="2"><?php $this->Graph($this->Proof->f6); ?></td>
+          </tr>
+          <tr>
+            <td><strong>Udder Composite</strong></td>
+            <td align="center"><strong><?php echo $this->MaskValue($this->Proof->f7,false); ?></strong></td>
+            <td align="center"><?php echo $this->Proof->f8; ?></td>
+            <td colspan="2"><?php $this->Graph($this->Proof->f7); ?></td>
+          </tr>
+          <tr>
+            <td><strong>Feet and Legs Composite</strong></td>
+            <td align="center"><strong><?php echo $this->MaskValue($this->Proof->f9,false); ?></strong></td>
+            <td align="center"><?php echo $this->Proof->f10; ?></td>
+            <td colspan="2"><?php $this->Graph($this->Proof->f9); ?></td>
+          </tr>
+          <tr>
+            <td>Stature</td>
+            <td align="center"><strong><?php echo $this->MaskValue($this->Proof->f11,false); ?></strong></td>
+            <td align="center"><?php echo $this->Proof->f12; ?></td>
+            <td colspan="2"><?php $this->Graph($this->Proof->f11); ?></td>
+          </tr>
+          <tr>
+            <td>Strength</td>
+            <td align="center"><strong><?php echo $this->MaskValue($this->Proof->f13,false); ?></strong></td>
+            <td align="center"><?php echo $this->Proof->f14; ?></td>
+            <td colspan="2"><?php $this->Graph($this->Proof->f13); ?></td>
+          </tr>
+          <tr>
+            <td>Body Depth</td>
+            <td align="center"><strong><?php echo $this->MaskValue($this->Proof->f15,false); ?></strong></td>
+            <td align="center"><?php echo $this->Proof->f16; ?></td>
+            <td colspan="2"><?php $this->Graph($this->Proof->f15); ?></td>
+          </tr>
+          <tr>
+            <td>Angularity</td>
+            <td align="center"><strong><?php echo $this->MaskValue($this->Proof->f17,false); ?></strong></td>
+            <td align="center"><?php echo $this->Proof->f18; ?></td>
+            <td colspan="2"><?php $this->Graph($this->Proof->f17); ?></td>
+          </tr>
+          <tr>
+            <td>Rump Angle</td>
+            <td align="center"><strong><?php echo $this->MaskValue($this->Proof->f19,false); ?></strong></td>
+            <td align="center"><?php echo $this->Proof->f20; ?></td>
+            <td colspan="2"><?php $this->Graph($this->Proof->f19); ?></td>
+          </tr>
+          <tr>
+            <td>Thurl Width</td>
+            <td align="center"><strong><?php echo $this->MaskValue($this->Proof->f21,false); ?></strong></td>
+            <td align="center"><?php echo $this->Proof->f22; ?></td>
+            <td colspan="2"><?php $this->Graph($this->Proof->f21); ?></td>
+          </tr>
+          <tr>
+            <td>Rear Legs-Side View</td>
+            <td align="center"><strong><?php echo $this->MaskValue($this->Proof->f23,false); ?></strong></td>
+            <td align="center"><?php echo $this->Proof->f24; ?></td>
+            <td colspan="2"><?php $this->Graph($this->Proof->f23); ?></td>
+          </tr>
+          <tr>
+            <td>Rear Legs-Rear View</td>
+            <td align="center"><strong><?php echo $this->MaskValue($this->Proof->f25,false); ?></strong></td>
+            <td align="center"><?php echo $this->Proof->f26; ?></td>
+            <td colspan="2"><?php $this->Graph($this->Proof->f25); ?></td>
+          </tr>
+          <tr>
+            <td>Foot Angle</td>
+            <td align="center"><strong><?php echo $this->MaskValue($this->Proof->f27,false); ?></strong></td>
+            <td align="center"><?php echo $this->Proof->f28; ?></td>
+            <td colspan="2"><?php $this->Graph($this->Proof->f27); ?></td>
+          </tr>
+          <tr>
+            <td>Feet and Legs Score</td>
+            <td align="center"><strong><?php echo $this->MaskValue($this->Proof->f29,false); ?></strong></td>
+            <td align="center"><?php echo $this->Proof->f30; ?></td>
+            <td colspan="2"><?php $this->Graph($this->Proof->f29); ?></td>
+          </tr>
+          <tr>
+            <td>Fore Udder Attachment</td>
+            <td align="center"><strong><?php echo $this->MaskValue($this->Proof->f31,false); ?></strong></td>
+            <td align="center"><?php echo $this->Proof->f32; ?></td>
+            <td colspan="2"><?php $this->Graph($this->Proof->f31); ?></td>
+          </tr>
+          <tr>
+            <td>Rear Udder Height</td>
+            <td align="center"><strong><?php echo $this->MaskValue($this->Proof->f33,false); ?></strong></td>
+            <td align="center"><?php echo $this->Proof->f34; ?></td>
+            <td colspan="2"><?php $this->Graph($this->Proof->f33); ?></td>
+          </tr>
+          <tr>
+            <td>Rear Udder Width</td>
+            <td align="center"><strong><?php echo $this->MaskValue($this->Proof->f35,false); ?></strong></td>
+            <td align="center"><?php echo $this->Proof->f36; ?></td>
+            <td colspan="2"><?php $this->Graph($this->Proof->f35); ?></td>
+          </tr>
+          <tr>
+            <td>Udder Cleft</td>
+            <td align="center"><strong><?php echo $this->MaskValue($this->Proof->f37,false); ?></strong></td>
+            <td align="center"><?php echo $this->Proof->f38; ?></td>
+            <td colspan="2"><?php $this->Graph($this->Proof->f37); ?></td>
+          </tr>
+          <tr>
+            <td>Udder Depth</td>
+            <td align="center"><strong><?php echo $this->MaskValue($this->Proof->f39,false); ?></strong></td>
+            <td align="center"><?php echo $this->Proof->f40; ?></td>
+            <td colspan="2"><?php $this->Graph($this->Proof->f39); ?></td>
+          </tr>
+          <tr>
+            <td>Front Teat Placement</td>
+            <td align="center"><strong><?php echo $this->MaskValue($this->Proof->f41,false); ?></strong></td>
+            <td align="center"><?php echo $this->Proof->f42; ?></td>
+            <td colspan="2"><?php $this->Graph($this->Proof->f41); ?></td>
+          </tr>
+          <tr>
+            <td>Rear Teat Placement</td>
+            <td align="center"><strong><?php echo $this->MaskValue($this->Proof->f43,false); ?></strong></td>
+            <td align="center"><?php echo $this->Proof->f44; ?></td>
+            <td colspan="2"><?php $this->Graph($this->Proof->f43); ?></td>
+          </tr>
+          <tr>
+            <td>Teat Length</td>
+            <td align="center"><strong><?php echo $this->MaskValue($this->Proof->f45,false); ?></strong></td>
+            <td align="center"><?php echo $this->Proof->f46; ?></td>
+            <td colspan="2"><?php $this->Graph($this->Proof->f45); ?></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
