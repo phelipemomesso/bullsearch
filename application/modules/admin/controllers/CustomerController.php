@@ -93,7 +93,7 @@ class Admin_CustomerController extends Zend_Controller_Action {
     	$this->_helper->viewRenderer->setNoRender(true);
     	
     	(int) $Id = $this->ValidateInputUrl->validateInput($this->_getParam('id'));
-    	$r = $this->Model->getUserById($Id);
+    	$r = $this->Model->getCustomerById($Id);
     	
     	$r->delete();
     	$this->_redirect($this->getRequest()->getServer('HTTP_REFERER'));

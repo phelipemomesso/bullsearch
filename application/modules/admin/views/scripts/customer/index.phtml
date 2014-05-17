@@ -27,9 +27,9 @@
                         if($rs->type == 1) 
                             echo '<span class="label label-primary arrowed arrowed-right">Normal</label'; 
                         elseif($rs->type == 2)  
-                            echo '<span class="label label-primary arrowed arrowed-right">ABS Employee</label';
+                            echo '<span class="label label-warning arrowed arrowed-right">ABS Employee</label';
                         elseif($rs->type == 3) 
-                            echo '<span class="label label-primary arrowed arrowed-right">Agent</label';
+                            echo '<span class="label label-info arrowed arrowed-right">Agent</label';
                         ?>
                         </td>
                         <td class="center">
@@ -43,6 +43,9 @@
                         <td class="center">
                             <a class="btn btn-xs btn-info btn-tooltip" data-toggle="tooltip" data-original-title="Edit" href="<?php echo $this->BaseUrl() ?>/admin/customer/edit/id/<?php echo $rs->cod_customer; ?>">
                                 <i class="fa fa-pencil-square-o fa-lg"></i>  
+                            </a>
+                             <a class="btn btn-xs btn-danger btn-tooltip" data-toggle="tooltip" data-original-title="Delete" href="<?= $this->BaseUrl() ?>/admin/customer/delete/id/<?php echo $rs->cod_customer; ?>" >
+                                <i class="fa fa-trash-o fa-lg"></i> 
                             </a>
                         </td>
                         
