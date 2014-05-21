@@ -20,6 +20,14 @@
 
     <? echo $this->headTitle(); ?>
 
+    <meta property="og:title" content="<?php echo $this->Data->f3 ; ?>" />
+    <meta property="og:site_name" content="Genus Bull Search"/> 
+    <meta property="og:url" content="http://www.spring.bi<?php echo Zend_Controller_Front::getInstance()->getRequest()->getRequestUri(); ?>" />
+    <meta property="og:description" content="Click to view the bull page" />  
+    <meta property="og:image" content="http://www.spring.bi<?php echo $this->baseUrl() ?>/default/imagens/logo-abs-global.gif" /> 
+ 
+
+
     <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
 		<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
     <link rel="stylesheet" href="<?php echo $this->baseUrl() ?>/default/css/geral.css?<?php echo floor(rand())?>" type="text/css" media="screen" />
