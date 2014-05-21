@@ -9,7 +9,8 @@ class ResultController extends Zend_Controller_Action {
         $this->Model_BullImage      = new Model_BullImage();
         $this->Model_TouroVideo     = new Model_TouroVideo();
         $this->Model_SearchHistory  = new Model_SearchHistory(); 
-        $this->Model_BullComment    = new Model_BullComment();    
+        $this->Model_BullComment    = new Model_BullComment();
+        $this->Model_Portfolio      = new Model_Portfolio();    
 
         $this->Search               = new Momesso_Plugins_ArraySearch();
         $this->ExcelReader          = new PHPExcel_Reader_Excel5();
@@ -27,7 +28,7 @@ class ResultController extends Zend_Controller_Action {
         
     	$this->view->headTitle()->append('Result');
 
-        $this->view->Records = $this->ValidateInputUrl->validateInput($this->_getParam('results'));
+        $this->view->Records    = $this->ValidateInputUrl->validateInput($this->_getParam('results'));
 
     	$res = $this->createSql();
         $this->createSearchHistory();

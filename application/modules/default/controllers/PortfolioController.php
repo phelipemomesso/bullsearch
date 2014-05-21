@@ -5,18 +5,18 @@ class PortfolioController extends Zend_Controller_Action {
 
     public function init() {
 
-        $this->Model = new Model_Portfolio();
-        $this->Model_PortfolioBull = new Model_PortfolioBull();
+        $this->Model                = new Model_Portfolio();
+        $this->Model_PortfolioBull  = new Model_PortfolioBull();
 
-        $this->Form = new Momesso_Default_Form_Portfolio_Portfolio();
-        $this->Form_Email = new Momesso_Default_Form_Portfolio_Email();
-        $this->Form_Cover = new Momesso_Default_Form_Portfolio_Cover();
+        $this->Form                 = new Momesso_Default_Form_Portfolio_Portfolio();
+        $this->Form_Email           = new Momesso_Default_Form_Portfolio_Email();
+        $this->Form_Cover           = new Momesso_Default_Form_Portfolio_Cover();
         
-        $this->ValidateInputUrl = new Momesso_Plugins_ValidateInputUrl();
-        $this->ErrorLog = new Momesso_Plugins_ErrorLog();
-        $this->Data = new Momesso_Plugins_Data();
+        $this->ValidateInputUrl     = new Momesso_Plugins_ValidateInputUrl();
+        $this->ErrorLog             = new Momesso_Plugins_ErrorLog();
+        $this->Data                 = new Momesso_Plugins_Data();
 
-        $this->sessionCustomer = new Zend_Session_Namespace('sessionCustomer');
+        $this->sessionCustomer      = new Zend_Session_Namespace('sessionCustomer');
     }
 
     public function indexAction() {
@@ -115,11 +115,8 @@ class PortfolioController extends Zend_Controller_Action {
 
         $this->view->layout()->disableLayout();
 
-        (int) $Id = $this->ValidateInputUrl->validateInput($this->_getParam('id'));
-
         $this->view->Data = $this->Model->getPortfoliosByCustomerrId();
 
-        $this->view->Bull = $Id;
     }
 
     public function saveAction(){
@@ -135,7 +132,21 @@ class PortfolioController extends Zend_Controller_Action {
 
                 try {
 
-                    $this->Model_PortfolioBull->save($dados);
+                    $n = count($dados['bull']);
+
+                    for ($i=0; $i < $n ; $i++) { 
+                        
+                        $r = $this->Model_PortfolioBull->checkBullByPortfolio( $dados['portfolio'],$dados['bull'][$i]);
+
+                        if (!$r->cod) {
+                            
+                            $insert['portfolio'] = $dados['portfolio'];
+                            $insert['bull']      = $dados['bull'][$i];
+
+                            $this->Model_PortfolioBull->save($insert); 
+                        }
+                       
+                    }
                                       
                     echo 'Data saved successfully!';
                     
@@ -170,7 +181,7 @@ class PortfolioController extends Zend_Controller_Action {
 
                 try {
 
-                    $bull = $dados['bull'];
+                    $bulls = $dados['bull'];
                     unset($dados['bull']);
 
                     $dados['customer']  = $this->sessionCustomer->id;
@@ -180,10 +191,15 @@ class PortfolioController extends Zend_Controller_Action {
 
                     unset($dados);
                     
-                    $dados['portfolio'] = $idInsert;
-                    $dados['bull'] = $bull;
+                    $n = count($bulls);
 
-                    $this->Model_PortfolioBull->save($dados); 
+                    for ($i=0; $i < $n ; $i++) { 
+                        
+                        $dados['portfolio'] = $idInsert;
+                        $dados['bull']      = $bulls[$i];
+
+                        $this->Model_PortfolioBull->save($dados); 
+                    }
 
                     echo 'Data saved successfully!';                 
 

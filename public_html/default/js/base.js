@@ -322,12 +322,8 @@ jQuery(function(){
 
     })
 
-    $('#modalPortfolio').on('hidden.bs.modal', function () {
-        $(this).removeData('bs.modal');
-    });
 
-
-    $('#btn-compare').on( "click", function( e ) {
+    $('#js-btn-compare').on( "click", function( e ) {
         
         var $bulls = new Array();
         
@@ -338,7 +334,7 @@ jQuery(function(){
             }
         });
 
-        console.log($bulls.length);
+        //console.log($bulls.length);
 
         if ($bulls.length <= 1) {
 
@@ -361,8 +357,7 @@ jQuery(function(){
 
                 success: function(data) {               
 
-                    
-                        location.href=baseUrl+'/result/compare';
+                    location.href=baseUrl+'/result/compare';
 
                 },
                 
@@ -373,10 +368,15 @@ jQuery(function(){
         }    
     });
 
+    $('#modalPortfolio').on('hidden.bs.modal', function () {
+        $(this).removeData('bs.modal');
+    });
+   
 
-    $('.loginportfolio').on("click",function(e){
+    $('.js-loginPortfolio').on("click",function(e){
 
         alert('To add to the portfolio, you must register or log into your account.');
+        $(this).attr("checked",false);
         location.href=baseUrl+'/register';
 
     });

@@ -1,37 +1,52 @@
 <script>
 jQuery(function(){	
 
-	$( ".btn-add" ).on( "click", function( e ) {
+	$( ".js-btn-add" ).on( "click", function( e ) {
 
     	e.preventDefault();
-    	
-    	jQuery.ajax({
 
-            url: baseUrl+'/portfolio/save',
-            dataType: 'html',
-            type: 'POST',
-            data: {
+        var $bulls = new Array();
+        
+        $('.checkbox-portfolio').each(function() {
 
-                portfolio : $('#portfolio').val(),
-                bull : $('#bull').val(),
-            },
-
-            success: function(data) {               
-
-                //$('.modal-body').html();
-                $( '<div id="msgT"class="alert alert-info">'+data+'</div>').prependTo( ".modal-body" );
-                //$('.modal-body').html(');
-            },
-            
-            error: function(xhr, er) {
-                alert('Error ' + xhr.status + ' - ' + xhr.statusText);
+            if($(this).is(':checked')) {
+                $bulls.push($(this).attr('id'));
             }
-        }); 
+        });
+
+       if ($bulls.length >= 1) {
+    	
+        	jQuery.ajax({
+
+                url: baseUrl+'/portfolio/save',
+                dataType: 'html',
+                type: 'POST',
+                data: {
+
+                    portfolio : $('#portfolio').val(),
+                    bull : $bulls,
+                },
+
+                success: function(data) {               
+
+                    //$('.modal-body').html();
+                    $( '<div id="msgT"class="alert alert-info">'+data+'</div>').prependTo( ".modal-body" );
+                    //$('.modal-body').html(');
+                },
+                
+                error: function(xhr, er) {
+                    alert('Error ' + xhr.status + ' - ' + xhr.statusText);
+                }
+            }); 
+        } else {
+
+            alert('You need to select bull to add to portfolio.');
+        }    
 
     }); 
 
 
-    $( ".btn-create" ).on( "click", function( e ) {
+    $( ".js-btn-create" ).on( "click", function( e ) {
 
         e.preventDefault();
         
@@ -42,27 +57,42 @@ jQuery(function(){
 
         } else {
 
-            jQuery.ajax({
+            var $bulls = new Array();
+        
+            $('.checkbox-portfolio').each(function() {
 
-                url: baseUrl+'/portfolio/create',
-                dataType: 'html',
-                type: 'POST',
-                data: {
-
-                    name : $('#name').val(),
-                    bull : $('#bull').val(),
-                },
-
-                success: function(data) {               
-
-                   // $('.modal-body').html();
-                   $( '<div id="msgT"class="alert alert-info">'+data+'</div>').prependTo( ".modal-body" );
-                },
-                
-                error: function(xhr, er) {
-                    alert('Error ' + xhr.status + ' - ' + xhr.statusText);
+                if($(this).is(':checked')) {
+                    $bulls.push($(this).attr('id'));
                 }
-            }); 
+            });
+
+            if ($bulls.length >= 1) {
+
+                jQuery.ajax({
+
+                    url: baseUrl+'/portfolio/create',
+                    dataType: 'html',
+                    type: 'POST',
+                    data: {
+
+                        name : $('#name').val(),
+                        bull : $bulls,
+                    },
+
+                    success: function(data) {               
+
+                       // $('.modal-body').html();
+                       $( '<div id="msgT"class="alert alert-info">'+data+'</div>').prependTo( ".modal-body" );
+                    },
+                    
+                    error: function(xhr, er) {
+                        alert('Error ' + xhr.status + ' - ' + xhr.statusText);
+                    }
+                }); 
+            } else {
+
+                alert('You need to select bull to add to portfolio.');
+            }    
         }
 
     });   
@@ -97,7 +127,7 @@ jQuery(function(){
 
     			<br />
 
-    			<a class="btn btn-success btn-sm btn-add" role="button"> Add</a>
+    			<a class="btn btn-success btn-sm js-btn-add" role="button"> Add</a>
 
             <?php } else { ?>
                 
@@ -110,7 +140,7 @@ jQuery(function(){
 
                 <br />
 
-                <a class="btn btn-success btn-sm btn-create" role="button"> Create</a>
+                <a class="btn btn-success btn-sm js-btn-create" role="button"> Create</a>
                 
             <?php } ?>
 

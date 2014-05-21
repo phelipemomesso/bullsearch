@@ -1,3 +1,5 @@
+<?php $sessionCustomer = new Zend_Session_Namespace('sessionCustomer'); ?>
+
 <br /><br />
 
 <div class="panel">
@@ -24,6 +26,20 @@
 
       <br clear="all" />
 
+      <div class="pull-left">
+        
+        <button type="button" id="js-btn-compare" class="btn btn-sm btn-primary">
+          <i class="fa fa-tasks"></i> Compare Bulls
+        </button>
+        
+        <a class="btn btn-sm btn-primary" data-toggle="modal" href="<?php echo $this->baseUrl()?>/portfolio/selectbox" data-target="#modalPortfolio">
+          <i class="fa fa-plus-circle"></i> Add to Portfolio
+        </a>
+
+      </div>
+
+      <br clear="all" /><br clear="all" />
+
       <div class="table-responsive">
         <table class="table table-striped table-hover">
           <thead>
@@ -31,6 +47,8 @@
               <th>Bull</th>
               <th>NAAB</th>
               <th>Registration Name</th>
+              <th>Portfolio</th>
+              <th>Compare</th>
               <th></th>
             </tr>
           </thead>
@@ -41,8 +59,25 @@
               <td><?php echo $v[f2] ; ?></td>
               <td><?php echo $v[f3] ; ?></td>
               <td>
+                <?php if($sessionCustomer->id) { ?>
+                  <br />
+                  <label>
+                    <input name="portfolio_<?php echo $v[cod_bull] ; ?>" id="<?php echo $v[cod_bull] ; ?>" value="<?php echo $v[cod_bull] ; ?>" type="checkbox" class="checkbox-portfolio" />
+                  </label>
+                <?php } else { ?>
+                  <br />
+                  <label>
+                    <input name="compare_<?php echo $v[cod_bull] ; ?>" id="<?php echo $v[cod_bull] ; ?>" value="<?php echo $v[cod_bull] ; ?>" type="checkbox" class="checkbox-compare js-loginPortfolio" />
+                  </label>
+
+                <?php } ?>
+              </td>
+              <td>
+                <input name="compare_<?php echo $v[cod_bull] ; ?>" id="<?php echo $v[cod_bull] ; ?>" value="<?php echo $v[cod_bull] ; ?>" type="checkbox" class="checkbox-compare" />
+              </td>
+              <td>
                 <a href="<?php echo $this->baseUrl() ?>/result/details/id/<?php echo $v[cod_bull] ;?>" class="btn btn-sm btn-primary">
-                  <i class="fa fa-list"></i> Detail
+                  <i class="fa fa-plus-circle"></i> Details
                 </a>
               </td>
             </tr>

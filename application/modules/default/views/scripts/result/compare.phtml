@@ -9,10 +9,21 @@
   <div class="col-xs-12 col-sm-6 col-md-9">
 
     <span class="subtitle">Bull Comparison</span>
+
+    <br clear="all" /><br clear="all" />
+
+      <div class="pull-left">
+        
+        <a class="btn btn-sm btn-primary" data-toggle="modal" href="<?php echo $this->baseUrl()?>/portfolio/selectbox" data-target="#modalPortfolio">
+          <i class="fa fa-plus-circle"></i> Add to Portfolio
+        </a>
+
+      </div>
+
+      <br clear="all" />
     
     <?php
       $sessionStep = new Zend_Session_Namespace('sessionStep');
-
 
       if ($sessionStep->step2 == 'Other Breeds' or $sessionStep->step2 == 'Holstein') {
         

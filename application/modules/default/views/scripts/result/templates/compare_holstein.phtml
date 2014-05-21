@@ -1,6 +1,9 @@
 
 
-    <?php if($this->Total == 3) { ?>
+    <?php 
+    $sessionCustomer = new Zend_Session_Namespace('sessionCustomer');
+
+    if($this->Total == 3) { ?>
 
     <table class="table">
       <thead> 
@@ -34,6 +37,43 @@
       </thead>
 
       <tbody>
+
+        <tr>
+          <td>Add to Portoflio</td>
+          <td>
+            <?php if($sessionCustomer->id) { ?>
+              <label>
+                <input name="portfolio_<?php echo $this->Bull1->cod_bull ; ?>" id="<?php echo $this->Bull1->cod_bull ; ?>" value="<?php echo $this->Bull1->cod_bull ; ?>" type="checkbox" class="checkbox-portfolio" />
+              </label>
+            <?php } else { ?>
+              <label>
+                <input name="compare_<?php echo $this->Bull1->cod_bull ; ?>" id="<?php echo $this->Bull1->cod_bull ; ?>" value="<?php echo $this->Bull1->cod_bull ; ?>" type="checkbox" class="checkbox-compare js-loginPortfolio" />
+              </label>
+            <?php } ?>
+          </td>
+          <td>
+            <?php if($sessionCustomer->id) { ?>
+              <label>
+                <input name="portfolio_<?php echo $this->Bull2->cod_bull ; ?>" id="<?php echo $this->Bull2->cod_bull ; ?>" value="<?php echo $this->Bull2->cod_bull ; ?>" type="checkbox" class="checkbox-portfolio" />
+              </label>
+            <?php } else { ?>
+              <label>
+                <input name="compare_<?php echo $this->Bull2->cod_bull ; ?>" id="<?php echo $this->Bull2->cod_bull ; ?>" value="<?php echo $this->Bull2->cod_bull ; ?>" type="checkbox" class="checkbox-compare js-loginPortfolio" />
+              </label>
+            <?php } ?>
+          </td>
+          <td>
+            <?php if($sessionCustomer->id) { ?>
+              <label>
+                <input name="portfolio_<?php echo $this->Bull3->cod_bull ; ?>" id="<?php echo $this->Bull3->cod_bull ; ?>" value="<?php echo $this->Bull3->cod_bull ; ?>" type="checkbox" class="checkbox-portfolio" />
+              </label>
+            <?php } else { ?>
+              <label>
+                <input name="compare_<?php echo $this->Bull3->cod_bull ; ?>" id="<?php echo $this->Bull3->cod_bull ; ?>" value="<?php echo $this->Bull3->cod_bull ; ?>" type="checkbox" class="checkbox-compare js-loginPortfolio" />
+              </label>
+            <?php } ?>
+          </td>
+        </tr>
         
         <tr>
           <td>Net Merit $</td>
@@ -178,6 +218,32 @@
 
       <tbody>
         
+        <tr>
+          <td>Add to Portoflio</td>
+          <td>
+            <?php if($sessionCustomer->id) { ?>
+              <label>
+                <input name="portfolio_<?php echo $this->Bull1->cod_bull ; ?>" id="<?php echo $this->Bull1->cod_bull ; ?>" value="<?php echo $this->Bull1->cod_bull ; ?>" type="checkbox" class="checkbox-portfolio" />
+              </label>
+            <?php } else { ?>
+              <label>
+                <input name="compare_<?php echo $this->Bull1->cod_bull ; ?>" id="<?php echo $this->Bull1->cod_bull ; ?>" value="<?php echo $this->Bull1->cod_bull ; ?>" type="checkbox" class="checkbox-compare js-loginPortfolio" />
+              </label>
+            <?php } ?>
+          </td>
+          <td>
+            <?php if($sessionCustomer->id) { ?>
+              <label>
+                <input name="portfolio_<?php echo $this->Bull2->cod_bull ; ?>" id="<?php echo $this->Bull2->cod_bull ; ?>" value="<?php echo $this->Bull2->cod_bull ; ?>" type="checkbox" class="checkbox-portfolio" />
+              </label>
+            <?php } else { ?>
+              <label>
+                <input name="compare_<?php echo $this->Bull2->cod_bull ; ?>" id="<?php echo $this->Bull2->cod_bull ; ?>" value="<?php echo $this->Bull2->cod_bull ; ?>" type="checkbox" class="checkbox-compare js-loginPortfolio" />
+              </label>
+            <?php } ?>
+          </td>
+        </tr>
+
         <tr>
           <td>Net Merit $</td>
           <td><?php echo substr($this->Proof1->f61, 0, 4); ?></td>

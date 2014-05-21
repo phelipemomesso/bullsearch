@@ -17,6 +17,11 @@ class Model_PortfolioBull {
         
         return $this->_dbTable->fetchAll('portfolio = '.$id);
     }
+
+    public function checkBullByPortfolio($portfolio,$bull){
+        
+        return $this->_dbTable->fetchRow('portfolio = '.$portfolio.' and bull = '.$bull);
+    }
     
     public function save($dados) {
     
