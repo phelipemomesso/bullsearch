@@ -89,6 +89,8 @@ class ResultController extends Zend_Controller_Action {
 
     	(int) $Id = $this->ValidateInputUrl->validateInput($this->_getParam('id'));
 
+
+
     	$bull = $this->Model_Touro->getBullById($Id);
         $this->view->Data = $bull;
 
@@ -457,7 +459,9 @@ class ResultController extends Zend_Controller_Action {
 
     }
 
-    public function importaAction(){
+    
+
+    /*public function importaAction(){
 
         $this->view->layout()->disableLayout();
         //$this->_helper->viewRenderer->setNoRender(true);
@@ -551,7 +555,7 @@ class ResultController extends Zend_Controller_Action {
             }
                
         }
-    }
+    }*/
 
 
     public function importa3Action(){

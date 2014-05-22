@@ -394,6 +394,29 @@ jQuery(function(){
 
     $( ".update-register" ).after( '<a href="'+baseUrl+'/index" id="cancel-register" class="btn btn-danger">Cancel</a>' );  
     
+
+    $('.js-quickSearch').on("click",function(e){
+
+        e.preventDefault();
+
+        if ($('#search-word').val() == '') {
+            alert('Please digit a code or name.');
+            return false;
+        } else {
+
+             location.href=baseUrl+'/quick/index/search/'+$('#search-word').val();
+        }
+
+    });
+
+    $('#js-searchMean').on("click",function(e){
+
+        e.preventDefault();
+
+        location.href=baseUrl+'/quick/index/search/'+$(this).val();
+    
+    });
+
 })
 
 

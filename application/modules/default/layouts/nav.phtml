@@ -12,7 +12,7 @@ if($sessionCustomer->id) {
 
 		<form role="form" method="post" action="<?php echo $this->baseUrl() ?>/quick">
 			<div class="form-group">
-				<input type="text" size="30" id="search" name="search" placeholder="<?php echo $this->Word(4);?>">
+				<input type="text" size="30" id="search-word" name="search" placeholder="<?php echo $this->Word(4);?>">
 				<button type="submit" class="btn btn-sm btn-default"><?php echo $this->Word(2);?></button>
 			</div>
 		</form>
@@ -95,10 +95,10 @@ if($sessionCustomer->id) {
 
 		<h5><?php echo $this->Word(3);?></h5>
 
-		<form role="form" method="post" action="<?php echo $this->baseUrl() ?>/quick">
+		<form role="form" method="get" action="<?php echo $this->baseUrl() ?>/quick">
 			<div class="form-group">
-				<input type="text" size="30" id="search" name="search" placeholder="<?php echo $this->Word(4);?>">
-				<button type="submit" class="btn btn-sm btn-default"><?php echo $this->Word(2);?></button>
+				<input type="text" size="30" id="search-word" name="search" placeholder="<?php echo $this->Word(4);?>">
+				<button class="btn btn-sm btn-default js-quickSearch"><i class="fa fa-search"></i></button>
 			</div>
 		</form>
 
