@@ -28,9 +28,9 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap {
     	$title = Zend_Registry::get('config');
     	$view->headTitle($title->projectName)->setSeparator(' - ');
     
-    	$view->addHelperPath("ZendX/JQuery/View/Helper", "ZendX_JQuery_View_Helper");
-    	$view->jQuery()->enable();
-    	$view->jQuery()->uiEnable();
+    	//$view->addHelperPath("ZendX/JQuery/View/Helper", "ZendX_JQuery_View_Helper");
+    	//$view->jQuery()->enable();
+    	//$view->jQuery()->uiEnable();
     }
     
     protected function _initCache() {

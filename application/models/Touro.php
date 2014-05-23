@@ -59,7 +59,7 @@ class Model_Touro {
                 ->setIntegrityCheck(false)
                 ->from(array('b' => 'mod_bulls'))
                 ->join(array('bc' => 'mod_bulls_countries'), 'b.cod_bull = bc.bull',array('b.*'))
-                ->where('(b.f1 like "%'.$string.'%" or b.f2 like "%5'.$string.'%") and bc.visible = 1  and b.abs = 1')
+                ->where('(b.f1 like "%'.$string.'%" or b.f2 like "%'.$string.'%") and bc.visible = 1  and b.abs = 1')
                 ->order('b.f1 asc');
 
         return $this->_dbTable->fetchAll($select);        

@@ -23,6 +23,11 @@ class QuickController extends Zend_Controller_Action {
 
             $exp = preg_match ("/[0-9]+/", $search);
 
+            if (substr($search, 0,1) == 5) {
+                
+                $search = substr($search, 1);
+            }
+
             $r = $this->Model_Touro->quickSearch($search);
 
             if ($exp) {

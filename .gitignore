@@ -1,5 +1,6 @@
 tmp/**
-public_html/default/uploads/excel-files/**
 html/**
+public_html/default/uploads/excel-files/**
+public_html/default/uploads/spell/**
 application/.DS_Store
 .DS_Store
