@@ -461,7 +461,7 @@ class ResultController extends Zend_Controller_Action {
 
     
 
-    /*public function importaAction(){
+    public function importaAction(){
 
         $this->view->layout()->disableLayout();
         //$this->_helper->viewRenderer->setNoRender(true);
@@ -543,6 +543,8 @@ class ResultController extends Zend_Controller_Action {
             $dados['f34']    = $this->Search->find('ThirdSireRegNum',$i,$sheetData);
             $dados['f35']    = $this->Search->find('ThirdSireFinalScore',$i,$sheetData);
             $dados['f36']    = $this->Search->find('BovineID',$i,$sheetData);
+            $dados['f37']    = $this->Search->find('RegStatus',$i,$sheetData);
+            $dados['f38']    = $this->Search->find('RegOrigin',$i,$sheetData);
             $dados['abs']    = $this->Search->find('ABSBull',$i,$sheetData);
 
             try {
@@ -555,7 +557,7 @@ class ResultController extends Zend_Controller_Action {
             }
                
         }
-    }*/
+    }
 
 
     public function importa3Action(){
