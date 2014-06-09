@@ -29,9 +29,15 @@ class ResultController extends Zend_Controller_Action {
     	$this->view->headTitle()->append('Result');
 
         $this->view->Records    = $this->ValidateInputUrl->validateInput($this->_getParam('results'));
+        $saveSearchHistory      = $this->ValidateInputUrl->validateInput($this->_getParam('save'));
 
     	$res = $this->createSql();
-        $this->createSearchHistory();
+        
+        // Verifica a flag para gravar a busca
+
+        if ($saveSearchHistory == 1) {
+            $this->createSearchHistory();
+        }
     		 
     	$this->view->Data = $res;
     	$this->view->Total = count($res);
@@ -88,8 +94,6 @@ class ResultController extends Zend_Controller_Action {
     	$this->view->headTitle()->append('Details');
 
     	(int) $Id = $this->ValidateInputUrl->validateInput($this->_getParam('id'));
-
-
 
     	$bull = $this->Model_Touro->getBullById($Id);
         $this->view->Data = $bull;
@@ -386,38 +390,50 @@ class ResultController extends Zend_Controller_Action {
 
         // Grava o registro temporário de acesso em um determinado animal 
 
-        $sessionStep = new Zend_Session_Namespace('sessionStep');
+        $sessionStep        = new Zend_Session_Namespace('sessionStep');
+        $sessionCustomer    = new Zend_Session_Namespace('sessionCustomer');
 
-        $sess = $this->Session->getInstance();
-        $bullHistory = $sess->getSessVar('bullHistory');  
+        // Grava o registro do animal apenas se tiver sido feita uma busca antes.
+        // Feita validacao para nao gravar historico de animal quando é acessado pelo Quick Search 
 
-        $existe = false;
-        $n = count($bullHistory);
+        if ($sessionStep->idSearchHistory) {  
 
-        if (stristr($bullHistory, $bull->f2)) {
+            $sess = $this->Session->getInstance();
+            $bullHistory = $sess->getSessVar('bullHistory');  
 
-            $existe = true;
-        }    
+            $existe = false;
+            $n = count($bullHistory);
 
-        if (!$existe) {
+            if (stristr($bullHistory, $bull->f2)) {
 
-            if (empty($bullHistory)) {
-                
-                 $bullHistory = $bull->f2;
+                $existe = true;
+            }    
 
-            } else {
+            if (!$existe) {
 
-                $bullHistory = $bullHistory.','.$bull->f2;
+                if (empty($bullHistory)) {
+                    
+                     $bullHistory = $bull->f2;
+
+                } else {
+
+                    $bullHistory = $bullHistory.','.$bull->f2;
+                }
+
             }
 
+            $sess->emptySess();
+            $sess->setSessVar('bullHistory',$bullHistory);
+
+            if ($sessionCustomer->id) {
+                $dados['logged'] = 1;
+            }
+
+            $dados['bulls'] = $bullHistory;
+
+            $this->Model_SearchHistory->save($dados,$sessionStep->idSearchHistory);
+
         }
-
-        $sess->emptySess();
-        $sess->setSessVar('bullHistory',$bullHistory);
-
-        $dados['bulls'] = $bullHistory;
-
-        $this->Model_SearchHistory->save($dados,$sessionStep->idSearchHistory);
         
     }
 
@@ -427,35 +443,39 @@ class ResultController extends Zend_Controller_Action {
         $sessionStep        = new Zend_Session_Namespace('sessionStep');
         $sessionCustomer    = new Zend_Session_Namespace('sessionCustomer');
 
-        $dados['country']   = $_COOKIE['bullsearch'];
-        $dados['type']      = $sessionStep->step1;
-        $dados['breed']     = $sessionStep->step2;
+        //if (!$sessionStep->idSearchHistory) {
+                
+            $dados['country']   = $_COOKIE['bullsearch'];
+            $dados['type']      = $sessionStep->step1;
+            $dados['breed']     = $sessionStep->step2;
 
-        if ($sessionStep->step3 == 'daughter_proven')
-            $dados['sire_type'] = 'Daughter';
+            if ($sessionStep->step3 == 'daughter_proven')
+                $dados['sire_type'] = 'Daughter';
 
-        if ($sessionStep->step3 == 'genomic_young_sires')
-            $dados['sire_type'] = 'Genomic';
+            if ($sessionStep->step3 == 'genomic_young_sires')
+                $dados['sire_type'] = 'Genomic';
 
-        if ($sessionStep->step3 == 'all'){
-            $dados['sire_type'] = 'All';
-        }
+            if ($sessionStep->step3 == 'all'){
+                $dados['sire_type'] = 'All';
+            }
 
-        $dados['volume']                = $sessionStep->goalVolume;
-        $dados['longevity']             = $sessionStep->goalLongevity;
-        $dados['milk_fat']              = $sessionStep->goalMilkFat;
-        $dados['milk_protein']          = $sessionStep->goalMilkProtein;
-        $dados['daughter_fertility']    = $sessionStep->goalDaughter;
+            $dados['volume']                = $sessionStep->goalVolume;
+            $dados['longevity']             = $sessionStep->goalLongevity;
+            $dados['milk_fat']              = $sessionStep->goalMilkFat;
+            $dados['milk_protein']          = $sessionStep->goalMilkProtein;
+            $dados['daughter_fertility']    = $sessionStep->goalDaughter;
 
 
-        if($sessionCustomer->id)
-            $dados['logged'] = $sessionCustomer->id;
-        else
-            $dados['logged'] = 0;   
-        
-        $id = $this->Model_SearchHistory->save($dados);
+            if($sessionCustomer->id)
+                $dados['logged'] = $sessionCustomer->id;
+            else
+                $dados['logged'] = 0;   
+            
+            $id = $this->Model_SearchHistory->save($dados);
 
-        $sessionStep->idSearchHistory = $id;
+            $sessionStep->idSearchHistory = $id;
+
+       // }
 
     }
 

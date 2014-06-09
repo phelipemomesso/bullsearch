@@ -380,6 +380,35 @@ class RegisterController extends Zend_Controller_Action {
                 }
             }
         }        
+    }
+
+
+    public function deleteAction(){
+
+        $this->view->layout()->disableLayout();
+        $this->_helper->viewRenderer->setNoRender(true);
+
+        try {
+
+            $sessionCustomer = new Zend_Session_Namespace('sessionCustomer');
+
+            $r = $this->Model->getCustomerById($sessionCustomer->id);        
+            $r->delete();
+
+            $sessionCustomer->unsetAll();
+            Zend_Auth::getInstance()->clearIdentity();
+
+            $this->view->message = 'Your account has been deleted successfully!';
+            $this->view->messageType = 'success';
+
+            $this->_redirect('/');
+
+        } catch (Zend_Db_Exception $e) {
+
+            $this->view->message = 'There was an error, please try again. <br /><br />'.$e->getMessage();
+            $this->view->messageType = 'danger';
+            $this->_redirect($this->getRequest()->getServer('HTTP_REFERER'));
+        }    
     }	
    
 }

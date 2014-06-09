@@ -21,30 +21,6 @@ if($sessionCustomer->id) {
 			<i class="fa fa-arrow-circle-left"></i> Previous Page
 		</a>
 		
-		<br /><br />
-
-		<p><?php echo $this->Word(12);?></p>
-
-		<ul class="list-inline">
-			<li>
-				<a href="<?php echo $this->baseUrl()?>/register/edit" class="btn btn-sm btn-primary">
-					<i class="fa fa-user"></i> <?php echo $this->Word(13);?>
-				</a>
-			</li>
-			
-			<li>
-				<a href="<?php echo $this->baseUrl()?>/portfolio" class="btn btn-sm btn-primary">
-					<i class="fa fa-list-ul"></i> <?php echo $this->Word(14);?>
-				</a>
-			</li>
-			
-			<li>
-				<a href="<?php echo $this->baseUrl()?>/register/reset/id/<?php echo base64_encode($sessionCustomer->id); ?>" class="btn btn-sm btn-primary">
-					<i class="fa fa-key"></i> <?php echo $this->Word(15);?>
-				</a>
-			</li>
-		</ul>
-
 	</div>
 
 	<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4" align="center">
@@ -85,7 +61,30 @@ if($sessionCustomer->id) {
 		<?php } ?>
 	</div>
 
+	<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+		<p><?php echo $this->Word(12);?></p>
 
+		<ul class="list-inline">
+			<li>
+				<a href="<?php echo $this->baseUrl()?>/register/edit" class="btn btn-sm btn-primary">
+					<i class="fa fa-user"></i> <?php echo $this->Word(13);?>
+				</a>
+			</li>
+			
+			<li>
+				<a href="<?php echo $this->baseUrl()?>/portfolio" class="btn btn-sm btn-primary">
+					<i class="fa fa-list-ul"></i> <?php echo $this->Word(14);?>
+				</a>
+			</li>
+			
+			<li>
+				<a href="<?php echo $this->baseUrl()?>/register/reset/id/<?php echo base64_encode($sessionCustomer->id); ?>" class="btn btn-sm btn-primary">
+					<i class="fa fa-key"></i> <?php echo $this->Word(15);?>
+				</a>
+			</li>
+		</ul>
+	</div>
+	
 <?php 
 
 } else {

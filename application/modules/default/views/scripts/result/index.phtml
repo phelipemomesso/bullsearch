@@ -16,7 +16,7 @@
     <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9">
 
       <p align="center">
-        <a href="<?php echo $this->baseUrl() ?>/result/cover" class="btn btn-default btn-xs" type="button">Cover View</a>
+        <!--<a href="<?php echo $this->baseUrl() ?>/result/cover" class="btn btn-default btn-xs" type="button">Cover View</a>-->
         <a href="<?php echo $this->baseUrl() ?>/result" class="btn btn-default btn-xs active" type="button">Title View</a>
         <a href="<?php echo $this->baseUrl() ?>/result/list" class="btn btn-default btn-xs" type="button">List View</a>
       </p>
@@ -27,9 +27,19 @@
           <i class="fa fa-tasks"></i> Compare Bulls
         </button>
         
+        <?php if($sessionCustomer->id) { ?>
+
         <a class="btn btn-sm btn-primary" data-toggle="modal" href="<?php echo $this->baseUrl()?>/portfolio/selectbox" data-target="#modalPortfolio">
           <i class="fa fa-plus-circle"></i> Add to Portfolio
         </a>
+
+        <?php } else { ?>
+          
+          <a class="btn btn-sm btn-primary js-modalPortfolio0">
+          <i class="fa fa-plus-circle"></i> Add to Portfolio
+        </a>
+
+        <?php } ?>
 
       </div>
 
@@ -80,13 +90,13 @@
               if($sessionCustomer->id) { ?>
                 <br />
                 <label>
-                  <input name="portfolio_<?php echo $v[cod_bull] ; ?>" id="<?php echo $v[cod_bull] ; ?>" value="<?php echo $v[cod_bull] ; ?>" type="checkbox" class="checkbox-portfolio ace" />
+                  <input name="portfolio_<?php echo $v[cod_bull] ; ?>" id="<?php echo $v[cod_bull] ; ?>" value="<?php echo $v[cod_bull] ; ?>" type="checkbox" class="checkbox-portfolio js-loginPortfolio1 ace" />
                     <span class="lbl"> Add to Portfolio</span>
                 </label>
               <?php } else { ?>
                 <br />
                 <label>
-                  <input name="compare_<?php echo $v[cod_bull] ; ?>" id="<?php echo $v[cod_bull] ; ?>" value="<?php echo $v[cod_bull] ; ?>" type="checkbox" class="checkbox-compare ace js-loginPortfolio" />
+                  <input name="portfolio_<?php echo $v[cod_bull] ; ?>" id="<?php echo $v[cod_bull] ; ?>" value="<?php echo $v[cod_bull] ; ?>" type="checkbox" class="ace js-loginPortfolio0" />
                   <span class="lbl"> Add to Portfolio</span>
                 </label>
 

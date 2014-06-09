@@ -107,7 +107,9 @@ jQuery(function(){
 
             success: function(data) {               
 
-                location.href=baseUrl+'/result';              
+                sessionStorage.setItem('idSearchHistory', 1);
+
+                location.href=baseUrl+'/result/index/save/1';              
             },
             error: function(xhr, er) {
                 alert('Error ' + xhr.status + ' - ' + xhr.statusText);
@@ -199,7 +201,14 @@ jQuery(function(){
                 
                 if (data == 1) {
 
-                    location.href=baseUrl+'/';
+                    if (sessionStorage.getItem('idSearchHistory')) {
+
+                        location.href=baseUrl+'/result/index/save/0';
+
+                    } else {
+
+                        location.href=baseUrl+'/';
+                    }
                     
                 } else if (data == 2) {
 
@@ -373,11 +382,44 @@ jQuery(function(){
     });
    
 
-    $('.js-loginPortfolio').on("click",function(e){
+    $('.js-modalPortfolio0').on("click",function(e){
 
-        alert('To add to the portfolio, you must register or log into your account.');
-        $(this).attr("checked",false);
-        location.href=baseUrl+'/register';
+        e.preventDefault();
+
+         alert('To add to the portfolio, you must register or log into your account.');
+    
+    });
+
+    if (sessionStorage.getItem('idSearchHistory')) {
+
+        $('.js-loginPortfolio1').each(function() {
+
+            if(sessionStorage.getItem('portfolio_'+$(this).attr('id'))) {
+
+                $(this).prop('checked', true);
+            }
+        });
+
+    }
+
+    $('.js-loginPortfolio0').on("click",function(e){
+
+        if($(this).is(':checked')) {
+            
+            sessionStorage.setItem('portfolio_'+$(this).attr('id'), $(this).attr('id'));
+            
+        } else {
+
+            sessionStorage.removeItem('portfolio_'+$(this).attr('id'), $(this).attr('id'));
+        }
+
+        for (var i = 0; i < sessionStorage.length; i++) {
+            var key = sessionStorage.key(i);
+            var value = sessionStorage.getItem(key);
+            console.log(key+'--'+value);
+        }
+
+        //sessionStorage.clear();
 
     });
 
