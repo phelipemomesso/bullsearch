@@ -5,9 +5,10 @@
     <div id="msg-login" class="alert alert-danger" style="display:none;"></div>
 
 	<br />
-    <a href="<?php echo $this->baseUrl()?>/register/delete" class="btn btn-sm btn-danger">
+
+	<button class="btn btn-sm btn-danger" data-toggle="modal" data-target=".bs-example-modal-sm">
 		<i class="fa fa-trash-o"></i> <?php echo $this->Word(180);?>
-	</a>
+	</button>
 
     <div class="col-xs-12"> 
     	<br />
@@ -15,4 +16,23 @@
 		<?php echo $this->Form; ?>
 	</div>
 
+</div>
+
+
+<div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">Delete Your Account</h4>
+      </div>
+      <div class="modal-body">
+         Are you sure you want to delete your profile?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+        <a href="<?php echo $this->baseUrl()?>/register/delete" class="btn btn-primary">Yes</a>
+      </div>
+    </div>
+  </div>
 </div>

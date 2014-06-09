@@ -393,10 +393,10 @@ class RegisterController extends Zend_Controller_Action {
             $sessionCustomer = new Zend_Session_Namespace('sessionCustomer');
 
             $r = $this->Model->getCustomerById($sessionCustomer->id);        
-            $r->delete();
+            //$r->delete();
 
-            $sessionCustomer->unsetAll();
-            Zend_Auth::getInstance()->clearIdentity();
+            //$sessionCustomer->unsetAll();
+            //Zend_Auth::getInstance()->clearIdentity();
 
             $this->view->message = 'Your account has been deleted successfully!';
             $this->view->messageType = 'success';
