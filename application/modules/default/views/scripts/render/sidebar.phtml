@@ -30,6 +30,24 @@ if($action != 'step3' and !empty($sessionStep->step3)) {
 if($action != 'step4' and !empty($sessionStep->step4)) {
 
 	$step4 = true;
+
+	if ($sessionStep->goalVolume == 1) {
+		$label .= 'Volume <br />';
+	} 
+	if ($sessionStep->goalLongevity == 1) {
+		$label .= 'Longevity <br />';
+	} 
+	if ($sessionStep->goalMilkFat == 1) {
+		$label .= 'Milk components – Fat% <br /> ';
+	}
+	if ($sessionStep->goalMilkProtein == 1) {
+		$label .= 'Milk components – Protein % <br /> ';
+	}
+	if ($sessionStep->goalDaughter == 1) {
+		$label .= 'Daughter Fertility';
+	}
+
+	$step4Label = '<a href="'.$this->baseUrl().'/index/step4" class="btn btn-primary btn-xs">'.$label.'</a>';
 }
 	 
 ?>
@@ -54,6 +72,7 @@ if($action != 'step4' and !empty($sessionStep->step4)) {
 	<li>
 		<?php if($step4) echo $image; ?>
 		<a href="<?php echo $this->baseUrl() ?>/index/step4"><?php echo $this->Word(80);?></a>
+		<?php if($step4) echo $step4Label; ?>
 	</li>
 	<li class="last">
 		<a href="#">Go</a>
