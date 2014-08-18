@@ -1,0 +1,89 @@
+<?php 
+$sessionCustomer = new Zend_Session_Namespace('sessionCustomer');
+
+if($sessionCustomer->id) { 
+    $add = 'checkbox-portfolio js-loginPortfolioAdv1';
+} else {
+	 $add = 'js-loginPortfolioAdv0';
+}
+?>
+
+<table class="table table-striped table-hover tablesorter" id="myTable" align="center" style="font-size:11px;">
+	<thead>
+		<tr>
+			<th></th>
+			<th>NAAB</th>
+			<th>Name</th>
+			<th>NM$</th>
+			<th>TPI</th>
+			<th>PTAM</th>
+			<th>PTAF</th>
+			<th>PTAF%</th>
+			<th>PTAP</th>
+			<th>PTAP%</th>
+			<th>MRL</th>
+			<th>PL</th>
+			<th>SCS</th>
+			<th>DPR</th>
+			<th>PTAT</th>
+			<th>UDC</th>
+			<th>FLC</th>
+			<th>SCE</th>
+			<th>DCE</th>
+			<!--<th>Sire X MGS</th>-->
+			<th>View</th>
+
+		</tr>
+	</thead>
+	<tbody>
+		<?php 
+		foreach($this->Data as $v) {
+			if ($v->abs == 1) {
+				$class = 'class = "info"';
+			} else {
+				$class = '';
+			} 
+			?>
+			<tr id="bull-<?php echo $v->cod_bull ;?>" <?php echo $class; ?> >
+				<td>
+					<input type="checkbox" name="email[]" class="js-email <?php echo $add; ?>" id="<?php echo $v->cod_bull ;?>" rel="<?php echo $v->cod_bull ;?>">
+				</td>
+				<td><?php echo $v->naab; ?></td>
+				<td>
+					<span class="btn-tooltip" data-toggle="tooltip" data-placement="top" title='<?php $this->SeloAdv($v->cod_bull); ?>'>
+                <?php 
+					if ($v->abs == 1) {
+						echo '<b>'.$v->nome.'</b>';
+					} else {
+						echo $v->nome;
+					}
+					 
+					?></span>
+				</td>
+				<td><?php echo $this->MaskValue($v->f61,4,true); ?></td>
+				<td><?php echo $this->MaskValue($v->f51,4,true); ?></td>
+				<td><?php echo $this->MaskValue($v->f52,4,true); ?></td>
+				<td><?php echo $this->MaskValue($v->f58,4,true); ?></td>
+				<td><?php echo $this->MaskValue($v->f59,4,true); ?> %</td>
+				<td><?php echo $this->MaskValue($v->f55,4,true); ?></td>
+				<td><?php echo $this->MaskValue($v->f56,4,true); ?> %</td>
+				<td><?php echo $this->MaskValue($v->f60,4,false); ?></td>
+				<td><?php echo $this->MaskValue($v->f79,4,true); ?></td>
+				<td><?php echo $this->MaskValue($v->f77,4,false); ?></td>
+				<td><?php echo $this->MaskValue($v->f75,4,true); ?></td>
+				<td><?php echo $this->MaskValue($v->f6,4,true); ?></td>
+				<td><?php echo $this->MaskValue($v->f7,4,true); ?></td>
+				<td><?php echo $this->MaskValue($v->f9,4,true); ?></td>
+				<td><?php echo $this->MaskValue($v->f67,4,false); ?></td>
+				<td><?php echo $this->MaskValue($v->f69,4,false); ?></td>
+				<!--<td><?php echo $v->f30.'x'.$v->f33; ?></td>-->
+				<td>
+					<a href="<?php echo $this->baseUrl() ?>/result/details/id/<?php echo $v->cod_bull ;?>" class="btn btn-sm btn-primary">
+	                  <i class="fa fa-plus-circle"></i> Details
+	                </a>
+	            </td>
+		</tr>
+
+		<?php } ?>
+	</tbody>
+</table> 

@@ -9,10 +9,12 @@ $step2 =  false;
 $step3 =  false;
 $step4 =  false;
 
+unset($step1Label,$step2Label,$step3Label,$step4Label);
+
 if($action != 'step1' and !empty($sessionStep->step1)) {
 
 	$step1 = true;
-	$step1Label = '<a href="'.$this->baseUrl().'/index/step1" class="btn btn-primary btn-xs">'.$sessionStep->step1Label.'</a>';
+	$step1Label = '<a href="'.$this->baseUrl().'/index" class="btn btn-primary btn-xs">'.$sessionStep->step1Label.'</a>';
 }
 
 if($action != 'step2' and !empty($sessionStep->step2)) {
@@ -47,7 +49,7 @@ if($action != 'step4' and !empty($sessionStep->step4)) {
 		$label .= 'Daughter Fertility';
 	}
 
-	$step4Label = '<a href="'.$this->baseUrl().'/index/step4" class="btn btn-primary btn-xs">'.$label.'</a>';
+	$step4Label = '<a href="'.$this->baseUrl().'/index/step4/refresh/1" class="btn btn-primary btn-xs">'.$label.'</a>';
 }
 	 
 ?>
@@ -56,7 +58,7 @@ if($action != 'step4' and !empty($sessionStep->step4)) {
 <ul id="side-bar" class="list-unstyled col-xs-12 col-sm-6 col-md-3">
 	<li>
 		<?php if($step1) echo $image; ?>
-		<a href="<?php echo $this->baseUrl() ?>/index/step1" class=""><?php echo $this->Word(75);?> / <?php echo $this->Word(76);?></a>
+		<a href="<?php echo $this->baseUrl() ?>/index" class=""><?php echo $this->Word(75);?> / <?php echo $this->Word(76);?></a>
 		<?php if($step1) echo $step1Label; ?>
 	</li>
 	<li>
@@ -71,7 +73,7 @@ if($action != 'step4' and !empty($sessionStep->step4)) {
 	</li>
 	<li>
 		<?php if($step4) echo $image; ?>
-		<a href="<?php echo $this->baseUrl() ?>/index/step4"><?php echo $this->Word(80);?></a>
+		<a href="<?php echo $this->baseUrl() ?>/index/step4/refresh/1"><?php echo $this->Word(80);?></a>
 		<?php if($step4) echo $step4Label; ?>
 	</li>
 	<li class="last">

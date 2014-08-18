@@ -1,0 +1,36 @@
+<?php 
+ob_start();
+$sessionCustomer = new Zend_Session_Namespace('sessionCustomer'); 
+      
+      $sessionAdvSearchStep = new Zend_Session_Namespace('sessionAdvSearchStep');
+
+      if ($sessionAdvSearchStep->breed == 2) {
+        
+        echo $this->render('advanced/templates/table_holstein.phtml');
+
+      } elseif ($sessionAdvSearchStep->breed == 3) {
+
+        echo $this->render('advanced/templates/table_jersey.phtml');
+
+      } 
+
+ $html = ob_end_flush();
+
+    // //mb_convert_encoding($html, 'UTF-16LE', 'UTF-8');
+    //iconv("UTF-8", "UTF-16LE//IGNORE", $html);
+    // // $html =  "\xFF\xFE" .$html;
+
+    $arquivo = "result-advancedsearch-".date('dmY_Hms').".xls";
+
+    header("Expires: Mon, 26 Jul 1997 05:00:00 GMT");
+    header("Last-Modified: " . gmdate("D,d M YH:i:s") . " GMT");
+    header("Cache-Control: no-cache, must-revalidate");
+    header("Pragma: no-cache");
+    header("Content-Transfer-Encoding: binary");
+    header("Content-length: ".ob_get_length());
+    header("Content-type: application/x-msexcel; charset=utf-8");
+    header("Content-Disposition: attachment; filename=\"{$arquivo}\"" );
+    header("Content-Description: PHP Generated Data" );
+
+    print $html;      
+    ?>

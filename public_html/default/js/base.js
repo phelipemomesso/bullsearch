@@ -2,7 +2,9 @@ jQuery(function(){
 
     var oTable1 = $('#registros').dataTable();
 
-    $( ".btn-tooltip" ).tooltip();
+    $( ".btn-tooltip" ).tooltip(
+        {html:true}
+    );
 
     $( ".step" ).on( "click", function( e ) {
 
@@ -15,7 +17,42 @@ jQuery(function(){
 
         jQuery.ajax({
 
-            url: baseUrl+'/index/'+$steps[0],
+            url: baseUrl+'/index/steps',
+            cache: false,
+            dataType: 'html',
+            type: 'POST',
+            data: {
+
+                value : $value,
+                label : $steps[2],
+                step  : $steps[0]
+            },
+
+            success: function(data) {               
+
+                window.location.assign(baseUrl+'/index/'+$steps[1]);
+            },
+            
+            error: function(xhr, er) {
+                alert('Error ' + xhr.status + ' - ' + xhr.statusText);
+            }
+        }); 
+
+    });
+
+    $( ".stepA" ).on( "click", function( e ) {
+
+        e.preventDefault();
+        
+        var $rel = $(this).attr('rel');
+        var $value = $(this).attr('value');
+
+        var $steps = $rel.split('+');
+
+        jQuery.ajax({
+
+            url: baseUrl+'/advanced/'+$steps[0],
+            cache: false,
             dataType: 'html',
             type: 'POST',
             data: {
@@ -26,7 +63,7 @@ jQuery(function(){
 
             success: function(data) {               
 
-                location.href=baseUrl+'/index/'+$steps[1];
+                window.location.assign(baseUrl+'/advanced/'+$steps[1]);
             },
             
             error: function(xhr, er) {
@@ -57,6 +94,7 @@ jQuery(function(){
 
         jQuery.ajax({
             url: baseUrl+'/index/goals',
+            cache: false,
             data: { 
 
                 goals: $goals,
@@ -65,8 +103,8 @@ jQuery(function(){
             type: 'post',
 
             success: function(data) {               
-
-                location.href=baseUrl+'/index/step5';              
+                
+                window.location.assign(baseUrl+'/index/step5');              
             },
             error: function(xhr, er) {
                 alert('Error ' + xhr.status + ' - ' + xhr.statusText);
@@ -98,7 +136,8 @@ jQuery(function(){
         e.preventDefault();
 
         jQuery.ajax({
-            url: baseUrl+'/index/step5',
+            url: baseUrl+'/index/steps',
+            cache: false,
             data: { 
 
                 records: $('#records').val()
@@ -108,8 +147,7 @@ jQuery(function(){
             success: function(data) {               
 
                 sessionStorage.setItem('idSearchHistory', 1);
-
-                location.href=baseUrl+'/result/index/save/1';              
+                window.location.assign(baseUrl+'/result/index/refresh/1');              
             },
             error: function(xhr, er) {
                 alert('Error ' + xhr.status + ' - ' + xhr.statusText);
@@ -124,6 +162,7 @@ jQuery(function(){
 
         jQuery.ajax({
             url: baseUrl+'/index/step5',
+            cache: false,
             data: { 
 
                 records: $('#records-result').val()
@@ -132,7 +171,7 @@ jQuery(function(){
 
             success: function(data) {               
 
-                location.href=baseUrl+'/result/index/results/'+$('#records-result').val();              
+                window.location.assign(baseUrl+'/result/index/results/'+$('#records-result').val());              
             },
             error: function(xhr, er) {
                 alert('Error ' + xhr.status + ' - ' + xhr.statusText);
@@ -201,9 +240,13 @@ jQuery(function(){
                 
                 if (data == 1) {
 
-                    if (sessionStorage.getItem('idSearchHistory')) {
+                    if (sessionStorage.getItem('idSearchHistory')==1) {
 
-                        location.href=baseUrl+'/result/index/save/0';
+                        window.location.assign(baseUrl+'/result/index/save/0');
+
+                    } else if (sessionStorage.getItem('idSearchHistory')==2) {
+
+                        window.location.assign(baseUrl+'/advanced/result');
 
                     } else {
 
@@ -294,7 +337,7 @@ jQuery(function(){
 
                                 success: function(data) {               
 
-                                    location.href=baseUrl+'/index';
+                                    window.location.assign(baseUrl+'/index');
 
                                     console.log(data);
                                 },
@@ -322,10 +365,10 @@ jQuery(function(){
             if (response.status === 'connected') {
 
                 FB.logout(function(response) {
-                    location.href=baseUrl+'/register/logout';
+                    window.location.assign(baseUrl+'/register/logout');
                 });
             } else {
-                location.href=baseUrl+'/register/logout';  
+                window.location.assign(baseUrl+'/register/logout');  
             }
         });      
 
@@ -366,7 +409,7 @@ jQuery(function(){
 
                 success: function(data) {               
 
-                    location.href=baseUrl+'/result/compare';
+                    window.location.assign(baseUrl+'/result/compare');
 
                 },
                 
@@ -390,7 +433,7 @@ jQuery(function(){
     
     });
 
-    if (sessionStorage.getItem('idSearchHistory')) {
+    if (sessionStorage.getItem('idSearchHistory')==1) {
 
         $('.js-loginPortfolio1').each(function() {
 
@@ -419,8 +462,6 @@ jQuery(function(){
             console.log(key+'--'+value);
         }
 
-        //sessionStorage.clear();
-
     });
 
     $('#bt-password').on("click",function(e){
@@ -446,7 +487,7 @@ jQuery(function(){
             return false;
         } else {
 
-             location.href=baseUrl+'/quick/index/search/'+$('#search-word').val();
+             window.location.assign(baseUrl+'/quick/index/search/'+$('#search-word').val());
         }
 
     });
@@ -455,9 +496,160 @@ jQuery(function(){
 
         e.preventDefault();
 
-        location.href=baseUrl+'/quick/index/search/'+$(this).val();
+        window.location.assign(baseUrl+'/quick/index/search/'+$(this).val());
     
     });
+
+    $('.js-bullsType').on( "click", function( e ) {
+
+         if ($(this).attr('id') == 'abs-only') {
+
+            $('#selos').css('display','block');
+         
+         } else {
+
+            $('#selos').css('display','none');
+         }      
+
+    });   
+
+    $('#js-advSearchStep').on( "click", function( e ) {
+        
+       var $selectIds = new Array();
+       var $selectValues = new Array();
+
+       var $selectSelos = new Array();
+
+        $(".js-adv-select").each(function() {
+            
+            if ($(this).val() != '') {
+
+                $selectIds.push($(this).attr('id'));
+                $selectValues.push($(this).val());
+            };
+            
+        });
+
+        $(".js-checkSelos").each(function() {
+
+            if($(this).is(':checked')) {
+                $selectSelos.push($(this).val());
+            };
+            
+        });    
+
+        jQuery.ajax({
+
+            url: baseUrl+'/advanced/advs',
+            data: { 
+
+                breed:  $('#breed').val(),
+                sire:   $('#sire-type').val(),
+                abs:    $('input[name=abs]:checked').val(),
+                selectIds:    $selectIds,
+                selectValues: $selectValues,
+                selectSelos:  $selectSelos
+            },
+            
+            type: 'post',
+
+            success: function(data) {               
+
+               sessionStorage.setItem('idSearchHistory', 2);
+               window.location.assign(baseUrl+'/advanced/result');
+
+            },
+                
+            error: function(xhr, er) {
+                alert('Error ' + xhr.status + ' - ' + xhr.statusText);
+            }
+        }); 
+            
+    });
+
+    $( "#btn-compareAdv" ).on( "click", function( e ) {
+
+        var $id;
+
+        var $n = $( "input:checked" ).length;
+
+        if ($n >= 2) {
+
+            $('.js-email').each(function() { 
+                    
+                if($(this).is(':checked')) {
+
+                } else {
+
+                    $id = $(this).attr('rel');
+                    $( "#bull-"+$id ).hide();
+                }
+                            
+            });
+
+        } else {
+
+            alert('You must select at least two bulls to use this feature.');
+        }
+
+    });
+
+    $('.js-loginPortfolioAdv0').on("click",function(e){
+
+        if($(this).is(':checked')) {
+            
+            sessionStorage.setItem('portfolio_'+$(this).attr('id'), $(this).attr('id'));
+            
+        } else {
+
+            sessionStorage.removeItem('portfolio_'+$(this).attr('id'), $(this).attr('id'));
+        }
+
+        for (var i = 0; i < sessionStorage.length; i++) {
+            var key = sessionStorage.key(i);
+            var value = sessionStorage.getItem(key);
+            console.log(key+'--'+value);
+        }
+
+    });
+
+    if (sessionStorage.getItem('idSearchHistory')==2) {
+
+        $('.js-loginPortfolioAdv1').each(function() {
+
+            if(sessionStorage.getItem('portfolio_'+$(this).attr('id'))) {
+
+                $(this).prop('checked', true);
+            }
+        });
+
+        if (controller == 'advanced') {
+
+           $( "#breed" ).val(sessionStorage.getItem('breedAdv'));
+           $( "#sire-type" ).val(sessionStorage.getItem('sireTypeAdv'));
+
+           jQuery.ajax({
+
+                url: baseUrl+'/advanced/table' ,
+                data: {
+
+                  breed: sessionStorage.getItem('breedAdv'),
+                  sireType: sessionStorage.getItem('sireTypeAdv'),
+                },
+                type: 'post',
+
+                success: function(data) {
+
+                  $('#table-result').html(data);
+
+                },
+
+                error: function(xhr, er) {
+                  alert('Error ' + xhr.status + ' - ' + xhr.statusText);
+                }
+            })
+        } 
+    }   
 
 })
 

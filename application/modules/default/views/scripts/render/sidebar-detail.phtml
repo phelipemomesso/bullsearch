@@ -49,7 +49,7 @@ if($action != 'step4' and !empty($sessionStep->step4)) {
 		$label .= 'Daughter Fertility';
 	}
 
-	$step4Label = '<a href="'.$this->baseUrl().'/index/step4" class="btn btn-primary btn-xs">'.$label.'</a>';
+	$step4Label = '<a href="'.$this->baseUrl().'/index/step4/refresh/1" class="btn btn-primary btn-xs">'.$label.'</a>';
 }
 	 
 ?>
@@ -73,7 +73,7 @@ if($action != 'step4' and !empty($sessionStep->step4)) {
 	</li>
 	<li>
 		<?php if($step4) echo $image; ?>
-		<a href="<?php echo $this->baseUrl() ?>/index/step4">GOALS</a>
+		<a href="<?php echo $this->baseUrl() ?>/index/step4/refresh/1">GOALS</a>
 		<?php if($step4) echo $step4Label; ?>
 	</li>
 	<li class="last">

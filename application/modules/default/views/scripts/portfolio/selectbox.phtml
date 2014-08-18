@@ -29,6 +29,7 @@ jQuery(function(){
 
                 success: function(data) {               
 
+                    console.log('aaa');
                     //$('.modal-body').html();
                     $( '<div id="msgT"class="alert alert-info">'+data+'</div>').prependTo( ".modal-body" );
                     //$('.modal-body').html(');
@@ -127,7 +128,7 @@ jQuery(function(){
 
     			<br />
 
-    			<a class="btn btn-success btn-sm js-btn-add" role="button"> Add</a>
+    			<button type="button" class="btn btn-success btn-sm js-btn-add" role="button"> Add</button>
 
             <?php } else { ?>
                 
@@ -140,7 +141,7 @@ jQuery(function(){
 
                 <br />
 
-                <a class="btn btn-success btn-sm js-btn-create" role="button"> Create</a>
+                <button type="button" class="btn btn-success btn-sm js-btn-create" role="button"> Create</button>
                 
             <?php } ?>
 

@@ -1,0 +1,76 @@
+<?php 
+
+$action = Zend_Controller_Front::getInstance()->getRequest()->getActionName(); 
+$sessionStepA = new Zend_Session_Namespace('sessionStepA');
+$image = '<img src="'.$this->baseUrl().'/default/imagens/check-white.jpg" class="" alt="" title=""> ';
+
+$step1 =  false;
+$step2 =  false;
+$step3 =  false;
+$step4 =  false;
+
+if($action != 'step1' and !empty($sessionStepA->step1)) {
+
+	$step1 = true;
+	$step1Label = '<a href="'.$this->baseUrl().'/advanced/step1" class="btn btn-primary btn-xs">'.$sessionStepA->step1Label.'</a>';
+}
+
+if($action != 'step2' and !empty($sessionStepA->step2)) {
+
+	$step2 = true;
+	$step2Label = '<a href="'.$this->baseUrl().'/advanced/step2" class="btn btn-primary btn-xs">'.$sessionStepA->step2Label.'</a>';
+}
+
+if($action != 'step3' and !empty($sessionStepA->step3)) {
+
+	$step3 = true;
+	$step3Label = '<a href="'.$this->baseUrl().'/advanced/step3" class="btn btn-primary btn-xs">'.$sessionStepA->step3Label.'</a>';
+}
+
+if($action != 'step4' and !empty($sessionStepA->step4)) {
+
+	$step4 = true;
+	$step4Label = '<a href="'.$this->baseUrl().'/advanced/step4" class="btn btn-primary btn-xs">'.$sessionStepA->step4Label.'</a>';
+}
+
+if($action != 'step5' and !empty($sessionStepA->step5)) {
+
+	$step5 = true;
+	$step5Label = '<a href="'.$this->baseUrl().'/advanced/step5" class="btn btn-primary btn-xs">'.$sessionStepA->step5Label.'</a>';
+}
+
+	 
+?>
+
+
+<ul id="side-bar" class="list-unstyled col-xs-12 col-sm-6 col-md-3">
+	<li>
+		<?php if($step1) echo $image; ?>
+		<a href="<?php echo $this->baseUrl() ?>/advanced" class=""><?php echo $this->Word(75);?> / <?php echo $this->Word(76);?></a>
+		<?php if($step1) echo $step1Label; ?>
+	</li>
+	<li>
+		<?php if($step2) echo $image; ?>
+		<a href="<?php echo $this->baseUrl() ?>/advanced/step2"><?php echo $this->Word(78);?></a>
+		<?php if($step2) echo $step2Label; ?>
+	</li>
+	<li>
+		<?php if($step3) echo $image; ?>
+		<a href="<?php echo $this->baseUrl() ?>/advanced/step3"><?php echo $this->Word(79);?></a>
+		<?php if($step3) echo $step3Label; ?>
+	</li>
+	<li>
+		<?php if($step4) echo $image; ?>
+		<a href="<?php echo $this->baseUrl() ?>/advanced/step4">Bulls Type</a>
+		<?php if($step4) echo $step4Label; ?>
+	</li>
+	<li>
+		<?php if($step5) echo $image; ?>
+		<a href="<?php echo $this->baseUrl() ?>/advanced/step5">Data Source</a>
+		<?php if($step5) echo $step5Label; ?>
+	</li>
+
+	<li class="last">
+		<a href="#">Go</a>
+	</li>
+</ul>  

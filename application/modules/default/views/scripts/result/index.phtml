@@ -61,7 +61,7 @@
       $imageBull = $Model_BullImage->getImageBull($v[cod_bull]);
       ?>
 
-      <div class="col-sm-6 col-md-3">
+      <div class="col-sm-6 col-md-4">
         <div class="thumbnail bulls-list">
 
           <?php 
@@ -78,8 +78,10 @@
             <p>
               <?php echo $v[f2] ; ?> <b><?php echo $v[f1] ; ?></b>
               <br />
+              <?php $this->Goals($v[cod_bull]); ?>
+              <br />
               <?php $this->Selo($v[cod_bull]); ?>
-          
+              <br clear="all" />
               <label>
                 <input name="compare_<?php echo $v[cod_bull] ; ?>" id="<?php echo $v[cod_bull] ; ?>" value="<?php echo $v[cod_bull] ; ?>" type="checkbox" class="checkbox-compare ace" />
                 <span class="lbl"> Add to Compare</span>

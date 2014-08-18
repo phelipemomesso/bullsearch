@@ -1,0 +1,15 @@
+<?php
+
+if ($this->Sire != 'all') {
+	
+	if ($this->Breed == 2) {
+		
+		echo $this->render('advanced/templates/adv_holstein_'.$this->Sire.'.phtml');
+	
+	} else {
+
+		echo $this->render('advanced/templates/adv_jersey_'.$this->Sire.'.phtml');
+	}
+}
+
+?>

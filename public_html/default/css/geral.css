@@ -354,3 +354,11 @@ input[type=radio].ace:checked:active + .lbl::before {
 .bulls-list { height: 420px; }
 
 #cancel-register { margin-left:15px; }
+
+.selos {
+  float: left;
+}
+
+.selos-adv {
+  text-align: center;
+}

@@ -1,0 +1,180 @@
+<?php $sessionAdvSearchStep = new Zend_Session_Namespace('sessionAdvSearchStep'); ?>
+<table class="table table-striped table-condensed" id="Jersey-Daughter">
+	<tr align="center">
+		<td align="center"><strong>Index</strong></td>
+		<td align="center"><strong>More Than</strong></td>
+		<td align="center"><strong>Health</strong></td>
+		<td align="center"><strong>More Than</strong></td>
+	</tr>
+	<tr align="center">
+		<td>JPI</td>
+		<td>
+			<select name="f51" id="f51" class="form-control js-adv-select">
+				<option value="">--Select--</option>
+				<option value="0">0</option>
+				<option value="100" <?php if($sessionAdvSearchStep->parametros[f51] == 100) echo 'selected="selected"'; ?> >100</option>
+				<option value="200" <?php if($sessionAdvSearchStep->parametros[f51] == 200) echo 'selected="selected"'; ?> >200</option>
+			</select>
+		</td>
+		<td>PL</td>
+		<td>
+			<select name="f79" id="f79" class="form-control js-adv-select">
+				<option value="">--Select--</option>
+				<option value="0.00">0.00</option>
+				<option value="1.00" <?php if($sessionAdvSearchStep->parametros[f79] == '1.00') echo 'selected="selected"'; ?> >1.00</option>
+				<option value="2.00" <?php if($sessionAdvSearchStep->parametros[f79] == '2.00') echo 'selected="selected"'; ?> >2.00</option>
+				<option value="3.00" <?php if($sessionAdvSearchStep->parametros[f79] == '3.00') echo 'selected="selected"'; ?> >3.00</option>
+				<option value="4.00" <?php if($sessionAdvSearchStep->parametros[f79] == '4.00') echo 'selected="selected"'; ?> >4.00</option>
+				<option value="5.00" <?php if($sessionAdvSearchStep->parametros[f79] == '5.00') echo 'selected="selected"'; ?> >5.00</option>
+			</select>
+		</td>
+	</tr>
+	<tr align="center">
+		<td>NM$</td>
+		<td>
+			<select name="f61" id="f61" class="form-control js-adv-select">
+				<option value="">--Select--</option>
+				<option value="100" <?php if($sessionAdvSearchStep->parametros[f61] == 100) echo 'selected="selected"'; ?> >100</option>
+				<option value="300" <?php if($sessionAdvSearchStep->parametros[f61] == 300) echo 'selected="selected"'; ?>  >300</option>
+				<option value="500" <?php if($sessionAdvSearchStep->parametros[f61] == 500) echo 'selected="selected"'; ?> >500</option>
+			</select>
+		</td>
+		<td>SCS</td>
+		<td>
+			<select name="f77" id="f77" class="form-control js-adv-select">
+				<option value="">--Select--</option>
+				<option value="2.80" <?php if($sessionAdvSearchStep->parametros[f77] == '2.80') echo 'selected="selected"'; ?> >2.80</option>
+				<option value="3.00" <?php if($sessionAdvSearchStep->parametros[f77] == '3.00') echo 'selected="selected"'; ?> >3.00</option>
+				<option value="3.10" <?php if($sessionAdvSearchStep->parametros[f77] == '3.10') echo 'selected="selected"'; ?> >3.10</option>
+			</select>
+		</td>
+	</tr>
+	<tr align="center">
+		<td>CM$</td>
+		<td><select name="f64" id="f64" class="form-control js-adv-select">
+			<option value="">--Select--</option>
+			<option value="100" <?php if($sessionAdvSearchStep->parametros[f64] == 100) echo 'selected="selected"'; ?> >100</option>
+			<option value="300" <?php if($sessionAdvSearchStep->parametros[f64] == 300) echo 'selected="selected"'; ?> >300</option>
+			<option value="400" <?php if($sessionAdvSearchStep->parametros[f64] == 400) echo 'selected="selected"'; ?> >400</option>
+			<option value="500" <?php if($sessionAdvSearchStep->parametros[f64] == 500) echo 'selected="selected"'; ?> >500</option>
+		</select></td>
+		<td align="center">&nbsp;</td>
+		<td align="center">&nbsp;</td>
+	</tr>
+	<tr align="center">
+		<td align="center"><strong>Product</strong></td>
+		<td align="center">&nbsp;</td>
+		<td align="center"><strong>Fertility</strong></td>
+		<td align="center">&nbsp;</td>
+	</tr>
+	<tr align="center">
+		<td>PTAM</td>
+		<td>
+			<select name="f52" id="f52" class="form-control js-adv-select">
+				<option value="">--Select--</option>
+				<option value="0">0</option>
+				<option value="500" <?php if($sessionAdvSearchStep->parametros[f52] == 500) echo 'selected="selected"'; ?> >500</option>
+				<option value="1000" <?php if($sessionAdvSearchStep->parametros[f52] == 1000) echo 'selected="selected"'; ?> >1000</option>
+				<option value="1500" <?php if($sessionAdvSearchStep->parametros[f52] == 1500) echo 'selected="selected"'; ?> >1500</option>
+				<option value="2000" <?php if($sessionAdvSearchStep->parametros[f52] == 2000) echo 'selected="selected"'; ?> >2000</option>
+			</select>
+		</td>
+		<td>DPR</td>
+		<td>
+			<select name="f75" id="f75" class="form-control js-adv-select">
+				<option value="">--Select--</option>
+				<option value="0">0</option>
+				<option value="0.50" <?php if($sessionAdvSearchStep->parametros[f75] == '0.50') echo 'selected="selected"'; ?> >0.50</option>
+				<option value="1.00" <?php if($sessionAdvSearchStep->parametros[f75] == '1.00') echo 'selected="selected"'; ?> >1.00</option>
+			</select>
+		</td>
+	</tr>
+	<tr align="center">
+		<td>MREL</td>
+		<td><select name="f60" id="f60" class="form-control js-adv-select">
+			<option value="">--Select--</option>
+			<option value="80" <?php if($sessionAdvSearchStep->parametros[f60] == 80) echo 'selected="selected"'; ?> >80</option>
+			<option value="90" <?php if($sessionAdvSearchStep->parametros[f60] == 90) echo 'selected="selected"'; ?> >90</option>
+			<option value="95" <?php if($sessionAdvSearchStep->parametros[f60] == 95) echo 'selected="selected"'; ?> >95</option>
+		</select></td>
+		<td>&nbsp;</td>
+		<td>&nbsp;</td>
+	</tr>
+	<tr align="center">
+		<td>PTAF</td>
+		<td><select name="f58" id="f58" class="form-control js-adv-select">
+			<option value="">--Select--</option>
+			<option value="0">0</option>
+			<option value="40" <?php if($sessionAdvSearchStep->parametros[f58] == 40) echo 'selected="selected"'; ?> >40</option>
+			<option value="60" <?php if($sessionAdvSearchStep->parametros[f58] == 80) echo 'selected="selected"'; ?> >60</option>
+			<option value="80" <?php if($sessionAdvSearchStep->parametros[f58] == 80) echo 'selected="selected"'; ?> >80</option>
+		</select></td>
+		<td align="center"><strong>Type</strong></td>
+		<td align="center">&nbsp;</td>
+	</tr>
+	<tr align="center">
+		<td>PTAF%</td>
+		<td><select name="f59" id="f59" class="form-control js-adv-select">
+			<option value="">--Select--</option>
+			<option value="0.00">0.00</option>
+			<option value="0.05" <?php if($sessionAdvSearchStep->parametros[f59] == '0.05') echo 'selected="selected"'; ?> >0.05</option>
+			<option value="0.15" <?php if($sessionAdvSearchStep->parametros[f59] == '0.15') echo 'selected="selected"'; ?> >0.15</option>
+			<option value="0.20" <?php if($sessionAdvSearchStep->parametros[f59] == '0.20') echo 'selected="selected"'; ?> >0.20</option>
+		</select></td>
+		<td>PTAT</td>
+		<td><select name="f6" id="f6" class="form-control js-adv-select">
+			<option value="">--Select--</option>
+			<option value="0.00">0.00</option>
+			<option value="0.50" <?php if($sessionAdvSearchStep->parametros[f6] == '0.50') echo 'selected="selected"'; ?> >0.50</option>
+			<option value="1.00" <?php if($sessionAdvSearchStep->parametros[f6] == '1.00') echo 'selected="selected"'; ?> >1.00</option>
+			<option value="1.50" <?php if($sessionAdvSearchStep->parametros[f6] == '1.50') echo 'selected="selected"'; ?> >1.50</option>
+      </select></td>
+	</tr>
+	<tr align="center">
+		<td>PTAP</td>
+		<td>
+			<select name="f55" id="f55" class="form-control js-adv-select">
+				<option value="">--Select--</option>
+				<option value="0">0</option>
+				<option value="25" <?php if($sessionAdvSearchStep->parametros[f55] == 25) echo 'selected="selected"'; ?> >25</option>
+				<option value="40" <?php if($sessionAdvSearchStep->parametros[f55] == 40) echo 'selected="selected"'; ?> >50</option>
+			</select>
+		</td>
+	</tr>
+	<tr align="center">
+		<td>PTAP%</td>
+		<td>
+			<select name="f56" id="f56" class="form-control js-adv-select">
+				<option value="">--Select--</option>
+				<option value="0.00">0.00</option>
+				<option value="0.05" <?php if($sessionAdvSearchStep->parametros[f56] == '0.05') echo 'selected="selected"'; ?> >0.05</option>
+				<option value="0.10" <?php if($sessionAdvSearchStep->parametros[f56] == '0.10') echo 'selected="selected"'; ?> >0.10</option>
+			</select>
+		</td>
+		<td>UDC / JUI</td>
+		<td>
+			<select name="f7" id="f7" class="form-control js-adv-select">
+				<option value="">--Select--</option>
+				<option value="0">0</option>
+				<option value="1.00" <?php if($sessionAdvSearchStep->parametros[f7] == '1.00') echo 'selected="selected"'; ?> >1.00</option>
+				<option value="2.00" <?php if($sessionAdvSearchStep->parametros[f7] == '2.00') echo 'selected="selected"'; ?> >2.00</option>
+				<option value="3.00" <?php if($sessionAdvSearchStep->parametros[f7] == '3.00') echo 'selected="selected"'; ?> >3.00</option>
+				<option value="4.00" <?php if($sessionAdvSearchStep->parametros[f7] == '4.00') echo 'selected="selected"'; ?> >4.00</option>
+            </select>
+	  </td>
+	</tr>
+	<tr align="center">
+		<td>CFP</td>
+		<td>
+			<select name="select8" id="select8" class="form-control">
+				<option value="">--Select--</option>
+				<option value="0">0</option>
+				<option value="60" <?php if($sessionAdvSearchStep->parametros[f55] == 60) echo 'selected="selected"'; ?> >60</option>
+				<option value="100" <?php if($sessionAdvSearchStep->parametros[f55] == 100) echo 'selected="selected"'; ?> >100</option>
+				<option value="140" <?php if($sessionAdvSearchStep->parametros[f55] == 140) echo 'selected="selected"'; ?> >140</option>
+			</select>
+		</td>
+		<td>&nbsp;</td>
+		<td>&nbsp;</td>
+	</tr>
+</table>

@@ -1,3 +1,4 @@
+<?php $sessionCustomer = new Zend_Session_Namespace('sessionCustomer'); ?>
 <div class="row">
 
   <div class="col-xs-6 col-md-3">
@@ -14,9 +15,19 @@
 
       <div class="pull-left">
         
+       <?php if($sessionCustomer->id) { ?>
+
         <a class="btn btn-sm btn-primary" data-toggle="modal" href="<?php echo $this->baseUrl()?>/portfolio/selectbox" data-target="#modalPortfolio">
           <i class="fa fa-plus-circle"></i> Add to Portfolio
         </a>
+
+        <?php } else { ?>
+          
+          <a class="btn btn-sm btn-primary js-modalPortfolio0">
+          <i class="fa fa-plus-circle"></i> Add to Portfolio
+        </a>
+
+        <?php } ?>
 
       </div>
 

@@ -8,35 +8,35 @@
             </tr>
           </thead>
           <tbody>
-            <tr>
+             <tr>
               <td><strong>Milk</strong></td>
-              <td><?php echo substr($this->Proof->f52, 0, 5); ?> lbs</td>
-              <td><?php echo substr($this->Proof->f53, 0, 5); ?></td>
-              <td><?php echo substr($this->Proof->f54, 0, 5);; ?></td>
+              <td><?php echo $this->MaskValue($this->Proof->f52,5,true,false); ?> lbs</td>
+              <td><?php echo $this->MaskValue($this->Proof->f53,5,true); ?></td>
+              <td><?php echo $this->MaskValue($this->Proof->f54,5,true,false); ?></td>
             </tr>
             <tr>
               <td><strong>Protein</strong></td>
-              <td><?php echo substr($this->Proof->f55, 0, 5); ?> lbs</td>
-              <td><?php echo substr($this->Proof->f56, 0, 5); ?></td>
-              <td><?php echo substr($this->Proof->f57, 0, 5); ?></td>
+              <td><?php echo $this->MaskValue($this->Proof->f55,5,true,false); ?> lbs</td>
+              <td><?php echo $this->MaskValue($this->Proof->f56,5,true); ?></td>
+              <td><?php echo $this->MaskValue($this->Proof->f57,5,false,false); ?> %</td>
             </tr>
             <tr>
               <td><strong>Fat</strong></td>
-              <td><?php echo substr($this->Proof->f58, 0, 5); ?> lbs</td>
-              <td><?php echo substr($this->Proof->f59, 0, 5); ?></td>
-              <td><?php echo substr($this->Proof->f60, 0, 5); ?></td>
+              <td><?php echo $this->MaskValue($this->Proof->f58,5,true,false); ?> lbs</td>
+              <td><?php echo $this->MaskValue($this->Proof->f59,5,true); ?></td>
+              <td><?php echo $this->MaskValue($this->Proof->f60,5,false,false); ?> %</td>
             </tr>
             <tr>
               <td><strong>Net Merit</strong></td>
-              <td><?php echo substr($this->Proof->f61, 0, 5); ?></td>
-              <td><?php echo substr($this->Proof->f62, 0, 5); ?></td>
-              <td><?php echo substr($this->Proof->f63, 0, 5); ?></td>
+              <td><?php echo $this->MaskValue($this->Proof->f61,5,true,false); ?></td>
+              <td><?php echo $this->MaskValue($this->Proof->f62,5,false); ?></td>
+              <td><?php echo $this->MaskValue($this->Proof->f63,5,false); ?></td>
             </tr>
             <tr>
               <td><strong>Cheese Merit</strong></td>
-              <td><?php echo substr($this->Proof->f64, 0, 5); ?></td>
-              <td><?php echo substr($this->Proof->f65, 0, 5); ?></td>
-              <td><?php echo substr($this->Proof->f66, 0, 5); ?></td>
+              <td><?php echo $this->MaskValue($this->Proof->f64,5,true,false); ?></td>
+              <td><?php echo $this->MaskValue($this->Proof->f65,5,false); ?></td>
+              <td><?php echo $this->MaskValue($this->Proof->f66,5,false); ?></td>
             </tr>
 
             <tr style="background:#1A3959; height:20px;">
@@ -48,24 +48,45 @@
 
             <tr>
               <td><strong>Daughter Pregnancy Rate</strong></td>
-              <td><?php echo $this->MaskValue($this->Proof->f75,false); ?></td>
+              <td><?php echo $this->MaskValue($this->Proof->f75,5,true); ?></td>
               <td></td>
-              <td><?php echo substr($this->Proof->f76, 0, 5); ?></td>
+              <td><?php echo $this->MaskValue($this->Proof->f76,5,false,false); ?> %</td>
             </tr>
             <tr>
               <td><strong>Somatic Cell Score</strong></td>
-              <td><?php echo $this->MaskValue($this->Proof->f77,false); ?></td>
+              <td><?php echo $this->MaskValue($this->Proof->f77,5,false); ?></td>
               <td></td>
-              <td><?php echo substr($this->Proof->f78, 0, 5); ?></td>
+              <td><?php echo $this->MaskValue($this->Proof->f78,5,false,false); ?> %</td>
             </tr>
             <tr>
               <td><strong>Productive Life</strong></td>
-              <td><?php echo $this->MaskValue($this->Proof->f79,true); ?></td>
+              <td><?php echo $this->MaskValue($this->Proof->f79,5,true); ?></td>
               <td></td>
-              <td><?php echo substr($this->Proof->f80, 0, 5); ?></td>
+              <td><?php echo $this->MaskValue($this->Proof->f80,5,false,false); ?> %</td>
             </tr>
             <tr>
-              <td><strong>RWD® Bull Fertility</strong></td>
+              <td><strong><span class="btn-tooltip" data-toggle="tooltip" data-placement="top" title="
+                <p align='left'>
+                <img src='<?php echo $this->baseUrl(); ?>/default/imagens/estrela-white.png' />
+                <img src='<?php echo $this->baseUrl(); ?>/default/imagens/estrela-white.png' />
+                <img src='<?php echo $this->baseUrl(); ?>/default/imagens/estrela-white.png' />
+                <img src='<?php echo $this->baseUrl(); ?>/default/imagens/estrela-white.png' />
+                <img src='<?php echo $this->baseUrl(); ?>/default/imagens/estrela-white.png' /> Top 10%: 2%-3% above average fertility <br />
+                <img src='<?php echo $this->baseUrl(); ?>/default/imagens/estrela-white.png' />
+                <img src='<?php echo $this->baseUrl(); ?>/default/imagens/estrela-white.png' />
+                <img src='<?php echo $this->baseUrl(); ?>/default/imagens/estrela-white.png' />
+                <img src='<?php echo $this->baseUrl(); ?>/default/imagens/estrela-white.png' />
+                20%<br />
+                <img src='<?php echo $this->baseUrl(); ?>/default/imagens/estrela-white.png' />
+                <img src='<?php echo $this->baseUrl(); ?>/default/imagens/estrela-white.png' />
+                <img src='<?php echo $this->baseUrl(); ?>/default/imagens/estrela-white.png' />
+                40% Average fertility <br />
+                <img src='<?php echo $this->baseUrl(); ?>/default/imagens/estrela-white.png' />
+                <img src='<?php echo $this->baseUrl(); ?>/default/imagens/estrela-white.png' />
+                20%<br />
+                <img src='<?php echo $this->baseUrl(); ?>/default/imagens/estrela-white.png' />
+                Bottom 10%: 2%-3% points below average fertility</p>">
+                RWD<sup>®</sup> Bull Fertility</span></strong></td>
               <td colspan="3">
                 <?php 
                 $n = strlen($this->Proof->f82);
@@ -74,7 +95,7 @@
                  } 
                 ?>
               </td>
-            </tr>
+            </tr>  
             <tr>
               <td><strong>Recessives and Haplotypes</strong></td>
               <td colspan="3"><?php echo $this->Proof->f81; ?></td>

@@ -13,6 +13,12 @@ class Model_Breed {
 
     	return $this->_dbTable->fetchAll(null,'name asc');
     }
+
+    public function getBreedsByType($type){
+
+
+        return $this->_dbTable->fetchAll('type = '.$type,'name asc');
+    }
     
     public function getBreedById($id){
     	

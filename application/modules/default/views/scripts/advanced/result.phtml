@@ -1,0 +1,90 @@
+<?php $sessionCustomer = new Zend_Session_Namespace('sessionCustomer'); ?>
+<div class="panel">
+
+	<div class="panel-body">
+
+	<h5><?php echo $this->Total; ?> Bulls Found USA Proof Criteria</h5>
+
+  <a href="<?php echo $this->baseUrl() ?>/advanced/export" class="btn btn-success">Export to Excel <i class="fa fa-file-excel-o"></i></a>
+
+  <a href="#" id="btn-compareAdv" class="btn btn-success"><i class="fa fa-tasks"></i> Compare Bulls</a>
+
+  <a href="<?php echo $this->baseUrl() ?>/advanced/result" class="btn btn-success">Show All Results </a>
+
+  <?php if($sessionCustomer->id) { ?>
+
+    <a class="btn btn-success" data-toggle="modal" href="<?php echo $this->baseUrl()?>/portfolio/selectbox" data-target="#modalPortfolio">
+      <i class="fa fa-plus-circle"></i> Add to Portfolio
+    </a>
+
+  <?php } else { ?>
+          
+    <a class="btn btn-success js-modalPortfolio0">
+      <i class="fa fa-plus-circle"></i> Add to Portfolio
+    </a>
+
+  <?php } 
+      
+      $sessionAdvSearchStep = new Zend_Session_Namespace('sessionAdvSearchStep');
+
+      if ($sessionAdvSearchStep->breed == 2) {
+        
+        echo $this->render('advanced/templates/table_holstein.phtml');
+
+      } elseif ($sessionAdvSearchStep->breed == 3) {
+
+        echo $this->render('advanced/templates/table_jersey.phtml');
+
+      } 
+    ?>
+
+	</div>
+</div>
+
+
+
+<div class="modal fade bs.modal" id="modalPortfolio" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 class="modal-title" id="myModalLabel">Add to Portfolio</h4>
+        </div>
+        <div class="modal-body">
+               
+          <?php if (count($this->Portfolios)>0) { ?>
+
+                <select id="portfolio" name="portfolio" class="form-control">
+            
+            <option value="">--Select Portfolio--</option>
+            
+            <?php foreach ($this->Portfolios as $v) { ?>
+              
+              <option value="<?php echo $v->cod_portfolio; ?>"><?php echo $v->name; ?></option>
+            
+            <?php } ?>
+
+                </select>
+
+          <br />
+
+          <a class="btn btn-success btn-sm" id="btn-add-portfolio" role="button"> Add</a>
+
+            <?php } else { ?>
+                
+                <div id="no-portfolio" class="alert alert-warning">You don't have portfolio.</div>
+
+                <h3>Create portfolio now</h3>
+
+                <input type="text" class="form-control" id="name" name="name" placeholder="Enter name portfolio">
+
+                <br />
+
+                <a class="btn btn-success btn-sm btn-create" role="button"> Create</a>
+                
+            <?php } ?>
+
+        </div>
+    </div><!-- /.modal-content -->
+</div><!-- /.modal-dialog -->
+</div>

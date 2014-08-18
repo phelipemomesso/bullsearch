@@ -25,26 +25,35 @@ class ResultController extends Zend_Controller_Action {
     
 
     public function indexAction() {
+
+        if ($this->_getParam('refresh')) {
+            
+            $this->_redirect('/result/index/save/1/');
         
-    	$this->view->headTitle()->append('Result');
-
-        $this->view->Records    = $this->ValidateInputUrl->validateInput($this->_getParam('results'));
-        $saveSearchHistory      = $this->ValidateInputUrl->validateInput($this->_getParam('save'));
-
-    	$res = $this->createSql();
+        } else {
         
-        // Verifica a flag para gravar a busca
 
-        if ($saveSearchHistory == 1) {
-            $this->createSearchHistory();
+            $this->view->headTitle()->append('Result');
+
+            $this->view->Records    = $this->ValidateInputUrl->validateInput($this->_getParam('results'));
+            $saveSearchHistory      = $this->ValidateInputUrl->validateInput($this->_getParam('save'));
+
+        	$res = $this->createSql();
+            
+            // Verifica a flag para gravar a busca
+
+            if ($saveSearchHistory == 1) {
+                $this->createSearchHistory();
+            }
+        		 
+        	$this->view->Data = $res;
+        	$this->view->Total = count($res);
+
+            $sess = $this->Session->getInstance();
+            $bullHistory = $sess->getSessVar('bullHistory');
+            $sess->emptySess();
+
         }
-    		 
-    	$this->view->Data = $res;
-    	$this->view->Total = count($res);
-
-        $sess = $this->Session->getInstance();
-        $bullHistory = $sess->getSessVar('bullHistory');
-        $sess->emptySess();
 
     }
 
@@ -445,7 +454,14 @@ class ResultController extends Zend_Controller_Action {
 
         //if (!$sessionStep->idSearchHistory) {
                 
-            $dados['country']   = $_COOKIE['bullsearch'];
+            if (isset($_COOKIE['bullsearch'])) {
+                
+                $dados['country']   = $_COOKIE['bullsearch'];
+            } else {
+                $dados['country']   = 223;
+            }
+
+
             $dados['type']      = $sessionStep->step1;
             $dados['breed']     = $sessionStep->step2;
 
@@ -526,46 +542,46 @@ class ResultController extends Zend_Controller_Action {
             }
 
 
-            $dados['breed']  = $breedCode;
-            $dados['f1']     = $this->Search->find('ShortName',$i,$sheetData);
-            $dados['f2']     = $this->Search->find('NAAB.',$i,$sheetData);
-            $dados['f3']     = $this->Search->find('RegName',$i,$sheetData);
-            $dados['f4']     = $this->Search->find('Reg.',$i,$sheetData);
-            $dados['f5']     = $this->Search->find('HOAns',$i,$sheetData);
-            $dados['f6']     = $this->Search->find('FinalScore',$i,$sheetData);
-            $dados['f7']     = $this->Data->setData($this->Search->find('BirthDate',$i,$sheetData),1);
-            $dados['f8']     = $this->Search->find('Gencodes',$i,$sheetData);
-            $dados['f9']     = $this->Search->find('Hyplo',$i,$sheetData);
-            $dados['f10']    = $this->Search->find('AAA',$i,$sheetData);
-            $dados['f11']    = $this->Search->find('DMS',$i,$sheetData);
-            $dados['f12']    = $this->Search->find('EFIPC',$i,$sheetData);
-            $dados['f13']    = $this->Search->find('Bredby',$i,$sheetData);
-            $dados['f14']    = $this->Search->find('Symbols',$i,$sheetData);
-            $dados['f15']    = $this->Search->find('SireRegName',$i,$sheetData);
-            $dados['f16']    = $this->Search->find('SireReg.',$i,$sheetData);
-            $dados['f17']    = $this->Search->find('SireFinalScore',$i,$sheetData);
-            $dados['f18']    = $this->Search->find('DamRegName',$i,$sheetData);
-            $dados['f19']    = $this->Search->find('DamReg.',$i,$sheetData);
-            $dados['f20']    = $this->Search->find('DamFinalScore',$i,$sheetData);
-            $dados['f21']    = $this->Search->find('DamOfMerit',$i,$sheetData);
-            $dados['f22']    = $this->Search->find('DamAgeAtCalf',$i,$sheetData);
-            $dados['f23']    = $this->Search->find('DamTimesMilked',$i,$sheetData);
-            $dados['f24']    = $this->Search->find('DamRecordLength',$i,$sheetData);
-            $dados['f25']    = $this->Search->find('DamMilk',$i,$sheetData);
-            $dados['f26']    = $this->Search->find('DamFat%',$i,$sheetData);
-            $dados['f27']    = $this->Search->find('DamFat.',$i,$sheetData);
-            $dados['f28']    = $this->Search->find('DamPro%',$i,$sheetData);
-            $dados['f29']    = $this->Search->find('DamPro.',$i,$sheetData);
-            $dados['f30']    = $this->Search->find('MGSRegName',$i,$sheetData);
-            $dados['f31']    = $this->Search->find('MGSReg.',$i,$sheetData);
-            $dados['f32']    = $this->Search->find('MGSFinalScore',$i,$sheetData);
-            $dados['f33']    = $this->Search->find('ThirdSireRegName',$i,$sheetData);
-            $dados['f34']    = $this->Search->find('ThirdSireRegNum',$i,$sheetData);
-            $dados['f35']    = $this->Search->find('ThirdSireFinalScore',$i,$sheetData);
-            $dados['f36']    = $this->Search->find('BovineID',$i,$sheetData);
-            $dados['f37']    = $this->Search->find('RegStatus',$i,$sheetData);
-            $dados['f38']    = $this->Search->find('RegOrigin',$i,$sheetData);
-            $dados['abs']    = $this->Search->find('ABSBull',$i,$sheetData);
+            $dados['breed'] = $breedCode;
+            $dados['f1']    = $this->Search->find('ShortName',$i,$sheetData);
+            $dados['f2']    = $this->Search->find('NAAB.',$i,$sheetData);
+            $dados['f3']    = $this->Search->find('RegName',$i,$sheetData);
+            $dados['f4']    = $this->Search->find('Reg.',$i,$sheetData);
+            $dados['f5']    = $this->Search->find('HOAns',$i,$sheetData);
+            $dados['f6']    = $this->Search->find('FinalScore',$i,$sheetData);
+            $dados['f7']    = $this->Data->setData($this->Search->find('BirthDate',$i,$sheetData),1);
+            $dados['f8']    = $this->Search->find('Gencodes',$i,$sheetData);
+            $dados['f9']    = $this->Search->find('Hyplo',$i,$sheetData);
+            $dados['f10']   = $this->Search->find('AAA',$i,$sheetData);
+            $dados['f11']   = $this->Search->find('DMS',$i,$sheetData);
+            $dados['f12']   = $this->Search->find('EFIPC',$i,$sheetData);
+            $dados['f13']   = $this->Search->find('Bredby',$i,$sheetData);
+            $dados['f14']   = $this->Search->find('Symbols',$i,$sheetData);
+            $dados['f15']   = $this->Search->find('SireRegName',$i,$sheetData);
+            $dados['f16']   = $this->Search->find('SireReg.',$i,$sheetData);
+            $dados['f17']   = $this->Search->find('SireFinalScore',$i,$sheetData);
+            $dados['f18']   = $this->Search->find('DamRegName',$i,$sheetData);
+            $dados['f19']   = $this->Search->find('DamReg.',$i,$sheetData);
+            $dados['f20']   = $this->Search->find('DamFinalScore',$i,$sheetData);
+            $dados['f21']   = $this->Search->find('DamOfMerit',$i,$sheetData);
+            $dados['f22']   = $this->Search->find('DamAgeAtCalf',$i,$sheetData);
+            $dados['f23']   = $this->Search->find('DamTimesMilked',$i,$sheetData);
+            $dados['f24']   = $this->Search->find('DamRecordLength',$i,$sheetData);
+            $dados['f25']   = $this->Search->find('DamMilk',$i,$sheetData);
+            $dados['f26']   = $this->Search->find('DamFat%',$i,$sheetData);
+            $dados['f27']   = $this->Search->find('DamFat.',$i,$sheetData);
+            $dados['f28']   = $this->Search->find('DamPro%',$i,$sheetData);
+            $dados['f29']   = $this->Search->find('DamPro.',$i,$sheetData);
+            $dados['f30']   = $this->Search->find('MGSRegName',$i,$sheetData);
+            $dados['f31']   = $this->Search->find('MGSReg.',$i,$sheetData);
+            $dados['f32']   = $this->Search->find('MGSFinalScore',$i,$sheetData);
+            $dados['f33']   = $this->Search->find('ThirdSireRegName',$i,$sheetData);
+            $dados['f34']   = $this->Search->find('ThirdSireRegNum',$i,$sheetData);
+            $dados['f35']   = $this->Search->find('ThirdSireFinalScore',$i,$sheetData);
+            $dados['f36']   = $this->Search->find('BovineID',$i,$sheetData);
+            $dados['f37']   = $this->Search->find('RegStatus',$i,$sheetData);
+            $dados['f38']   = $this->Search->find('RegOrigin',$i,$sheetData);
+            $dados['abs']   = $this->Search->find('ABSBull',$i,$sheetData);
 
             try {
 
@@ -600,29 +616,29 @@ class ResultController extends Zend_Controller_Action {
 
             if ($bull->f36) {
 
-                $dados['bull']                  = $bull['cod_bull'];
-                $dados['country']               = 223;
-
-                $dados['daughter_proven']       = $this->Search->find('D',$i,$sheetData);
-                $dados['genomic_young_sires']   = $this->Search->find('G',$i,$sheetData);
-
-                $dados['volume']                = $this->Search->find('MilkSTD',$i,$sheetData);
-                $dados['milk_protein']          = $this->Search->find('ProSTD',$i,$sheetData);
-                $dados['milk_fat']              = $this->Search->find('FatSTD',$i,$sheetData);
-                $dados['longevity']             = $this->Search->find('PLSTD',$i,$sheetData);
-                $dados['daughter_fertility']    = $this->Search->find('DPRSTD',$i,$sheetData);
-
-                $dados['breeders_choice']       = $this->Search->find('BreedersChoice',$i,$sheetData);
-                $dados['calving_ease']          = $this->Search->find('CalvingEase',$i,$sheetData);
-                $dados['diamond_sire']          = $this->Search->find('DiamondSire',$i,$sheetData);
-                $dados['durabulls']             = $this->Search->find('Durabulls',$i,$sheetData);
-                $dados['judges_choice']         = $this->Search->find('JudgesChoice',$i,$sheetData);
-                $dados['feed_efficieny']        = $this->Search->find('FeedEfficiency',$i,$sheetData);
-                $dados['pregnancy_king']        = $this->Search->find('PregnancyKing',$i,$sheetData);
-                $dados['redwhite']              = $this->Search->find('RedWhite',$i,$sheetData);
-                $dados['rsg']                   = $this->Search->find('RSG',$i,$sheetData);
-                $dados['sexation']              = $this->Search->find('Sexation',$i,$sheetData);
-                $dados['sexation_only']         = $this->Search->find('SexationOnly',$i,$sheetData);
+                $dados['bull']                = $bull['cod_bull'];
+                $dados['country']             = 223;
+                
+                $dados['daughter_proven']     = $this->Search->find('D',$i,$sheetData);
+                $dados['genomic_young_sires'] = $this->Search->find('G',$i,$sheetData);
+                
+                $dados['volume']              = $this->Search->find('MilkSTD',$i,$sheetData);
+                $dados['milk_protein']        = $this->Search->find('ProSTD',$i,$sheetData);
+                $dados['milk_fat']            = $this->Search->find('FatSTD',$i,$sheetData);
+                $dados['longevity']           = $this->Search->find('PLSTD',$i,$sheetData);
+                $dados['daughter_fertility']  = $this->Search->find('DPRSTD',$i,$sheetData);
+                
+                $dados['breeders_choice']     = $this->Search->find('BreedersChoice',$i,$sheetData);
+                $dados['calving_ease']        = $this->Search->find('CalvingEase',$i,$sheetData);
+                $dados['diamond_sire']        = $this->Search->find('DiamondSire',$i,$sheetData);
+                $dados['durabulls']           = $this->Search->find('Durabulls',$i,$sheetData);
+                $dados['judges_choice']       = $this->Search->find('JudgesChoice',$i,$sheetData);
+                $dados['feed_efficieny']      = $this->Search->find('FeedEfficiency',$i,$sheetData);
+                $dados['pregnancy_king']      = $this->Search->find('PregnancyKing',$i,$sheetData);
+                $dados['redwhite']            = $this->Search->find('RedWhite',$i,$sheetData);
+                $dados['rsg']                 = $this->Search->find('RSG',$i,$sheetData);
+                $dados['sexation']            = $this->Search->find('Sexation',$i,$sheetData);
+                $dados['sexation_only']       = $this->Search->find('SexationOnly',$i,$sheetData);
 
 
                 $visible = $this->Search->find('Visible',$i,$sheetData);
@@ -666,94 +682,97 @@ class ResultController extends Zend_Controller_Action {
 
                 $dados['bull']   = $bull->cod_bull;
 
-                $dados['f1']     = $this->Search->find('TypeSource',$i,$sheetData);
-                $dados['f2']     = $this->Search->find('TypeDate',$i,$sheetData);
-                $dados['f3']     = $this->Search->find('TypeDtrs',$i,$sheetData);
-                $dados['f4']     = $this->Search->find('TypeHerds',$i,$sheetData);
-                $dados['f5']     = $this->Search->find('Expr1006',$i,$sheetData);
-                $dados['f6']     = $this->Search->find('Type',$i,$sheetData);
-                $dados['f7']     = $this->Search->find('UDC',$i,$sheetData);
-                $dados['f8']     = $this->Search->find('UDC_Comment',$i,$sheetData);
-                $dados['f9']     = $this->Search->find('FLC',$i,$sheetData);
-                $dados['f10']    = $this->Search->find('FLC_Comment',$i,$sheetData);
-                $dados['f11']    = $this->Search->find('STA',$i,$sheetData);
-                $dados['f12']    = $this->Search->find('STADesc',$i,$sheetData);
-                $dados['f13']    = $this->Search->find('STR',$i,$sheetData);
-                $dados['f14']    = $this->Search->find('STRDesc',$i,$sheetData);
-                $dados['f15']    = $this->Search->find('BD',$i,$sheetData);
-                $dados['f16']    = $this->Search->find('BDDesc',$i,$sheetData);
-                $dados['f17']    = $this->Search->find('DF',$i,$sheetData);
-                $dados['f18']    = $this->Search->find('DFDesc',$i,$sheetData);
-                $dados['f19']    = $this->Search->find('RA',$i,$sheetData);
-                $dados['f20']    = $this->Search->find('RADesc',$i,$sheetData);
-                $dados['f21']    = $this->Search->find('TW',$i,$sheetData);
-                $dados['f22']    = $this->Search->find('TWDesc',$i,$sheetData);
-                $dados['f23']    = $this->Search->find('RLS',$i,$sheetData);
-                $dados['f24']    = $this->Search->find('RLSDesc',$i,$sheetData);
-                $dados['f25']    = $this->Search->find('RLRV',$i,$sheetData);
-                $dados['f26']    = $this->Search->find('RLRVDesc',$i,$sheetData);
-                $dados['f27']    = $this->Search->find('FA',$i,$sheetData);
-                $dados['f28']    = $this->Search->find('FADesc',$i,$sheetData);
-                $dados['f29']    = $this->Search->find('FLS',$i,$sheetData);
-                $dados['f30']    = $this->Search->find('FLSDesc',$i,$sheetData);
-                $dados['f31']    = $this->Search->find('FUA',$i,$sheetData);
-                $dados['f32']    = $this->Search->find('FUADesc',$i,$sheetData);
-                $dados['f33']    = $this->Search->find('RUH',$i,$sheetData);
-                $dados['f34']    = $this->Search->find('RUHDesc',$i,$sheetData);
-                $dados['f35']    = $this->Search->find('RUW',$i,$sheetData);
-                $dados['f36']    = $this->Search->find('RUWDesc',$i,$sheetData);
-                $dados['f37']    = $this->Search->find('UC',$i,$sheetData);
-                $dados['f38']    = $this->Search->find('UCDesc',$i,$sheetData);
-                $dados['f39']    = $this->Search->find('UD',$i,$sheetData);
-                $dados['f40']    = $this->Search->find('UDDesc',$i,$sheetData);
-                $dados['f41']    = $this->Search->find('FTP',$i,$sheetData);
-                $dados['f42']    = $this->Search->find('FTPDesc',$i,$sheetData);
-                $dados['f43']    = $this->Search->find('RTP',$i,$sheetData);
-                $dados['f44']    = $this->Search->find('RTPDesc',$i,$sheetData);
-                $dados['f45']    = $this->Search->find('TL',$i,$sheetData);
-                $dados['f46']    = $this->Search->find('TLDesc',$i,$sheetData);
+                $dados['f1']  = $this->Search->find('TypeSource',$i,$sheetData);
+                $dados['f2']  = $this->Search->find('TypeDate',$i,$sheetData);
+                $dados['f3']  = $this->Search->find('TypeDtrs',$i,$sheetData);
+                $dados['f4']  = $this->Search->find('TypeHerds',$i,$sheetData);
+                $dados['f5']  = $this->Search->find('Expr1006',$i,$sheetData);
+                $dados['f6']  = $this->Search->find('Type',$i,$sheetData);
+                $dados['f7']  = $this->Search->find('UDC',$i,$sheetData);
+                $dados['f8']  = $this->Search->find('UDC_Comment',$i,$sheetData);
+                $dados['f9']  = $this->Search->find('FLC',$i,$sheetData);
+                $dados['f10'] = $this->Search->find('FLC_Comment',$i,$sheetData);
+                $dados['f11'] = $this->Search->find('STA',$i,$sheetData);
+                $dados['f12'] = $this->Search->find('STADesc',$i,$sheetData);
+                $dados['f13'] = $this->Search->find('STR',$i,$sheetData);
+                $dados['f14'] = $this->Search->find('STRDesc',$i,$sheetData);
+                $dados['f15'] = $this->Search->find('BD',$i,$sheetData);
+                $dados['f16'] = $this->Search->find('BDDesc',$i,$sheetData);
+                $dados['f17'] = $this->Search->find('DF',$i,$sheetData);
+                $dados['f18'] = $this->Search->find('DFDesc',$i,$sheetData);
+                $dados['f19'] = $this->Search->find('RA',$i,$sheetData);
+                $dados['f20'] = $this->Search->find('RADesc',$i,$sheetData);
+                $dados['f21'] = $this->Search->find('TW',$i,$sheetData);
+                $dados['f22'] = $this->Search->find('TWDesc',$i,$sheetData);
+                $dados['f23'] = $this->Search->find('RLS',$i,$sheetData);
+                $dados['f24'] = $this->Search->find('RLSDesc',$i,$sheetData);
+                $dados['f25'] = $this->Search->find('RLRV',$i,$sheetData);
+                $dados['f26'] = $this->Search->find('RLRVDesc',$i,$sheetData);
+                $dados['f27'] = $this->Search->find('FA',$i,$sheetData);
+                $dados['f28'] = $this->Search->find('FADesc',$i,$sheetData);
+                $dados['f29'] = $this->Search->find('FLS',$i,$sheetData);
+                $dados['f30'] = $this->Search->find('FLSDesc',$i,$sheetData);
+                $dados['f31'] = $this->Search->find('FUA',$i,$sheetData);
+                $dados['f32'] = $this->Search->find('FUADesc',$i,$sheetData);
+                $dados['f33'] = $this->Search->find('RUH',$i,$sheetData);
+                $dados['f34'] = $this->Search->find('RUHDesc',$i,$sheetData);
+                $dados['f35'] = $this->Search->find('RUW',$i,$sheetData);
+                $dados['f36'] = $this->Search->find('RUWDesc',$i,$sheetData);
+                $dados['f37'] = $this->Search->find('UC',$i,$sheetData);
+                $dados['f38'] = $this->Search->find('UCDesc',$i,$sheetData);
+                $dados['f39'] = $this->Search->find('UD',$i,$sheetData);
+                $dados['f40'] = $this->Search->find('UDDesc',$i,$sheetData);
+                $dados['f41'] = $this->Search->find('FTP',$i,$sheetData);
+                $dados['f42'] = $this->Search->find('FTPDesc',$i,$sheetData);
+                $dados['f43'] = $this->Search->find('RTP',$i,$sheetData);
+                $dados['f44'] = $this->Search->find('RTPDesc',$i,$sheetData);
+                $dados['f45'] = $this->Search->find('TL',$i,$sheetData);
+                $dados['f46'] = $this->Search->find('TLDesc',$i,$sheetData);
+                
+                
+                $from = $this->Search->find('ProdSource',$i,$sheetData);
+                $date = $this->Search->find('ProdDate',$i,$sheetData);
 
+                $dados['f47'] = $from.' '.substr($date, 4,2).'/'.substr($date, 2,2);
+                
 
-                $dados['f47']    = $this->Search->find('Source',$i,$sheetData);
-                $dados['f48']    = $this->Search->find('EvalDate',$i,$sheetData);
-                $dados['f49']    = $this->Search->find('ProdDtrs',$i,$sheetData);
-                $dados['f50']    = $this->Search->find('ProdHerds',$i,$sheetData);
-                $dados['f51']    = $this->Search->find('TPI/PTI',$i,$sheetData);
-                $dados['f52']    = $this->Search->find('Milk',$i,$sheetData);
-                $dados['f53']    = $this->Search->find('Milk%',$i,$sheetData);
-                $dados['f54']    = $this->Search->find('MilkREL',$i,$sheetData);
-                $dados['f55']    = $this->Search->find('Pro.',$i,$sheetData);
-                $dados['f56']    = $this->Search->find('Pro%',$i,$sheetData);
-                $dados['f57']    = $this->Search->find('ProRel',$i,$sheetData);
-                $dados['f58']    = $this->Search->find('Fat.',$i,$sheetData);
-                $dados['f59']    = $this->Search->find('Fat%',$i,$sheetData);
-                $dados['f60']    = $this->Search->find('MFRel',$i,$sheetData);
-                $dados['f61']    = $this->Search->find('NM',$i,$sheetData);
-                $dados['f62']    = $this->Search->find('NM%',$i,$sheetData);
-                $dados['f63']    = $this->Search->find('NMREL',$i,$sheetData);
-                $dados['f64']    = $this->Search->find('CM$',$i,$sheetData);
-                $dados['f65']    = $this->Search->find('CM%',$i,$sheetData);
-                $dados['f66']    = $this->Search->find('CMREL',$i,$sheetData);
-
-
-                $dados['f67']    = $this->Search->find('CEDiff',$i,$sheetData);
-                $dados['f68']    = $this->Search->find('CERel',$i,$sheetData);
-                $dados['f69']    = $this->Search->find('PctDifficultyMGS',$i,$sheetData);
-                $dados['f70']    = $this->Search->find('ReliabilityMGS',$i,$sheetData);
-                $dados['f71']    = $this->Search->find('PctSSB',$i,$sheetData);
-                $dados['f72']    = $this->Search->find('RelSSB',$i,$sheetData);
-                $dados['f73']    = $this->Search->find('PctDSB',$i,$sheetData);
-                $dados['f74']    = $this->Search->find('RelDSB',$i,$sheetData);
-                $dados['f75']    = $this->Search->find('DPRPTA',$i,$sheetData);
-                $dados['f76']    = $this->Search->find('TypeRel',$i,$sheetData);
-                $dados['f77']    = $this->Search->find('SCS',$i,$sheetData);
-                $dados['f78']    = $this->Search->find('SCSRel',$i,$sheetData);
-                $dados['f79']    = $this->Search->find('PL',$i,$sheetData);
-                $dados['f80']    = $this->Search->find('PLRel',$i,$sheetData);
-                $dados['f81']    = $this->Search->find('Recessives',$i,$sheetData);
-                $dados['f82']    = $this->Search->find('RWDRank',$i,$sheetData);
-
-
+                $dados['f48'] = $this->Search->find('EvalDate',$i,$sheetData);
+                $dados['f49'] = $this->Search->find('ProdDtrs',$i,$sheetData);
+                $dados['f50'] = $this->Search->find('ProdHerds',$i,$sheetData);
+                $dados['f51'] = $this->Search->find('TPI/PTI',$i,$sheetData);
+                $dados['f52'] = $this->Search->find('Milk',$i,$sheetData);
+                $dados['f53'] = $this->Search->find('Milk%',$i,$sheetData);
+                $dados['f54'] = $this->Search->find('MilkREL',$i,$sheetData);
+                $dados['f55'] = $this->Search->find('Pro.',$i,$sheetData);
+                $dados['f56'] = $this->Search->find('Pro%',$i,$sheetData);
+                $dados['f57'] = $this->Search->find('ProRel',$i,$sheetData);
+                $dados['f58'] = $this->Search->find('Fat.',$i,$sheetData);
+                $dados['f59'] = $this->Search->find('Fat%',$i,$sheetData);
+                $dados['f60'] = $this->Search->find('MFRel',$i,$sheetData);
+                $dados['f61'] = $this->Search->find('NM',$i,$sheetData);
+                $dados['f62'] = $this->Search->find('NM%',$i,$sheetData);
+                $dados['f63'] = $this->Search->find('NMREL',$i,$sheetData);
+                $dados['f64'] = $this->Search->find('CM$',$i,$sheetData);
+                $dados['f65'] = $this->Search->find('CM%',$i,$sheetData);
+                $dados['f66'] = $this->Search->find('CMREL',$i,$sheetData);
+                
+                
+                $dados['f67'] = $this->Search->find('CEDiff',$i,$sheetData);
+                $dados['f68'] = $this->Search->find('CERel',$i,$sheetData);
+                $dados['f69'] = $this->Search->find('PctDifficultyMGS',$i,$sheetData);
+                $dados['f70'] = $this->Search->find('ReliabilityMGS',$i,$sheetData);
+                $dados['f71'] = $this->Search->find('PctSSB',$i,$sheetData);
+                $dados['f72'] = $this->Search->find('RelSSB',$i,$sheetData);
+                $dados['f73'] = $this->Search->find('PctDSB',$i,$sheetData);
+                $dados['f74'] = $this->Search->find('RelDSB',$i,$sheetData);
+                $dados['f75'] = $this->Search->find('DPRPTA',$i,$sheetData);
+                $dados['f76'] = $this->Search->find('TypeRel',$i,$sheetData);
+                $dados['f77'] = $this->Search->find('SCS',$i,$sheetData);
+                $dados['f78'] = $this->Search->find('SCSRel',$i,$sheetData);
+                $dados['f79'] = $this->Search->find('PL',$i,$sheetData);
+                $dados['f80'] = $this->Search->find('PLRel',$i,$sheetData);
+                $dados['f81'] = $this->Search->find('Recessives',$i,$sheetData);
+                $dados['f82'] = $this->Search->find('RWDRank',$i,$sheetData);
 
                 try {
 

@@ -30,6 +30,11 @@ foreach($this->Comments as $v) {
   </tr>';
 }
 
+$n = strlen($this->Proof->f82);
+for ($i=0; $i < $n; $i++) { 
+  $stars .= '<img src="'.$this->baseUrl() .'/default/imagens/estrela.png" />';
+} 
+
 if(!$this->Erro) {
   
 $mpdf->WriteHTML('
@@ -60,7 +65,7 @@ table {
       <p>
         <b>Sire:</b> '.$this->Data->f15.' '.$this->Data->f16.' '.$this->Data->f17.'<br />
         <b>Dam:</b>  '.$this->Data->f18.' '.$this->Data->f19.' '.$this->Data->f20.' '.$this->Data->f21.'<br />
-        <b>Prod:</b> '.$this->Data->f22.' '.$this->Data->f23.'x '.$this->Data->f24.'d '.$this->Data->f25.'M '.$this->Data->f26.'% '.$this->Data->f27.' '.$this->Data->f28.'F '.$this->Data->f29.'<br />
+        <b>Prod:</b> '.$this->Data->f22.' '.$this->Data->f23.'x '.$this->Data->f24.'d '.$this->Data->f25.'M '.$this->Data->f26.'% '.$this->Data->f27.' F '.$this->Data->f28.'% '.$this->Data->f29.' P <br />
         <b>MGS:</b> '.$this->Data->f30.' '.$this->Data->f31.' '.$this->Data->f32.'<br />
         <b>Third Sire:</b> '.$this->Data->f33.' '.$this->Data->f34.' '.$this->Data->f35.'
       </p>
@@ -79,7 +84,7 @@ table {
             <td>'.$this->Proof->f47.' '.$this->Proof->f48  .'</td>
             <td><strong>Dtrs</strong> '.$this->Proof->f49 .'</td>
             <td><strong>Herds</strong> '.$this->Proof->f50 .'</td>
-            <td><strong>TPI</strong> '.$this->Proof->f51 .'</td>
+            <td><strong>TPI</strong> + '.$this->Proof->f51 .'</td>
           </tr>
         </table>
       
@@ -87,7 +92,7 @@ table {
           <thead>
             <tr style="background:#1A3959;">
               <th></th>
-              <th style="color:#FFFFFF;">Pounds</th>
+              <th style="color:#FFFFFF;"></th>
               <th style="color:#FFFFFF;">%</th>
               <th style="color:#FFFFFF;">Rel</th>
             </tr>
@@ -95,33 +100,33 @@ table {
           <tbody>
             <tr>
               <td><strong>Milk</strong></td>
-              <td align="center">'.substr($this->Proof->f52, 0, 5) .'</td>
-              <td align="center">'.substr($this->Proof->f53, 0, 5) .'</td>
-              <td align="center">'.substr($this->Proof->f54, 0, 5) .'</td>
+              <td align="center">'.$this->MaskValue($this->Proof->f52,5,true,false) .' lbs</td>
+              <td align="center">'.$this->MaskValue($this->Proof->f53,5,true) .'</td>
+              <td align="center">'.$this->MaskValue($this->Proof->f54,5,true,false) .'</td>
             </tr>
             <tr>
               <td><strong>Protein</strong></td>
-              <td align="center">'.substr($this->Proof->f55, 0, 5) .'</td>
-              <td align="center">'.substr($this->Proof->f56, 0, 5) .'</td>
-              <td align="center">'.substr($this->Proof->f57, 0, 5) .'</td>
+              <td align="center">'.$this->MaskValue($this->Proof->f55,5,true,false) .' lbs</td>
+              <td align="center">'.$this->MaskValue($this->Proof->f56,5,true).'</td>
+              <td align="center">'.$this->MaskValue($this->Proof->f57,5,false,false).' %</td>
             </tr>
             <tr>
               <td><strong>Fat</strong></td>
-              <td align="center">'.substr($this->Proof->f58, 0, 5) .'</td>
-              <td align="center">'.substr($this->Proof->f59, 0, 5) .'</td>
-              <td align="center">'.substr($this->Proof->f60, 0, 5) .'</td>
+              <td align="center">'.$this->MaskValue($this->Proof->f58,5,true,false).' lbs</td>
+              <td align="center">'.$this->MaskValue($this->Proof->f59,5,true).'</td>
+              <td align="center">'.$this->MaskValue($this->Proof->f60,5,false,false).' %</td>
             </tr>
             <tr>
               <td><strong>Net Merit</strong></td>
-              <td align="center">'.substr($this->Proof->f61, 0, 5) .'</td>
-              <td align="center">'.substr($this->Proof->f62, 0, 5) .'</td>
-              <td align="center">'.substr($this->Proof->f63, 0, 5) .'</td>
+              <td align="center">'.$this->MaskValue($this->Proof->f61,5,true,false).'</td>
+              <td align="center">'.$this->MaskValue($this->Proof->f62,5,false).'</td>
+              <td align="center">'.$this->MaskValue($this->Proof->f63,5,false,false).'</td>
             </tr>
             <tr>
               <td><strong>Cheese Merit</strong></td>
-              <td align="center">'.substr($this->Proof->f64, 0, 5) .'</td>
-              <td align="center">'.substr($this->Proof->f65, 0, 5) .'</td>
-              <td align="center">'.substr($this->Proof->f66, 0, 5) .'</td>
+              <td align="center">'.$this->MaskValue($this->Proof->f64,5,true,false).'</td>
+              <td align="center">'.$this->MaskValue($this->Proof->f65,5,false).'</td>
+              <td align="center">'.$this->MaskValue($this->Proof->f66,5,false,false).'</td>
             </tr>
 
             <tr>
@@ -133,46 +138,56 @@ table {
 
             <tr>
               <td><strong>Service Sire CE</strong></td>
-              <td align="center">'.substr($this->Proof->f67, 0, 5) .'</td>
-              <td align="center">'.substr($this->Proof->f68, 0, 5) .'</td>
+              <td align="center">'.$this->MaskValue($this->Proof->f67,5,true).' %</td>
               <td align="center"></td>
+              <td align="center">'.$this->MaskValue($this->Proof->f68,5,false,false).' %</td>
             </tr>
 
             <tr>
               <td><strong>Daughter CE</strong></td>
-              <td align="center">'.substr($this->Proof->f69, 0, 5) .'</td>
-              <td align="center">'.substr($this->Proof->f70, 0, 5) .'</td>
+              <td align="center">'.$this->MaskValue($this->Proof->f69,5,true).' %</td>
               <td align="center"></td>
+              <td align="center">'.$this->MaskValue($this->Proof->f70,5,false,false).' %</td>
             </tr>
             <tr>
               <td><strong>Service Sire Stillbirths</strong></td>
-              <td align="center">'.substr($this->Proof->f71, 0, 5) .'</td>
-              <td align="center">'.substr($this->Proof->f72, 0, 5) .'</td>
+              <td align="center">'.$this->MaskValue($this->Proof->f71,5,true).'</td>
               <td align="center"></td>
+              <td align="center">'. $this->MaskValue($this->Proof->f72,5,false,false).' %</td>
             </tr>
             <tr>
               <td><strong>Daughter Stillbirths</strong></td>
-              <td align="center">'.substr($this->Proof->f73, 0, 5) .'</td>
-              <td align="center">'.substr($this->Proof->f74, 0, 5) .'</td>
+              <td align="center">'.$this->MaskValue($this->Proof->f73,5,true).'</td>
               <td align="center"></td>
+              <td align="center">'.$this->MaskValue($this->Proof->f74,5,false,false).' %</td>
             </tr>
             <tr>
-              <td><strong>Daughter Pregnance Rate</strong></td>
-              <td align="center">'.substr($this->Proof->f75, 0, 5) .'</td>
-              <td align="center">'.substr($this->Proof->f76, 0, 5) .'</td>
+              <td><strong>Daughter Pregnancy Rate</strong></td>
+              <td align="center">'.$this->MaskValue($this->Proof->f75,5,true).'</td>
               <td align="center"></td>
+              <td align="center">'.$this->MaskValue($this->Proof->f76,5,false,false).' %</td>
             </tr>
             <tr>
               <td><strong>Somatic Cell Score</strong></td>
-              <td align="center">'.substr($this->Proof->f77, 0, 5) .'</td>
-              <td align="center">'.substr($this->Proof->f78, 0, 5) .'</td>
+              <td align="center">'.$this->MaskValue($this->Proof->f77,5,false).'</td>
               <td align="center"></td>
+              <td align="center">'.$this->MaskValue($this->Proof->f78,5,false,false).' %</td>
             </tr>
             <tr>
               <td><strong>Productive Life</strong></td>
-              <td align="center">'.substr($this->Proof->f79, 0, 5) .'</td>
-              <td align="center">'.substr($this->Proof->f80, 0, 5) .'</td>
+              <td align="center">'.$this->MaskValue($this->Proof->f79,5,true).'</td>
               <td align="center"></td>
+              <td align="center">'.$this->MaskValue($this->Proof->f80,5,false,false).' %</td>
+            </tr>
+            <tr>
+              <td><strong>RWD<sup>®</sup> Bull Fertility</strong></td>
+              <td colspan="3">
+                '.$stars.'
+              </td>
+            </tr>  
+            <tr>
+              <td><strong>Recessives and Haplotypes</strong></td>
+              <td colspan="3">'.$this->Proof->f81.'</td>
             </tr>
 
           </tbody>
@@ -186,10 +201,10 @@ table {
       <table class="table table-condensed">
         <thead>
           <tr>
-            <td align="center"><strong>'.$this->Proof->f1.' '.$this->Proof->f2  .'</strong></td>
+            <td align="center"><strong>'.$this->Proof->f1.' '.substr($this->Proof->f2, 0,4).'/'.substr($this->Proof->f2, 4,2).'</strong></td>
             <td colspan="2" align="center"><strong>'.$this->Proof->f3 .' Dtrs</strong></td>
             <td align="center"><strong>'.$this->Proof->f4 .' Herds</strong> </td>
-            <td align="center"><strong>Rel. '.$this->Proof->f5 .'</strong></td>
+            <td align="center"><strong>Rel. '.$this->Proof->f76.' %</strong></td>
           </tr>
         </thead>
         <tbody>
@@ -200,127 +215,127 @@ table {
           </tr>
           <tr>
             <td><strong>Type</strong></td>
-            <td align="center"><strong>'.substr($this->Proof->f6, 0, 5) .'</strong></td>
+            <td align="center"><strong>'.$this->MaskValue($this->Proof->f6,4,false).'</strong></td>
             <td align="center"></td>
             <td colspan="2">'.Graphs($this->Proof->f6).'</td>
           </tr>
           <tr>
             <td><strong>Udder Composite</strong></td>
-            <td align="center"><strong>'.substr($this->Proof->f7, 0, 5) .'</strong></td>
+            <td align="center"><strong>'.$this->MaskValue($this->Proof->f7,4,false).'</strong></td>
             <td align="center">'.$this->Proof->f8 .'</td>
             <td colspan="2">'.Graphs($this->Proof->f7) .'</td>
           </tr>
           <tr>
             <td><strong>Foot and Leg Composite</strong></td>
-            <td align="center"><strong>'.substr($this->Proof->f9, 0, 5) .'</strong></td>
+            <td align="center"><strong>'.$this->MaskValue($this->Proof->f9,4,false).'</strong></td>
             <td align="center">'.$this->Proof->f10 .'</td>
             <td colspan="2">'.Graphs($this->Proof->f9) .'</td>
           </tr>
           <tr>
             <td>Stature</td>
-            <td align="center"><strong>'.substr($this->Proof->f11, 0, 5) .'</strong></td>
+            <td align="center"><strong>'.$this->MaskValue($this->Proof->f11,4,false).'</strong></td>
             <td align="center">'.$this->Proof->f12 .'</td>
             <td colspan="2">'.Graphs($this->Proof->f11) .'</td>
           </tr>
           <tr>
             <td>Strength</td>
-            <td align="center"><strong>'.substr($this->Proof->f13, 0, 5) .'</strong></td>
+            <td align="center"><strong>'.$this->MaskValue($this->Proof->f13,4,false).'</strong></td>
             <td align="center">'.$this->Proof->f14 .'</td>
             <td colspan="2">'.Graphs($this->Proof->f13) .'</td>
           </tr>
           <tr>
             <td>Body Depth</td>
-            <td align="center"><strong>'.substr($this->Proof->f15, 0, 5) .'</strong></td>
+            <td align="center"><strong>'.$this->MaskValue($this->Proof->f15,4,false).'</strong></td>
             <td align="center">'.$this->Proof->f16 .'</td>
             <td colspan="2">'.Graphs($this->Proof->f15) .'</td>
           </tr>
           <tr>
             <td>Angularity</td>
-            <td align="center"><strong>'.substr($this->Proof->f17, 0, 5) .'</strong></td>
+            <td align="center"><strong>'.$this->MaskValue($this->Proof->f17,4,false).'</strong></td>
             <td align="center">'.$this->Proof->f18 .'</td>
             <td colspan="2">'.Graphs($this->Proof->f17) .'</td>
           </tr>
           <tr>
             <td>Rump Angle</td>
-            <td align="center"><strong>'.substr($this->Proof->f19, 0, 5) .'</strong></td>
+            <td align="center"><strong>'.$this->MaskValue($this->Proof->f19,4,false).'</strong></td>
             <td align="center">'.$this->Proof->f20 .'</td>
             <td colspan="2">'.Graphs($this->Proof->f19) .'</td>
           </tr>
           <tr>
             <td>Thurl Width</td>
-            <td align="center"><strong>'.substr($this->Proof->f21, 0, 5) .'</strong></td>
+            <td align="center"><strong>'.$this->MaskValue($this->Proof->f21,4,false).'</strong></td>
             <td align="center">'.$this->Proof->f22 .'</td>
             <td colspan="2">'.Graphs($this->Proof->f21) .'</td>
           </tr>
           <tr>
             <td>Rear Legs-Side View</td>
-            <td align="center"><strong>'.substr($this->Proof->f23, 0, 5) .'</strong></td>
+            <td align="center"><strong>'.$this->MaskValue($this->Proof->f23,4,false).'</strong></td>
             <td align="center">'.$this->Proof->f24 .'</td>
             <td colspan="2">'.Graphs($this->Proof->f23) .'</td>
           </tr>
           <tr>
             <td>Rear Legs-Rear View</td>
-            <td align="center"><strong>'.substr($this->Proof->f25, 0, 5) .'</strong></td>
+            <td align="center"><strong>'.$this->MaskValue($this->Proof->f25,4,false).'</strong></td>
             <td align="center">'.$this->Proof->f26 .'</td>
             <td colspan="2">'.Graphs($this->Proof->f25) .'</td>
           </tr>
           <tr>
             <td>Foot Angle</td>
-            <td align="center"><strong>'.substr($this->Proof->f27, 0, 5) .'</strong></td>
+            <td align="center"><strong>'.$this->MaskValue($this->Proof->f27,4,false).'</strong></td>
             <td align="center">'.$this->Proof->f28 .'</td>
             <td colspan="2">'.Graphs($this->Proof->f27) .'</td>
           </tr>
           <tr>
-            <td>Foot &amp Legs Score</td>
-            <td align="center"><strong>'.substr($this->Proof->f29, 0, 5) .'</strong></td>
+            <td>Foot and Legs Score</td>
+            <td align="center"><strong>'.$this->MaskValue($this->Proof->f29,4,false).'</strong></td>
             <td align="center">'.$this->Proof->f30 .'</td>
             <td colspan="2">'.Graphs($this->Proof->f29) .'</td>
           </tr>
           <tr>
             <td>Fore Udder Attachment</td>
-            <td align="center"><strong>'.substr($this->Proof->f31, 0, 5) .'</strong></td>
+            <td align="center"><strong>'.$this->MaskValue($this->Proof->f31,4,false).'</strong></td>
             <td align="center">'.$this->Proof->f32 .'</td>
             <td colspan="2">'.Graphs($this->Proof->f31) .'</td>
           </tr>
           <tr>
             <td>Rear Udder Height</td>
-            <td align="center"><strong>'.substr($this->Proof->f33, 0, 5) .'</strong></td>
+            <td align="center"><strong>'.$this->MaskValue($this->Proof->f33,4,false).'</strong></td>
             <td align="center">'.$this->Proof->f34 .'</td>
             <td colspan="2">'.Graphs($this->Proof->f33) .'</td>
           </tr>
           <tr>
             <td>Rear Udder Width</td>
-            <td align="center"><strong>'.substr($this->Proof->f35, 0, 5) .'</strong></td>
+            <td align="center"><strong>'.$this->MaskValue($this->Proof->f35,4,false).'</strong></td>
             <td align="center">'.$this->Proof->f36 .'</td>
             <td colspan="2">'.Graphs($this->Proof->f35) .'</td>
           </tr>
           <tr>
             <td>Udder Cleft</td>
-            <td align="center"><strong>'.substr($this->Proof->f37, 0, 5) .'</strong></td>
+            <td align="center"><strong>'.$this->MaskValue($this->Proof->f37,4,false).'</strong></td>
             <td align="center">'.$this->Proof->f38 .'</td>
             <td colspan="2">'.Graphs($this->Proof->f37) .'</td>
           </tr>
           <tr>
             <td>Udder Depth</td>
-            <td align="center"><strong>'.substr($this->Proof->f39, 0, 5) .'</strong></td>
+            <td align="center"><strong>'.$this->MaskValue($this->Proof->f39,4,false).'</strong></td>
             <td align="center">'.$this->Proof->f40 .'</td>
             <td colspan="2">'.Graphs($this->Proof->f39) .'</td>
           </tr>
           <tr>
             <td>Front Teat Placement</td>
-            <td align="center"><strong>'.substr($this->Proof->f41, 0, 5) .'</strong></td>
+            <td align="center"><strong>'.$this->MaskValue($this->Proof->f41,4,false).'</strong></td>
             <td align="center">'.$this->Proof->f42 .'</td>
             <td colspan="2">'.Graphs($this->Proof->f41) .'</td>
           </tr>
           <tr>
             <td>Rear Teat Placement</td>
-            <td align="center"><strong>'.substr($this->Proof->f43, 0, 5) .'</strong></td>
+            <td align="center"><strong>'.$this->MaskValue($this->Proof->f43,4,false).'</strong></td>
             <td align="center">'.$this->Proof->f44 .'</td>
             <td colspan="2">'.Graphs($this->Proof->f43) .'</td>
           </tr>
           <tr>
             <td>Teat Length</td>
-            <td align="center"><strong>'.substr($this->Proof->f45, 0, 5) .'</strong></td>
+            <td align="center"><strong>'.$this->MaskValue($this->Proof->f45,4,false).'</strong></td>
             <td align="center">'.$this->Proof->f46 .'</td>
             <td colspan="2">'.Graphs($this->Proof->f45) .'</td>
           </tr>

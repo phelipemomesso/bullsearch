@@ -76,5 +76,21 @@ class Model_Touro {
 
         return $this->_dbTable->fetchAll($select);        
     }
+
+    public function advancedSearch($string){
+
+        $select = $this->_dbTable->select()
+                ->setIntegrityCheck(false)
+                ->from(array('b' => 'mod_bulls'),array('nome' => 'b.f1','naab' => 'b.f2','b.cod_bull','b.abs'))
+                ->join(array('bc' => 'mod_bulls_countries'), 'b.cod_bull = bc.bull',array('bc.*'))
+                ->join(array('bf' => 'mod_proofs_holstein'), 'b.cod_bull = bf.bull',array('bf.*'))
+                ->where('('.$string.') and bc.visible = 1')
+                ->group('b.cod_bull')
+                ->order('b.f1 asc');
+
+                //echo $select; die;
+        return $this->_dbTable->fetchAll($select);  
+   
+    }
        
 }

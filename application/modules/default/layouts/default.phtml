@@ -3,9 +3,7 @@
   <head>
 
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <meta http-equiv="Content-Language" content="pt-BR" />
 
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <meta name="description" content="" />
@@ -16,7 +14,7 @@
 		<meta name="url" content="www.bullsearch.com" />
 
 		<meta http-equiv="pragma" content="no-cache" />
-		<meta http-equiv="expires" content = "0" />
+		<meta http-equiv="expires" content = "-1" />
 
     <? echo $this->headTitle(); ?>
 
@@ -34,6 +32,8 @@
     <link href="<?php echo $this->baseUrl() ?>/default/css/flexslider.css" rel="stylesheet" type="text/css" media="screen" />
 <link href="<?php echo $this->baseUrl() ?>/default/css/killercarousel.css" type="text/css" rel="stylesheet" />
     <link href="<?php echo $this->baseUrl() ?>/default/css/prettyPhoto.css" rel="stylesheet" type="text/css" media="screen" />
+
+    <link href="<?php echo $this->baseUrl() ?>/default/js/plugins/blue/style.css" rel="stylesheet" type="text/css" media="screen" />
     <link href='http://fonts.googleapis.com/css?family=Abel' rel='stylesheet' type='text/css'>
 
         <?php
@@ -103,10 +103,14 @@
     <script type="text/javascript" src="<?php echo $this->baseUrl() ?>/default/js/plugins/killercarousel.js"></script>
     <script type="text/javascript" src="<?php echo $this->baseUrl() ?>/default/js/plugins/jquery.prettyPhoto.js"></script>
 
+     <script type="text/javascript" src="<?php echo $this->baseUrl() ?>/default/js/plugins/jquery.tablesorter.min.js"></script>
+
     <script type="text/javascript">
 
     jQuery(function($) {
 
+
+      $("#myTable").tablesorter(); 
 
       $('#slider').flexslider({
         animation: "slide",
@@ -126,6 +130,8 @@
       $("a[rel^='prettyPhoto']").prettyPhoto({
         theme: "facebook"
       });
+
+      $('.selos').tooltip();
 
 
       <?php
@@ -176,8 +182,6 @@
               $('#teste').html(data);
 
               window.addthis.toolbox('.addthis_toolbox');
-
-
             },
 
             error: function(xhr, er) {
@@ -186,6 +190,55 @@
           })
 
         });
+
+        $( "#sire-type" ).on( "change", function( e ) {
+
+          if ($(this).val() != '') {
+
+            if ( $( "#breed" ).val() == 3 || $( "#breed" ).val() == 2) {
+              
+              var $url = '';
+
+              sessionStorage.setItem('breedAdv', $( "#breed" ).val());
+              sessionStorage.setItem('sireTypeAdv', $(this).val());
+            
+              jQuery.ajax({
+
+                url: baseUrl+'/advanced/table' ,
+                data: {
+
+                  breed: $( "#breed" ).val(),
+                  sireType: $(this).val(),
+                },
+                type: 'post',
+
+                success: function(data) {
+
+                  $('#table-result').html(data);
+
+                },
+
+                error: function(xhr, er) {
+                  alert('Error ' + xhr.status + ' - ' + xhr.statusText);
+                }
+              })
+
+            }
+
+          } else {
+            $('#table-result').html('');
+          }
+
+        });
+
+        $( "#breed" ).on( "change", function( e ) {
+
+         
+          $('#table-result').html('');
+          $( "#sire-type" ).val('');
+
+        });  
+
 
         $( ".bt-comments" ).on( "click", function( e ) {
 
@@ -217,6 +270,8 @@
           location.href=baseUrl+'/language/index/lang/'+$(this).val();
 
         });
+
+       
 
       });
 
